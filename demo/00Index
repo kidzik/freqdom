@@ -1,0 +1,11 @@
+dpca.nino         DPCA application to nino metheorogical dataset
+dpca.pm10         DPCA application to pollution data
+dpca.simulation   Elementary DPCA example
+dpca.population	  DPCA for larger datasets
+reg.est           Demonstration of a data-driven procedure for choosing a dimension of regression operator
+reglag.est.simulation   Lagged regression simulation - usage of spectral estimator
+reglag.gsl              Intrayear Great Salt Lake elevation modeled by precipitation
+reglag.test.bm          Lag significance test in lagged regresion problem - brownian motion simulation
+reglag.test.simulation  Lag significance test in lagged regresion problem - elementary simulation
+reglag.ice.river        Lag regression run on ice river data
+reglag.pm10        Lag regression run on polution data from Graz 
