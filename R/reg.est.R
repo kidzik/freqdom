@@ -9,9 +9,9 @@
 #' @param Kconst constant for heuristic (as in \code{\link{reg.dim.est}})
 #' @return Estimated regression operator
 #' @export
-#' @references Siegfried Hormann and Lukasz Kidzinski
-#' A note on estimation in Hilbertian linear models
-#' Research report, 2012
+#' @references Hormann Siegfried, and Lukasz Kidzinski.
+#' \emph{A note on estimation in Hilbertian linear models.}
+#' Scandinavian journal of statistics 42.1 (2015): 43-62.
 #' @examples
 #' X = rar(100)
 #' e = rar(100)

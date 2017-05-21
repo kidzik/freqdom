@@ -18,7 +18,7 @@
 #' @param weights kernel used to decay significance of covariances with higher lags ('Bartlett', 'trunc', 'Tukey', 'Parzen', 'Bohman', 'Daniell', 'ParzenCogburnDavis').
 #' @return Frequency Domain Operator object
 #' @references Peter J. Brockwell and Richard A. Davis
-#' Time Series: Theory and Methods
+#' \emph{Time Series: Theory and Methods}
 #' Springer Series in Statistics, 2009
 #' @export
 #' @keywords spec

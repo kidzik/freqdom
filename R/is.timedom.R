@@ -1,8 +1,9 @@
-#' Checks if a given object is a time domain filter or process.
+#' Checks if a given object is of time domain type (\code{\link{timedom}}).
 #'
-#' @title Check if a given object is a time domain object
-#' @param X an object
-#' @return boolean
+#' @title Checks if a given object is of time domain type
+#' @param X any object
+#' @return \code{TRUE} if \code{X} is of type \code{\link{timedom}}, \code{FALSE} otherwise
+#' @seealso \code{\link{freqdom}}, \code{\link{timedom}}, \code{\link{is.freqdom}}
 #' @export 
 is.timedom = function (X){
   inClass(X,'timedom')

@@ -14,6 +14,9 @@
 #' @param p window size for estimation of spectral density of X
 #' @param q window size for estimation of spectral density of Y and X
 #' @param weights as in \code{\link{spectral.density}}
+#' @references Hormann Siegfried, Kidzinski Lukasz and Kokoszka Piotr.
+#' \emph{Estimation in functional lagged regression.} 
+#' Journal of Time Series Analysis 36.4 (2015): 541-561.
 #' @return \code{timedom} operators
 #' @seealso \code{\link{linproc}}
 #' @examples
@@ -23,7 +26,7 @@
 #' A = speclagreg(X,Y) 
 #' # check an advanced examples in demo(lagged.reg)
 #' @export
-speclagreg = function(X,Y,Kconst=1,K=NULL,lags=0:0,freq=NULL,p=10,q=10,weights="Bartlett")
+speclagreg = function(X,Y,K=NULL,lags=0:0,freq=NULL,p=10,q=10,weights="Bartlett")
 {
   if (!is.matrix(X) || !is.matrix(Y))
     stop("X and Y must be matrices")
@@ -42,11 +45,11 @@ speclagreg = function(X,Y,Kconst=1,K=NULL,lags=0:0,freq=NULL,p=10,q=10,weights="
   SYX = spectral.density(Y,X,freq=thetas,q=q,weights=weights)
   
   if (is.null(K)){
-#    K = speclagreg.K(X,Y,freq=thetas,lags=lags,p=p,q=q,weights=weights)
-    K = speclagreg.K.experimental(X,Y,freq=thetas,method=0,SXX=SXX)
+    K = speclagreg.K(X,Y,freq=thetas,lags=lags,p=p,q=q,weights=weights)
+#    K = speclagreg.K.experimental(X,Y,freq=thetas,method=0,SXX=SXX)
   }
 
-  R = freqdom.ratio(SYX,SXX,dim(X)[1],Kconst=Kconst,K=K) # frequencywise overloaded operator
+  R = freqdom.ratio(SYX,SXX,dim(X)[1],K=K) # frequencywise overloaded operator
 
   A = invfourier(rev(R),lags=lags)
   A$estdim = K

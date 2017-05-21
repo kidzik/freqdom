@@ -1,15 +1,19 @@
-#' Compute
-#' \deqn{Y_t = \sum_{k=-q}^p A_k X_{t-k}}
-#' where \eqn{X_t} is a stationary multivariate time series and \eqn{(A_k)_{-q \leq k \leq p}} is a filter.
-#' Note that this procedure can also be used for deconvolution 
-#' \deqn{\tilde X_t = \sum_{k=-q}^p X_{t+k}} A_k'
-#' but therefore in place of \code{A} one should it's transposition and inversed time, i.e.
-#' \code{t(rev(A))}.
-#'
-#' @title Generate a linear process from 
-#' @param X process
-#' @param A time-domain operator series
-#' @return Multivariate linear process
+#' Given a multivariate time series \eqn{X_t} and a time-domain filter \eqn{\{A_k : k \in S\}} defined on lags \eqn{S}, \code{filter.process} convolutes
+#' the time series with the filter.
+#' 
+#' Let \eqn{X_t} be a multivariate time series and let \eqn{\{A_k : k \in S\}} be a time domain filter defined on lags \eqn{S}
+#' For a sample of size \eqn{T} and for \eqn{t \in \{1,...,T\}}, the functions \code{filter.process} computes
+#' \deqn{Y_t = \sum_{k \in \mathbf{Z}} A_k X_{t-k}}
+#' assuming \eqn{X_t = 0} for \eqn{t \notin \{1,...,T\}} and \eqn{A_k = 0} for \eqn{k \notin S}.
+#' 
+#' @title Convolute (filter) a multivariate time series using a time-domain filter
+#' 
+#' @param X a multivariate time series represented with a \eqn{T \times p_1} matrix,
+#'  where \eqn{T} is the number of observations and \eqn{p_1} is the number of covariates.
+#' @param A a time-domain filter \code{\link{timedom}}, i.e. a set of linear operators \eqn{A_k \in \mathbf{R}^{p_1 \times p_2}}
+#' defined on a set of lags \eqn{S \subset \mathbf{Z}}. 
+#' @return A multivariate time series \eqn{Y_t} represented as a matrix \eqn{T \times p_2}.
+#' @seealso \code{\link{timedom}}
 #' @export
 filter.process = function(X, A){
   if (!is.timedom(A))
@@ -47,12 +51,16 @@ colshift = function(col,lag){
 }
 
 
-#' Convolution of a process X with an operator A. As in \code{\link{filter.process}}
+#' Given a multivariate time series \eqn{X_t} and a time-domain filter \eqn{\{A_k : k \in S\}} for some lags \eqn{S}, \code{filter.process} convolutes
+#' the time series with the filter. This is a convenience operator equivalent to \code{\link{filter.process}}. See \code{\link{filter.process}} for details.
 #'  
 #' @title Convolution of a process X with an operator A.
-#' @param A \code{timedom} operators
-#' @param X \code{timedom} multivariate time series
-#' @return Convoluted series of the same type as X
+#' @param X multivariate time series represented as a \eqn{T \times p_1} matrix,
+#'  where \eqn{T} is the number of observations and \eqn{p_1} is the number of covariates.
+#' @param A time-domain filter \code{\link{timedom}}, i.e. a set of linear operators \eqn{A_k \in \mathbf{R}^{p_1 \times p_2}}
+#' for some set \eqn{S \subset \mathbf{Z}} of lags. 
+#' @return Multivariate time series \eqn{Y_t} represented as a matrix \eqn{T \times p_2}.
+#' @seealso \code{\link{filter.process}}, \code{\link{timedom}}
 #' @export
 `%c%` <- function(A, X){
   filter.process(X, A)

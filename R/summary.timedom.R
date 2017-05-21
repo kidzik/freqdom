@@ -1,4 +1,4 @@
-#' @S3method print timedom
+#' @export print timedom
 print.timedom = function (x, ...) {
   dots <- list(...)
   operators = TRUE
@@ -16,7 +16,7 @@ print.timedom = function (x, ...) {
   cat(paste("\n$lags (available lags)\n",paste(x$lags,collapse=" "),"\n"))
 }
 
-#' @S3method print freqdom
+#' @export print freqdom
 print.freqdom = function (x, ...) {
   dots <- list(...)
   operators = TRUE
@@ -37,12 +37,12 @@ print.freqdom = function (x, ...) {
   print(signif(x$freq,4))
 }
 
-#' @S3method summary timedom
+#' @export summary timedom
 summary.timedom = function (object, ...) {
   print.timedom(object, FALSE)
 }
 
-#' @S3method summary freqdom
+#' @export summary freqdom
 summary.freqdom = function (object, ...) {
   print.freqdom(object, FALSE)
 }

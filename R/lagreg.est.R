@@ -10,9 +10,9 @@
 #' @param Kconst constant for heuristic (as in \code{\link{reg.dim.est}})
 #' @return Estimated regression operator
 #' @export
-#' @references Siegfried Hormann and Lukasz Kidzinski
-#' A note on estimation in Hilbertian linear models
-#' Research report, 2012
+#' @references Hormann Siegfried, Lukasz Kidzinski and Piotr Kokoszka.
+#' \emph{Estimation in functional lagged regression.} 
+#' Journal of Time Series Analysis 36.4 (2015): 541-561.
 #' @examples
 #' X = rar(100)
 #' e = rar(100)

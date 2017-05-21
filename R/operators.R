@@ -14,10 +14,10 @@ plus.timedom = function(e1,e2){
   R
 }
 
-#' @S3method '+' freqdom
+#' @export '+' freqdom
 "+.freqdom" = function (e1,e2) plus.freqdom(e1,e2)
 
-#' @S3method '+' timedom
+#' @export '+' timedom
 "+.timedom" = function (e1,e2) plus.freqdom(e1,e2)
 
 minus.freqdom = function(e1,e2){
@@ -39,8 +39,8 @@ minus.freqdom = function(e1,e2){
   R
 }
 
-#' @S3method '-' freqdom
+#' @export '-' freqdom
 "-.freqdom" = function (e1,e2) minus.freqdom(e1,e2)
 
-#' @S3method '-' timedom
+#' @export '-' timedom
 "-.timedom" = function (e1,e2) minus.freqdom(e1,e2)

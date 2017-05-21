@@ -16,8 +16,8 @@
 #' X = rar(n,d=d)
 #' 
 #' OP = array(0,c(d,d,2))
-#' OP[,,1] = 2 * diag(d:1)/d
-#' OP[,,2] = 1.5 * diag(d:1)/d
+#' OP[1,,] = 2 * diag(d:1)/d
+#' OP[2,,] = 1.5 * diag(d:1)/d
 #' A = timedom(OP, 0:1)
 #' 
 #' Y = linproc(X,A,noise=rnorm)

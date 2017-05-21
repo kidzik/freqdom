@@ -6,9 +6,9 @@
 #' @param XI principal components series
 #' @return Matrix of scores of \code{X}
 #' @seealso \code{\link{dpca.inverse}}, \code{\link{dprcomp}}
-#' @references Siegfried Hormann, Lukasz Kidzinski and Marc Hallin
-#' Dynamic Functional Principal Component
-#' Research report, 2012
+#' @references Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
+#' \emph{Dynamic functional principal components.} Journal of the Royal
+#' Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
 # @export
 dpca.scores = function(X,XI){
   XI %c% X

@@ -7,9 +7,9 @@
 #' @param XI principal components series
 #' @return Retrived process X
 #' @seealso \code{\link{dpca.scores}}, \code{\link{dprcomp}}
-#' @references Siegfried Hormann, Lukasz Kidzinski and Marc Hallin
-#' Dynamic Functional Principal Component
-#' Research report, 2012
+#' @references Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
+#' \emph{Dynamic functional principal components.} Journal of the Royal
+#' Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
 # @export
 dpca.inverse = function(Y,XI){
   t(rev(XI)) %c% Y
