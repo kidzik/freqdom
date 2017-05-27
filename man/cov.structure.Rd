@@ -4,7 +4,7 @@
 \alias{cov.structure}
 \title{Estimate cross-covariances of two stationary multivariate time series}
 \usage{
-cov.structure(X, Y = NULL, q = 10)
+cov.structure(X, Y = X, lags = 0)
 }
 \arguments{
 \item{X}{a multivariate time series represented as a \eqn{T \times p_1} matrix,

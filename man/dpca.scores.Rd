@@ -4,18 +4,18 @@
 \alias{dpca.scores}
 \title{Compute scores of dynamic principal components}
 \usage{
-dpca.scores(X, XI)
+dpca.scores(X, dpcs)
 }
 \arguments{
 \item{X}{series to 'project'}
 
-\item{XI}{principal components series}
+\item{dpcs}{principal components series}
 }
 \value{
 Matrix of scores of \code{X}
 }
 \description{
-Compute scores of a given series \code{X} using dynamic principal components \code{XI}.
+Compute scores of a given series \code{X} using dynamic principal components \code{dpcs}.
 Procedure can be inverted using \code{\link{dpca.inverse}}
 }
 \references{

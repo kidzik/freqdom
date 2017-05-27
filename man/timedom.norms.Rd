@@ -4,7 +4,7 @@
 \alias{timedom.norms}
 \title{Compute operator norms of elements of a filter}
 \usage{
-timedom.norms(A, type = "2")
+timedom.norms(A, type = c("O", "I", "F", "M", "2"))
 }
 \arguments{
 \item{A}{a time-domain filter \code{\link{timedom}}, i.e. a set of linear operators \eqn{A_k \in \mathbf{R}^{p_1 \times p_2}}

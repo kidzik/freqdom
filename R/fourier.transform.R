@@ -20,21 +20,19 @@
 #' as the grid. Here we refer to this set as \eqn{G}.
 #' @return A frequency domain operator \eqn{F = \{ F_\theta : \theta \in G \}} (\code{\link{freqdom}}) defined on the given set of frequencies \eqn{G}.
 #' Every \eqn{F_\theta} corresponds to the Fourier transform of \eqn{A} evaluated on \eqn{\theta \in G}.
-#' @seealso \code{\link{invfourier}}
+#' @seealso \code{\link{fourier.inverse}}
 #' @examples
 #' X = rar(100,d=2)
 #' C = cov.structure(X)
 #' F = fourier.transform(C) # a simple spectral density estimator
-#' Cinv = invfourier(F)
+#' Cinv = fourier.inverse(F)
 #' @export
-fourier.transform = function(A,freq=NULL){
+fourier.transform = function(A,freq=pi*-100:100/100){
   if (is.vector(A) || is.matrix(A))
     A = timedom(A)
   if (!is.timedom(A))
     stop("A must be a time domain object")
   
-  if (is.null(freq))
-    freq = pi*-100:100/100
   thetas = freq
 
   if (!is.vector(thetas) || !is.numeric(thetas) ||

@@ -4,14 +4,15 @@
 \alias{rma}
 \title{Moving avarege process}
 \usage{
-rma(n, d, A, noise = NULL)
+rma(n, d = 2, Psi = NULL, noise = c("mnormal", "mt"), sigma = NULL,
+  df = 4)
 }
 \arguments{
 \item{n}{number of observations to generate}
 
 \item{d}{number of dimensions of the process}
 
-\item{A}{time domain object describing operators}
+\item{Psi}{time domain object describing operators}
 
 \item{noise}{the underlying X process}
 }

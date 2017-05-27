@@ -4,7 +4,8 @@
 \alias{rar}
 \title{Simulate a multivariate autoregressive time series}
 \usage{
-rar(n, d = NULL, Psi = NULL, first = NULL, noise = NULL, sd = 1)
+rar(n, d = 2, Psi = NULL, burnin = 10, noise = c("mnormal", "mt"),
+  sigma = NULL, df = 4)
 }
 \arguments{
 \item{n}{number of observations to generate}
@@ -13,11 +14,9 @@ rar(n, d = NULL, Psi = NULL, first = NULL, noise = NULL, sd = 1)
 
 \item{Psi}{serie of regression operators (if one matrix is given it is treated as regressor with lag 1)}
 
-\item{first}{the first element of a series}
-
 \item{noise}{the noise we want to add}
 
-\item{sd}{standard deviation of the gaussian noise if the noise wasn't provided}
+\item{first}{the first element of a series}
 }
 \value{
 an AR series of vectors

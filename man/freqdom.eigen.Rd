@@ -4,17 +4,17 @@
 \alias{freqdom.eigen}
 \title{Eigendevompose a frequency domain operator at each frequency}
 \usage{
-freqdom.eigen(S)
+freqdom.eigen(F)
 }
 \arguments{
-\item{S}{a frequency-domain filter of type \code{\link{freqdom}}, i.e. a set of linear operators \eqn{S_k \in \mathbf{R}^{p \times p}}
+\item{F}{a frequency-domain filter of type \code{\link{freqdom}}, i.e. a set of linear operators \eqn{F_k \in \mathbf{R}^{p \times p}}
 on a discreet grid defined of \eqn{[-\pi,\pi]}.}
 }
 \value{
 A a list with elements
 \itemize{
 \item \code{$vectors} - an array of dimensions \eqn{L \times p \times p}, where \eqn{L} is the size of the grid and \code{$vectors[i,,]}
-correpsonds to the matrix of \eqn{\mathbf{C}^{p \times p}} eigenvectors of \eqn{S_{\theta_i}}
+correpsonds to the matrix of \eqn{\mathbf{C}^{p \times p}} eigenvectors of \eqn{F_{\theta_i}}
 \item \code{$values} - a matrix of dimensions \eqn{L \times p} where \code{$values[i,]} is a vector \eqn{\mathbf{C}^{p}} of \eqn{p} eigenvalues.
 }
 }
@@ -24,25 +24,25 @@ such that for close frequencies eigendirection matrices are close to each other
 ('quasi-continuity').
 }
 \details{
-Let \eqn{S = \{ S_\theta : \theta \in G \}}, where \eqn{G} is some finite grid
-of frequencies in \eqn{[-\pi,\pi]} and \eqn{S_\theta \in \mathbf{C}^{p_1 \times p_2}}.
+Let \eqn{F = \{ F_\theta : \theta \in G \}}, where \eqn{G} is some finite grid
+of frequencies in \eqn{[-\pi,\pi]} and \eqn{F_\theta \in \mathbf{C}^{p_1 \times p_2}}.
 At each frequency \eqn{\theta \in G} function \code{freqdom.eigen} eigendecomposes
-the matrix \eqn{S_\theta}
-\deqn{S_\theta = V_\theta \Lambda_\theta V_\theta',}
+the matrix \eqn{F_\theta}
+\deqn{F_\theta = V_\theta \Lambda_\theta V_\theta',}
 where \eqn{V_\theta} is orthogonal and \eqn{\Lambda_\theta} is diagonal.
 
-Note that if \eqn{v} is an eigenvector of \eqn{S_\theta}, so is \eqn{-v}.
+Note that if \eqn{v} is an eigenvector of \eqn{F_\theta}, so is \eqn{-v}.
 Thus, the solution is not unique and in particular for
-\eqn{A = diag(a_1,a_2,...,_p), a_i \in\{-1,1\}} and \eqn{W_{\theta} = S_\theta A}, we have
-\deqn{S_\theta = W_{\theta} \Lambda_\theta W_{\theta}'}
+\eqn{A = diag(a_1,a_2,...,_p), a_i \in\{-1,1\}} and \eqn{W_{\theta} = F_\theta A}, we have
+\deqn{F_\theta = W_{\theta} \Lambda_\theta W_{\theta}'}
 
 One can show that this ambiguity can lead to noise solutions when inverse Fourier
 transform is applied \eqn{A}. To mitigate this problem we follow the algorithm:
 Let \eqn{G = \{\theta_0, \theta_1, ..., \theta_d\}} and \eqn{\theta_i < \theta_j} for \eqn{i < j}.
-We allow arbitrary \eqn{S_{\theta_0}}. Next, for every \eqn{i > 0} we choose \eqn{A}
-such that \eqn{S_{\theta_{i-1}}} and \eqn{S_{\theta_{i}}} are close to each other or,
+We allow arbitrary \eqn{F_{\theta_0}}. Next, for every \eqn{i > 0} we choose \eqn{A}
+such that \eqn{F_{\theta_{i-1}}} and \eqn{F_{\theta_{i}}} are close to each other or,
 in other words, such that
-\deqn{\|I - S_{\theta_{i-1}} S_{\theta_i} A\|_F,}
+\deqn{\|I - F_{\theta_{i-1}} F_{\theta_i} A\|_F,}
 where \eqn{\| \cdot \|_F} denotes the Frobenius norm.
 }
 \references{

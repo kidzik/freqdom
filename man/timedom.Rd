@@ -4,19 +4,19 @@
 \alias{timedom}
 \title{Converts a multivariate time series or a time-domain filter into a time-domain object}
 \usage{
-timedom(X, lags = NULL)
+timedom(A, lags = 1:dim(A)[1])
 }
 \arguments{
-\item{X}{a set of \eqn{L} operators represented as an array of size \eqn{L \times p_1 \times p_2} or
+\item{A}{a set of \eqn{L} operators represented as an array of size \eqn{L \times p_1 \times p_2} or
 a matrix of size \eqn{T \times p} representing a multivariate time series}
 
-\item{lags}{a vector of length \eqn{L} of lags on which operators are defined. \code{lags[i]} corresponds to the operator \code{X[i,,]}}
+\item{lags}{a vector of length \eqn{L} of lags on which operators are defined. \code{lags[i]} corresponds to the operator \code{A[i,,]}}
 }
 \value{
 A time domain object represented as a list with elements
 \itemize{
-\item \code{$operators} - defined by \eqn{X},
-\item \code{$lags} - \code{lags} if they are provided or, otherwise, \eqn{\{1,2,...,L\}} where \eqn{L} is the number of observations in \eqn{X},
+\item \code{$operators} - defined by \eqn{A},
+\item \code{$lags} - \code{lags} if they are provided or, otherwise, \eqn{\{1,2,...,L\}} where \eqn{L} is the number of observations in \eqn{A},
 }
 
 dependnig on the type of the input.
@@ -37,11 +37,11 @@ of the object, i.e. they behave the same for time-domain filters and for multiva
 For a given set of operators \eqn{\{B_k : k \in lags\}}, such that \eqn{X_k \in \mathbf{R}^{p_1\times p_2}}
 for \code{lags} \eqn{ \subset \mathbf{Z}}, the function \code{timedom} creates an object which we refer to as a \code{timedom} object.
 
-If the data is given as an array \code{X} of size \eqn{L \times p_1 \times p_2} and a vector of \code{lags} is
-provided, then the element \code{X[i,,]} corresponds tothe lag \code{lags[i]} (see example). If \code{lags} are not given
+If the data is given as an array \code{A} of size \eqn{L \times p_1 \times p_2} and a vector of \code{lags} is
+provided, then the element \code{A[i,,]} corresponds tothe lag \code{lags[i]} (see example). If \code{lags} are not given
 we assume \code{lags} be \eqn{\{1,2,...,L\}}.
 
-If the data is given as a matrix \eqn{X} of size \eqn{T \times p_1} representing a time series,
+If the data is given as a matrix \eqn{A} of size \eqn{T \times p_1} representing a time series,
 then we assume it's of dimensions \eqn{T \times p_1 \times 1} and set \code{lags} to \eqn{\{1,2,...,T\}}.
 }
 \examples{

@@ -15,24 +15,22 @@
 #' Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
 #' @seealso \code{\link{dpca.inverse}}, \code{\link{dpca.scores}}
 #' @export
-dprcomp = function(X,V=diag(dim(X)[2]),lags=-10:10,
-                        q=max(1,floor(dim(X)[1]^(1/3))),weights=c('Bartlett', 'trunc', 'Tukey', 'Parzen', 'Bohman', 'Daniell', 'ParzenCogburnDavis'),
-                        freq=pi*(-100:100/100)){
-  if (!is.matrix(X))
-    stop("X must be a matrix")
-  if (!is.vector(lags))
-    stop("lags must be a vector of integers")
+dpca.filters = function(F, L = 10){
+  if (!is.freqdom(F))
+    stop("F must be a freqdom operator")
+  if (L < 0)
+    stop("L must be a non-negative integer")
 
-  SD = spectral.density(X,q=q,weights=weights,freq=freq)
-  E = freqdom.eigen(SD)
+  lags = -L:L
+  E = freqdom.eigen(F)
   
-	nbasis = dim(E$vectors)[2]
+	d = dim(E$vectors)[2]
 
-  XI = array(0,c(length(lags),nbasis,nbasis))
+  XI = array(0,c(length(lags),d,d))
 
-	for (component in 1:nbasis)
-    XI[,component,] = t(exp(-(SD$freq %*% t(lags)) * 1i)) %*% E$vectors[,,component] / length(SD$freq) 
-  # TODO: this is just 'invfourier' written in a fancy way - should be simplified
+	for (component in 1:d)
+    XI[,component,] = t(exp(-(F$freq %*% t(lags)) * 1i)) %*% E$vectors[,,component] / length(F$freq) 
+  # TODO: this is just 'fourier.inverse' written in a fancy way - should be simplified
 
 	timedom(Re(XI[length(lags):1,,]),lags)
 }

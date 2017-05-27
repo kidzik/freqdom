@@ -51,7 +51,7 @@ speclagreg = function(X,Y,K=NULL,lags=0:0,freq=NULL,p=10,q=10,weights="Bartlett"
 
   R = freqdom.ratio(SYX,SXX,dim(X)[1],K=K) # frequencywise overloaded operator
 
-  A = invfourier(rev(R),lags=lags)
+  A = fourier.inverse(rev(R),lags=lags)
   A$estdim = K
   A
 }

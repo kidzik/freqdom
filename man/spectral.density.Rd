@@ -4,8 +4,9 @@
 \alias{spectral.density}
 \title{Compute the cross spectral density of processes X and Y}
 \usage{
-spectral.density(X, Y = NULL, V = NULL, freq = NULL, q = NULL,
-  weights = NULL)
+spectral.density(X, Y = X, V = diag(dim(X)[2]), freq = (-100:100/100) *
+  pi, q = max(1, floor(dim(X)[1]^(1/3))), weights = c("Bartlett", "trunc",
+  "Tukey", "Parzen", "Bohman", "Daniell", "ParzenCogburnDavis"))
 }
 \arguments{
 \item{X}{first process}

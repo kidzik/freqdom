@@ -14,7 +14,7 @@
 #' on a discreet grid defined of \eqn{[-\pi,\pi]}. 
 #' @return Function returns a frequency domain object (\code{\link{freqdom}}) of dimensions \eqn{L \times (p_1q_1) \times (p_2q_2)}, where \eqn{L} is the 
 #' size of the evaluation grid. The elements corresponds to \eqn{F_\theta \otimes G_\theta} defined above.
-#' @export
+# @export
 #' @examples
 #' n = 100
 #' X = rar(n,d=3)

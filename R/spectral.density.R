@@ -26,19 +26,17 @@
 #' X = rar(100)
 #' Y = rar(100)
 #' spectral.density(X,Y)
-spectral.density = function(X,Y=NULL,V=NULL,freq=NULL,q=NULL,weights=NULL){
-  if (is.null(Y))
-    Y = X
-  if (is.null(q))
-    q = 10
-  if (is.null(V))
-    V = diag(dim(X)[2])
+spectral.density = function(X,Y=X,V=diag(dim(X)[2]),
+                            freq=(-100:100/100)*pi,q=max(1,floor(dim(X)[1]^(1/3))),
+                            weights=c('Bartlett', 'trunc', 'Tukey', 'Parzen', 'Bohman', 'Daniell', 'ParzenCogburnDavis')){
+  if (is.vector(weights))
+    weights = "Bartlett"
 
   if (!is.matrix(X) || !is.matrix(Y))
     stop("X and Y must be matrices")
   if (dim(X)[1] != dim(Y)[1])
     stop("Number of observations must be equal")
-  if (!is.positiveint(q))
+  if (!(q > 0))
     stop("q must be a positive integer")
   
   thetas = freq
@@ -46,7 +44,8 @@ spectral.density = function(X,Y=NULL,V=NULL,freq=NULL,q=NULL,weights=NULL){
 	nbasisX = dim(X)[2]
 	nbasisY = dim(Y)[2]
 	n = dim(X)[1]
-	Ch = cov.structure(X,Y,q)
+	Ch = cov.structure(X,Y,-q:q)
+
   for (i in 1:(q*2+1))
     Ch$operators[i,,] = Ch$operators[i,,] %*% V
 	

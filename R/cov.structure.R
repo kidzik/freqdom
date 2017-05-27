@@ -36,13 +36,15 @@
 #' X = rar(100)
 #' Y = rar(100)
 #' cov.structure(X,Y)
-cov.structure = function(X,Y=NULL,q=10){
+cov.structure = function(X,Y=X,lags=0){
   # if no Y compute autocovariance
 	if (is.null(Y))
 		Y = X
+	
+	lrange = as.integer(max(abs(lags)))
   
-	if (!is.integer(q) || q < 1)
-	  stop("q must be a positive integer")
+	if (!is.integer(lrange))
+	  stop("lags must be an integer")
 	if (!is.matrix(X) || !is.matrix(Y))
 	  stop("X and Y must be matrices")
 	if (dim(X)[1] != dim(Y)[1])
@@ -52,11 +54,12 @@ cov.structure = function(X,Y=NULL,q=10){
 	nbasisY = dim(Y)[2]
 	n = dim(X)[1]
 
-	Ch = array(0,c(2*q+1,nbasisX,nbasisY))
+	Ch = array(0,c(2*lrange+1,nbasisX,nbasisY))
 	
-	for (h in (-q):q)
-		Ch[h+q+1,,] = lagged.cov(X,Y,h)
+	for (h in (-lrange):lrange)
+		Ch[h+lrange+1,,] = lagged.cov(X,Y,h)
 	Ch
   
-  timedom(Ch,-q:q)
+  A = timedom(Ch,-lrange:lrange)
+  timedom.trunc(A, lags)
 }

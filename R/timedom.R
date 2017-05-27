@@ -12,21 +12,21 @@
 #' For a given set of operators \eqn{\{B_k : k \in lags\}}, such that \eqn{X_k \in \mathbf{R}^{p_1\times p_2}}
 #' for \code{lags} \eqn{ \subset \mathbf{Z}}, the function \code{timedom} creates an object which we refer to as a \code{timedom} object.
 #' 
-#' If the data is given as an array \code{X} of size \eqn{L \times p_1 \times p_2} and a vector of \code{lags} is
-#' provided, then the element \code{X[i,,]} corresponds tothe lag \code{lags[i]} (see example). If \code{lags} are not given
+#' If the data is given as an array \code{A} of size \eqn{L \times p_1 \times p_2} and a vector of \code{lags} is
+#' provided, then the element \code{A[i,,]} corresponds tothe lag \code{lags[i]} (see example). If \code{lags} are not given
 #' we assume \code{lags} be \eqn{\{1,2,...,L\}}. 
 #' 
-#' If the data is given as a matrix \eqn{X} of size \eqn{T \times p_1} representing a time series,
+#' If the data is given as a matrix \eqn{A} of size \eqn{T \times p_1} representing a time series,
 #' then we assume it's of dimensions \eqn{T \times p_1 \times 1} and set \code{lags} to \eqn{\{1,2,...,T\}}. 
 #'
 #' @title Converts a multivariate time series or a time-domain filter into a time-domain object
 #' 
-#' @param X a set of \eqn{L} operators represented as an array of size \eqn{L \times p_1 \times p_2} or
+#' @param A a set of \eqn{L} operators represented as an array of size \eqn{L \times p_1 \times p_2} or
 #' a matrix of size \eqn{T \times p} representing a multivariate time series
-#' @param lags a vector of length \eqn{L} of lags on which operators are defined. \code{lags[i]} corresponds to the operator \code{X[i,,]}
+#' @param lags a vector of length \eqn{L} of lags on which operators are defined. \code{lags[i]} corresponds to the operator \code{A[i,,]}
 #' @return A time domain object represented as a list with elements
-#' * \code{$operators} - defined by \eqn{X},
-#' * \code{$lags} - \code{lags} if they are provided or, otherwise, \eqn{\{1,2,...,L\}} where \eqn{L} is the number of observations in \eqn{X},
+#' * \code{$operators} - defined by \eqn{A},
+#' * \code{$lags} - \code{lags} if they are provided or, otherwise, \eqn{\{1,2,...,L\}} where \eqn{L} is the number of observations in \eqn{A},
 #' 
 #' dependnig on the type of the input.
 #' @export
@@ -39,29 +39,31 @@
 #' A[2,,] = 1.5 * diag(d:1)/d
 #' OP = timedom(A,c(-2,1))
 #' print(OP)
-timedom = function (X,lags=NULL){
+timedom = function (A,lags=1:dim(A)[1])
+{
   res = list()
 
-  if (is.vector(X)){
+  if (is.vector(A)){
     if (is.null(lags))
-      lags = 1:length(X)
-    res$operators = array(0,c(length(X),1,1))
-    res$operators[,1,1] = X
+      lags = 1:length(A)
+    res$operators = array(0,c(length(A),1,1))
+    res$operators[,1,1] = A
   }
-  else if (is.matrix(X)){
+  else if (is.matrix(A)){
     if (is.null(lags))
-      lags = 1:dim(X)[1]
+      lags = 1:dim(A)[1]
 
-    res$operators = array(0,c(dim(X)[1],dim(X)[2],1))
-    res$operators[,,1] = X
+    res$operators = array(0,c(dim(A)[1],dim(A)[2],1))
+    res$operators[,,1] = A
   }
-  else if (is.array(X) && length(dim(X)) == 3){
+  else if (is.array(A) && length(dim(A)) == 3)
+  {
     if (is.null(lags))
-      lags = 1:dim(X)[3] - 1
-    res$operators = X
+      lags = 1:dim(A)[3] - 1
+    res$operators = A
   }
   else{
-    stop("X must be a matrix or an array")
+    stop("A must be a matrix or an array")
   }
   
   res$lags = lags

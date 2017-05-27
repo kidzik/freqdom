@@ -2,33 +2,33 @@
 #' such that for close frequencies eigendirection matrices are close to each other
 #' ('quasi-continuity').
 #' 
-#' Let \eqn{S = \{ S_\theta : \theta \in G \}}, where \eqn{G} is some finite grid
-#' of frequencies in \eqn{[-\pi,\pi]} and \eqn{S_\theta \in \mathbf{C}^{p_1 \times p_2}}.
+#' Let \eqn{F = \{ F_\theta : \theta \in G \}}, where \eqn{G} is some finite grid
+#' of frequencies in \eqn{[-\pi,\pi]} and \eqn{F_\theta \in \mathbf{C}^{p_1 \times p_2}}.
 #' At each frequency \eqn{\theta \in G} function \code{freqdom.eigen} eigendecomposes
-#' the matrix \eqn{S_\theta}
-#' \deqn{S_\theta = V_\theta \Lambda_\theta V_\theta',}
+#' the matrix \eqn{F_\theta}
+#' \deqn{F_\theta = V_\theta \Lambda_\theta V_\theta',}
 #' where \eqn{V_\theta} is orthogonal and \eqn{\Lambda_\theta} is diagonal.
 #' 
-#' Note that if \eqn{v} is an eigenvector of \eqn{S_\theta}, so is \eqn{-v}.
+#' Note that if \eqn{v} is an eigenvector of \eqn{F_\theta}, so is \eqn{-v}.
 #' Thus, the solution is not unique and in particular for 
-#' \eqn{A = diag(a_1,a_2,...,_p), a_i \in\{-1,1\}} and \eqn{W_{\theta} = S_\theta A}, we have
-#' \deqn{S_\theta = W_{\theta} \Lambda_\theta W_{\theta}'}
+#' \eqn{A = diag(a_1,a_2,...,_p), a_i \in\{-1,1\}} and \eqn{W_{\theta} = F_\theta A}, we have
+#' \deqn{F_\theta = W_{\theta} \Lambda_\theta W_{\theta}'}
 #' 
 #' One can show that this ambiguity can lead to noise solutions when inverse Fourier
 #' transform is applied \eqn{A}. To mitigate this problem we follow the algorithm:
 #' Let \eqn{G = \{\theta_0, \theta_1, ..., \theta_d\}} and \eqn{\theta_i < \theta_j} for \eqn{i < j}.
-#' We allow arbitrary \eqn{S_{\theta_0}}. Next, for every \eqn{i > 0} we choose \eqn{A}
-#' such that \eqn{S_{\theta_{i-1}}} and \eqn{S_{\theta_{i}}} are close to each other or,
+#' We allow arbitrary \eqn{F_{\theta_0}}. Next, for every \eqn{i > 0} we choose \eqn{A}
+#' such that \eqn{F_{\theta_{i-1}}} and \eqn{F_{\theta_{i}}} are close to each other or,
 #' in other words, such that
-#' \deqn{\|I - S_{\theta_{i-1}} S_{\theta_i} A\|_F,}
+#' \deqn{\|I - F_{\theta_{i-1}} F_{\theta_i} A\|_F,}
 #' where \eqn{\| \cdot \|_F} denotes the Frobenius norm.
 #'
 #' @title Eigendevompose a frequency domain operator at each frequency
-#' @param S a frequency-domain filter of type \code{\link{freqdom}}, i.e. a set of linear operators \eqn{S_k \in \mathbf{R}^{p \times p}}
+#' @param F a frequency-domain filter of type \code{\link{freqdom}}, i.e. a set of linear operators \eqn{F_k \in \mathbf{R}^{p \times p}}
 #' on a discreet grid defined of \eqn{[-\pi,\pi]}. 
 #' @return A a list with elements
 #' * \code{$vectors} - an array of dimensions \eqn{L \times p \times p}, where \eqn{L} is the size of the grid and \code{$vectors[i,,]}
-#' correpsonds to the matrix of \eqn{\mathbf{C}^{p \times p}} eigenvectors of \eqn{S_{\theta_i}}
+#' correpsonds to the matrix of \eqn{\mathbf{C}^{p \times p}} eigenvectors of \eqn{F_{\theta_i}}
 #' * \code{$values} - a matrix of dimensions \eqn{L \times p} where \code{$values[i,]} is a vector \eqn{\mathbf{C}^{p}} of \eqn{p} eigenvalues.
 #' @importFrom graphics par plot title
 #' @importFrom stats optim rnorm
@@ -36,32 +36,32 @@
 #' \emph{Dynamic functional principal components.} Journal of the Royal
 #' Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
 #' @export
-freqdom.eigen = function(S){
+freqdom.eigen = function(F){
   # TODO: It would be cleaner if this function returned two frequency domain objects
-  if (!is.freqdom(S))
-    stop("S must be a freqdom object")
+  if (!is.freqdom(F))
+    stop("F must be a freqdom object")
   
-  op = S$operators[1,,]
+  op = F$operators[1,,]
   if (dim(op)[1] != dim(op)[2])
-    stop("S$operators[,,theta] must be a square matrix")
+    stop("F$operators[,,theta] must be a square matrix")
   
-  thetas = S$freq
+  thetas = F$freq
   E = list()
-  nbasis = dim(S$operators)[2]
+  nbasis = dim(F$operators)[2]
   T = length(thetas)
   
-  E$freq = S$freq
+  E$freq = F$freq
   E$vectors = array(0,c(T,nbasis,nbasis))
   E$values = array(0,c(T,nbasis))
   Prev = diag(nbasis)
   
   for (theta in 1:T)
   {
-    Eg = close.eigen(S$operators[theta,,],Prev)
+    Eg = close.eigen(F$operators[theta,,],Prev)
     Prev = Eg$vectors
     
     ## TAKE EIGEN WITHOUT(!) HEURISTIC
-    #Eg = eigen(S$operators[theta,,])
+    #Eg = eigen(F$operators[theta,,])
     
     E$vectors[theta,,] = Eg$vectors
     E$values[theta,] = Eg$values

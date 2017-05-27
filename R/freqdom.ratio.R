@@ -14,7 +14,7 @@
 #' @references Hormann Siegfried, Kidzinski Lukasz and Kokoszka Piotr.
 #' \emph{Estimation in functional lagged regression.} 
 #' Journal of Time Series Analysis 36.4 (2015): 541-561.
-#' @export
+# @export
 #' @seealso \code{\link{freqdom.product}, \link{reg.dim.est}}, \code{\link{freqdom.product}}, \code{\link{freqdom.inverse}}
 #' @examples
 #' n = 100

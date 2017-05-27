@@ -20,7 +20,7 @@ Af = fourier.transform(A)
 Y = A %c% X    # time domain convolution
 Cf = Af %*% Xf # frequency domain product
 
-Yt = invfourier(Cf,1:100)
+Yt = fourier.inverse(Cf,1:100)
 Yr = Yt$operators[,,1]
 
 par(mfrow=c(1,1))

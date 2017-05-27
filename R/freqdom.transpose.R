@@ -14,7 +14,7 @@
 #' @return Function returns a frequency domain object (\code{\link{freqdom}}) of dimensions \eqn{L \times p_2 \times p_1}, where \eqn{L} is the size of the grid.
 #' The elements of the object correspond to \eqn{S_\theta'} as defined above.
 #' @seealso \code{\link{freqdom.product}}, \code{\link{freqdom.ratio}}
-#' @export
+# @export
 freqdom.transpose = function(x){
   lags = freqdom.lags(x)
   for (i in 1:length(lags))

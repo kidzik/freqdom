@@ -9,7 +9,7 @@
 #' @param BM brownian motion to use
 #' @param d dimension (sampling at d points)
 #' @return n x d matrix with independent n observations
-#' @export
+# @export
 #' @importFrom graphics plot
 #' @examples
 #' bm = rbm(100)

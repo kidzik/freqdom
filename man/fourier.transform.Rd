@@ -4,7 +4,7 @@
 \alias{fourier.transform}
 \title{Computes the Fourier transform of a given series of operators or a given multivariate time series}
 \usage{
-fourier.transform(A, freq = NULL)
+fourier.transform(A, freq = pi * -100:100/100)
 }
 \arguments{
 \item{A}{a time-domain object \code{\link{timedom}}, i.e. a set of linear operators \eqn{A_k \in \mathbf{R}^{p_1 \times p_2}}
@@ -38,8 +38,8 @@ It returns a frequency-domain operator \eqn{F = \{ F_\theta : \theta \in G \}}.
 X = rar(100,d=2)
 C = cov.structure(X)
 F = fourier.transform(C) # a simple spectral density estimator
-Cinv = invfourier(F)
+Cinv = fourier.inverse(F)
 }
 \seealso{
-\code{\link{invfourier}}
+\code{\link{fourier.inverse}}
 }

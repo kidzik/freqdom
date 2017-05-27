@@ -5,14 +5,25 @@
 #' @title Moving avarege process
 #' @param n number of observations to generate
 #' @param d number of dimensions of the process
-#' @param A time domain object describing operators 
+#' @param Psi time domain object describing operators 
 #' @param noise the underlying X process
 #' @export
-rma = function(n, d, A, noise=NULL)
+rma = function(n, d = 2, Psi = NULL, noise = c("mnormal","mt"), sigma = NULL, df = 4)
 {
-  lag = rev(A$lags)[1] - A$lags[1]
-  X = rar(n+lag,d=d,Psi = matrix(0,d,d), noise=noise)
-  linproc(X[lag + 1:n,], A, noise=function(n){ rep(0,n)})
+  if (n < 1)
+    stop ("n must be a positive integer")
+  if (d < 1)
+    stop ("d must be a positive integer")
+  if (is.null(d))
+    stop("Can't determine the dimension. Specify d or give Psi.")
+  if (is.null(Psi))
+    Psi = timedom(diag(d),lags=0)
+  if (is.null(sigma))
+    sigma = diag(d)
+  
+  lag = rev(Psi$lags)[1] - Psi$lags[1]
+  X = rar(n + lag, d=d, Psi = matrix(0,d,d), noise=noise, sigma = sigma, df=df)
+  linproc(X[lag + 1:n,], Psi, noise=function(d){rep(0,d)})
 }
 
 rma.old = function(n, lag=2, d=NULL, noise=NULL)

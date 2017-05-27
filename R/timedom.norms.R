@@ -17,7 +17,7 @@
 #' A[2,,] = 1.5 * diag(d:1)/d
 #' OP = timedom(A,c(-2,1))
 #' timedom.norms(OP)
-timedom.norms = function(A, type='2'){
+timedom.norms = function(A, type = c("O", "I", "F", "M", "2")){
   if (!is.timedom(A))
     stop ("A must be a time domain filter")
   
@@ -33,4 +33,5 @@ timedom.norms = function(A, type='2'){
   R$norms = v
   R
 }
+
 

@@ -55,7 +55,7 @@ reglag.significance = function(X, Y, A, alpha = 0.05, plot = FALSE, ...)
     # Get the asymptotic distribution of operators under the null
     # as Brillinger suggests in Theorem 8.10.2
     PROD = freqdom.kronecker(SX,SY)
-    B = invfourier(PROD)$operators[1,,] / n
+    B = fourier.inverse(PROD)$operators[1,,] / n
     
     invB = pseudoinverse(B,K = dim(B)[1])
     
@@ -69,7 +69,7 @@ reglag.significance = function(X, Y, A, alpha = 0.05, plot = FALSE, ...)
     # Make it a bit simpler
     n = dim(X)[1]
     PROD = freqdom.ratio(SY,SX,n)
-    B = invfourier(PROD)$operators[1,,] / n
+    B = fourier.inverse(PROD)$operators[1,,] / n
     invB = solve(B) # Invert B
     
     # 'normalise' operators with invB
