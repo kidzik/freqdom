@@ -10,7 +10,7 @@
 #' @references Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
 #' \emph{Dynamic functional principal components.} Journal of the Royal
 #' Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
-# @export
+#' @export
 dpca.KLexpansion = function(Y,dpcs){
   t(rev(dpcs)) %c% Y
 }

@@ -8,7 +8,7 @@
 #' @param K how many directions should be inverted (as in \code{\link{pseudoinverse}})
 #' @param Kconst constant for heuristic (as in \code{\link{reg.dim.est}})
 #' @return Estimated regression operator
-#' @export
+# @export
 #' @references Hormann Siegfried, and Lukasz Kidzinski.
 #' \emph{A note on estimation in Hilbertian linear models.}
 #' Scandinavian journal of statistics 42.1 (2015): 43-62.

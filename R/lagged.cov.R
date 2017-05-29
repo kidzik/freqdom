@@ -29,7 +29,7 @@
 #' @references Peter J. Brockwell and Richard A. Davis
 #' \emph{Time Series: Theory and Methods}
 #' Springer Series in Statistics, 2009
-#' @export
+# @export
 #' @examples
 #' X = rar(100)
 #' Y = rar(100)

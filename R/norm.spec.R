@@ -9,7 +9,7 @@
 #' norm.spec(P)
 #' @import mvtnorm
 #' @importFrom stats rnorm
-#' @export 
+# @export 
 norm.spec = function(P){
   P = matrix(P)
   if (dim (P) > 2 && !is.numeric(P))

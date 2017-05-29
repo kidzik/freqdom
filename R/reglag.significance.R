@@ -18,7 +18,7 @@
 #' W = reglag.significance(X, Y, A, alpha = 0.05)
 #' @importFrom graphics abline plot title
 #' @importFrom stats pchisq qchisq quantile
-#' @export 
+# @export 
 reglag.significance = function(X, Y, A, alpha = 0.05, plot = FALSE, ...)
 {
   if (!is.matrix(Y))

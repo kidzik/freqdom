@@ -15,7 +15,6 @@
 #' @return Function returns a frequency domain object (\code{\link{freqdom}}) of dimensions \eqn{L \times p \times r}, where \eqn{L} is the 
 #' size of the evaluation grid. The elements correspond to \eqn{F_\theta * G_\theta} defined above.
 #' @seealso \code{\link{freqdom.inverse}}, \code{\link{freqdom.ratio}}
-#' @export
 #' @examples
 #' n = 100
 #' X = rar(n)

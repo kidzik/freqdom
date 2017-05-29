@@ -9,7 +9,7 @@
 #' @param K how many directions should be inverted (as in \code{\link{pseudoinverse}})
 #' @param Kconst constant for heuristic (as in \code{\link{reg.dim.est}})
 #' @return Estimated regression operator
-#' @export
+# @export
 #' @references Hormann Siegfried, Lukasz Kidzinski and Piotr Kokoszka.
 #' \emph{Estimation in functional lagged regression.} 
 #' Journal of Time Series Analysis 36.4 (2015): 541-561.

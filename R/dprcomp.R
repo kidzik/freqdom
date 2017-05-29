@@ -14,7 +14,7 @@
 #' \emph{Dynamic functional principal components.} Journal of the Royal
 #' Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
 #' @seealso \code{\link{dpca.inverse}}, \code{\link{dpca.scores}}
-#' @export
+# @export
 dprcomp = function(X,V=diag(dim(X)[2]),lags=-10:10,
                         q=max(1,floor(dim(X)[1]^(1/3))),weights=c('Bartlett', 'trunc', 'Tukey', 'Parzen', 'Bohman', 'Daniell', 'ParzenCogburnDavis'),
                         freq=pi*(-100:100/100)){
