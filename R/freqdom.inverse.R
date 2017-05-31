@@ -32,6 +32,7 @@
 #' @references Hormann Siegfried, Kidzinski Lukasz and Kokoszka Piotr.
 #' \emph{Estimation in functional lagged regression.} 
 #' Journal of Time Series Analysis 36.4 (2015): 541-561.
+#' @noRd
 # @export
 freqdom.inverse = function(S,n=NULL,K=NULL){
   if (!is.freqdom(S))

@@ -1,18 +1,9 @@
-#' Truncates a time-domain object (\code{\link{timedom}}) to specified lags (equivalent to setting other lags to zero).
-#'
-#' Let \eqn{A = \{A_k : k \in S\}} be a time domain filter for some lags \eqn{S}. \code{timedom.trunc}
-#' truncates \eqn{S} to some subset \eqn{T} such that \eqn{S \backslash T} are implicitely
-#' set to \eqn{0}. This operation can save space and computation time. Also, it simplfifies removal of
-#' non-significant lags.
-#' 
-#' For a given \eqn{A} and a set of lags \eqn{T}, \code{timedom.trunc} returns a time domain object
-#' representing \eqn{\{A_k : k \in S \cap T\}}.
+#' This function removes lags from a linear filter.
 #'
 #' @title Truncates a time-domain object to given lags
-#' @param A a time-domain filter \code{\link{timedom}}, i.e. a set of linear operators \eqn{A_k \in \mathbf{R}^{p_1 \times p_2}}
-#' for some set \eqn{S \subset \mathbf{Z}} of lags.
-#' @param lags lags to which \eqn{A} should be truncated.
-#' @return A truncated \code{\link{timedom}} operator time series, with only operators on lags \eqn{S \cap T} present.
+#' @param A an object of class \code{timedom}.
+#' @param lags a vector which contains a set of lags. These lags must be a subset of the lags defined for timedom object A. Only those lags will be kept, the other lags are removed.
+#' @return An object of class \code{timedom}.
 #' @examples
 #' X = rar(100)
 #' Y = rar(100)

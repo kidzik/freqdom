@@ -4,25 +4,37 @@
 \alias{dpca.KLexpansion}
 \title{Retrieve a process from given scores}
 \usage{
-dpca.KLexpansion(Y, dpcs)
+dpca.KLexpansion(X, dpcs)
 }
 \arguments{
-\item{Y}{scores process}
+\item{X}{a vector time series given as a \eqn{(T\times d)}-matix. Each row corresponds to a timepoint.}
 
-\item{dpcs}{principal components series}
+\item{dpcs}{an object of class \code{timedom}, representing the dpca filters obtained from the sample X. If \code{dpsc = NULL},
+then \code{dpcs = dpca.filter(spectral.density(X))} is used.}
 }
 \value{
-Retrived process X
+A \eqn{(T\times d)}-matix. The \eqn{\ell}-th column contains the \eqn{\ell}-th data point.
 }
 \description{
-For given scores \code{Y} and dynamic principal components \code{dpcs}
-retrive a series from which scores \code{Y} were calculated.
-This procedure should be seen as the inverse of \code{\link{dpca.scores}}.
+Computes the dynamic Karhunen-Loeve expansion of a vector time series up to a given order.
+}
+\details{
+We obtain the dynamic Karhnunen-Loeve expansion of order \eqn{L}, \eqn{1\leq L\leq d}. It is defined as
+\deqn{
+  \sum_{\ell=1}^L\sum_{k\in\mathbf{Z}} Y_{\ell, t+k} \phi_{\ell k},
+}
+where \eqn{\phi_{\ell k}} are the dynamic PC filters as explained in  \code{dpca.filters()}. For the sample version the sum in \eqn{k} extends over the range of lags for which the \eqn{\phi_{\ell k}} are defined. The actual operation carried out is the command
+\code{filter.process(dpca.scores(X, dpcs),t(rev(dpsc)))}. The function \code{rev()} reverts time.
+
+For more details we refer to Chapter 9 in Brillinger (2001), Chapter 7.8 in Shumway and Stoffer (2006) and to Hormann et al. (2015).
 }
 \references{
 Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
 \emph{Dynamic functional principal components.} Journal of the Royal
 Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
+\emph{Time Series} (2001), SIAM, San Francisco.
+
+Shumway, R.H., and Stoffer, D.S.
 }
 \seealso{
 \code{\link{dpca.scores}}, \code{\link{dprcomp}}

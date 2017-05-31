@@ -2,18 +2,18 @@
 % Please edit documentation in R/is.freqdom.R
 \name{is.freqdom}
 \alias{is.freqdom}
-\title{Checks if a given object is of frequency domain type}
+\title{Checks if an object belongs to the class freqdom}
 \usage{
 is.freqdom(X)
 }
 \arguments{
-\item{X}{any object}
+\item{X}{some object}
 }
 \value{
 \code{TRUE} if \code{X} is of type \code{\link{freqdom}}, \code{FALSE} otherwise
 }
 \description{
-Checks if a given object is of frequency domain type (\code{\link{freqdom}}).
+Checks if an object belongs to the class (\code{\link{freqdom}}).
 }
 \seealso{
 \code{\link{freqdom}}, \code{\link{timedom}}, \code{\link{is.timedom}}

@@ -5,7 +5,8 @@
 #' @param X first matrix to compare
 #' @param Y second matrix to compare
 #' @return Estimated mean square error
-#' @export 
+#' @noRd
+# @export
 MSE = function(X,Y){ 
   if (is.vector(X))
     X = matrix(X)

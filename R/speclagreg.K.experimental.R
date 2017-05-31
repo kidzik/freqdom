@@ -1,5 +1,6 @@
 tc = function(X){t(Conj(X))}
 
+#' @noRd
 # @export
 speclagreg.K.experimental = function(X,Y,freq,method = 0,SXX = NULL){  
   if (method == 2){

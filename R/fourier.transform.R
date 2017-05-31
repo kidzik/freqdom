@@ -1,25 +1,13 @@
-#' For a given set of frequencies \eqn{G \subset [-\pi,\pi]} and a  series of operators
-#' \eqn{A = \{ A_k : k \in S \}} (\code{\link{timedom}}), where \eqn{S} is a set of lags,
-#' the function \code{fourier.transform} evaluates the Fourier transform of
-#' \eqn{A} on the set \eqn{G}.
+#' Computes the frequency response function of a linear filter.
 #' 
-#' Given a series of frequencies \eqn{G \subset [-\pi,\pi]} and a series of operators
-#' \deqn{(A(h): h \in \{ -q,...,0,...,q\}),}
-#' where \eqn{A(h) \in \mathbf{R}^{p_1 \times p_2}},
-#' the function \code{fourier.transform} evaluates the Fourier transform on each \eqn{\theta \in G}.
-#' More precisely, for each \eqn{\theta \in G} it computes
-#' \deqn{ F_\theta = \sum_{h=-q}^q A(h) e^{-i\theta h}.}
-#' 
-#' It returns a frequency-domain operator \eqn{F = \{ F_\theta : \theta \in G \}}.
+#' Consider a filter (a sequence of vectors or matrices) \eqn{(A_k)_{k\in A\$lags}}. Then this function computes
+#' \deqn{\sum_{k\in L} A_k e^{-ik\omega}}
+#' for all frequencies \eqn{\omega} listed in the vector \code{freq}.
 #'
 #' @title Computes the Fourier transform of a given series of operators or a given multivariate time series
-#' @param A a time-domain object \code{\link{timedom}}, i.e. a set of linear operators \eqn{A_k \in \mathbf{R}^{p_1 \times p_2}}
-#' for some set \eqn{G \subset \mathbf{Z}} of lags. Alternatively, a multivariate time series.
-#' @param freq frequencies on which the transfom should be evaluated. A vector of increasing values in \eqn{[-\pi,\pi]}. 
-#' If the parameter is \code{NULL}, the default grid of \eqn{201} equidistributed points on \eqn{[-\pi,\pi]} is taken
-#' as the grid. Here we refer to this set as \eqn{G}.
-#' @return A frequency domain operator \eqn{F = \{ F_\theta : \theta \in G \}} (\code{\link{freqdom}}) defined on the given set of frequencies \eqn{G}.
-#' Every \eqn{F_\theta} corresponds to the Fourier transform of \eqn{A} evaluated on \eqn{\theta \in G}.
+#' @param A an object of class \code{timedom}.
+#' @param freq a vector of frequencies \eqn{\in [-\pi, \pi]}. 
+#' @return An object of class \code{freqdom}.
 #' @seealso \code{\link{fourier.inverse}}
 #' @examples
 #' X = rar(100,d=2)

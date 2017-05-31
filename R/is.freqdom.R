@@ -2,10 +2,10 @@ inClass = function(X,cls){
   !is.null(oldClass(X)) && oldClass(X) == cls
 }
 
-#' Checks if a given object is of frequency domain type (\code{\link{freqdom}}).
+#' Checks if an object belongs to the class (\code{\link{freqdom}}).
 #'
-#' @title Checks if a given object is of frequency domain type
-#' @param X any object
+#' @title Checks if an object belongs to the class freqdom
+#' @param X some object
 #' @return \code{TRUE} if \code{X} is of type \code{\link{freqdom}}, \code{FALSE} otherwise
 #' @seealso \code{\link{freqdom}}, \code{\link{timedom}}, \code{\link{is.timedom}}
 #' @export 

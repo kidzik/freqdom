@@ -4,32 +4,33 @@
 \alias{fourier.inverse}
 \title{Inverse Fourier Transform of a given frequency-domain filter.}
 \usage{
-fourier.inverse(F, lags = 0:0)
+fourier.inverse(F, lags = 0)
 }
 \arguments{
-\item{F}{a frequency-domain filter of type \code{\link{freqdom}}, i.e. a set of linear operators \eqn{R_k \in \mathbf{R}^{p \times p}}
-on a discreet grid defined of \eqn{[-\pi,\pi]}.}
+\item{F}{an object of class \code{freqdom} which is corresponding to a function with values in \eqn{\mathbf{C}^{d_1\times d_2}}. To guarantee accuracy of inversion it is important that \eqn{F\$freq} is a dense grid of frequencies in \eqn{[-\pi,\pi]}.}
 
-\item{lags}{a vector lags on which the inverse Fourier transform should be evaluated.}
+\item{lags}{lags of the Fourier coefficients to be computed.}
 }
 \value{
-A time-domain object (\code{\link{timedom}}), a set of linear operators \eqn{A_k \in \mathbf{R}^{p_1 \times p_2}}
-for selected lags \code{lags}. Every operator \eqn{A_k} is the inverse Fourier transform of \eqn{R} evaluated at lag \eqn{k}.
+An object of class \code{timedom}. The list has the following components:
+\itemize{
+\item \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the \eqn{k}-th Fourier coefficients.
+\item \code{lags} the lags of the corresponding Fourier coefficient.
+}
 }
 \description{
-For a given set of lags \eqn{G \subset \mathbf{Z}} and a set of operators
-\eqn{R = \{ R_k : k \in S \}} (\code{\link{freqdom}}), where \eqn{S \subset [-\pi,\pi]},
-the function \code{fourier.inverse} evaluates the Inverse Fourier transform of
-\eqn{R} on the set of lags \eqn{G}.
+Computes Fourier coefficients of some functional represented by an object of class \code{freqdom}.
 }
 \details{
-Given a series of lags \eqn{G \subset \mathbf{Z}} and a set of operators
-\eqn{R = \{ R_\theta : \theta \in S \}} (\code{\link{freqdom}}), where \eqn{S \subset [-\pi,\pi]},
-the function \code{fourier.inverse} evaluates the Fourier transform of \eqn{R}  on each \eqn{\theta \in G}.
-More precisely, for each \eqn{k \in G} it computes
-\deqn{ A_k = \frac{1}{|S|} \sum_{\theta \in S} R_\theta e^{i\theta k}.}
-
-It returns a time-domain operator \eqn{A = \{ A_k : k \in G \}}.
+Consider a function \eqn{F \colon [-\pi,\pi]\to\mathbf{C}^{d_1\times d_2}}. Its \eqn{k}-th Fourier coefficient is given as
+\deqn{
+  \frac{1}{2\pi}\int_{-\pi}^\pi F(\omega) \exp(ik\omega)d\omega.
+}
+We represent the function \eqn{F} by an object of class \code{freqdom} and approximate the integral via
+\deqn{
+\frac{1}{|F\$freq|}\sum_{\omega\in {F\$freq}} F(\omega) \exp(i k\omega),
+}
+for \eqn{h\in} lags.
 }
 \examples{
 n = 100

@@ -7,24 +7,21 @@
 filter.process(X, A)
 }
 \arguments{
-\item{X}{a multivariate time series represented with a \eqn{T \times p_1} matrix,
-where \eqn{T} is the number of observations and \eqn{p_1} is the number of covariates.}
+\item{X}{vector time series given in matrix form. Each row corresponds to a timepoint.}
 
-\item{A}{a time-domain filter \code{\link{timedom}}, i.e. a set of linear operators \eqn{A_k \in \mathbf{R}^{p_1 \times p_2}}
-defined on a set of lags \eqn{S \subset \mathbf{Z}}.}
+\item{A}{an object of class \code{timedom}.}
 }
 \value{
-A multivariate time series \eqn{Y_t} represented as a matrix \eqn{T \times p_2}.
+A matrix. Row \eqn{t} corresponds to \eqn{Y_t}.
 }
 \description{
-Given a multivariate time series \eqn{X_t} and a time-domain filter \eqn{\{A_k : k \in S\}} defined on lags \eqn{S}, \code{filter.process} convolutes
-the time series with the filter.
+This function applies a linear filter to some vector time series.
 }
 \details{
-Let \eqn{X_t} be a multivariate time series and let \eqn{\{A_k : k \in S\}} be a time domain filter defined on lags \eqn{S}
-For a sample of size \eqn{T} and for \eqn{t \in \{1,...,T\}}, the functions \code{filter.process} computes
-\deqn{Y_t = \sum_{k \in \mathbf{Z}} A_k X_{t-k}}
-assuming \eqn{X_t = 0} for \eqn{t \notin \{1,...,T\}} and \eqn{A_k = 0} for \eqn{k \notin S}.
+Let \eqn{[X_1,\ldots, X_T]^\prime} be a \eqn{T\times d} matrix corresponding to a vector series \eqn{X_1,\ldots,X_T}. This time series is transformed to the series \eqn{Y_1,\ldots, Y_T}, where
+\deqn{ Y_t=\sum_{k=-q}^p A_k X_{t-k},\quad t\in\{p+1,\ldots, T-q\}.}
+The index \eqn{k} of \eqn{A_k} is determined by the lags defined for the time domain object.
+When index \eqn{t-k} falls outside the domain \eqn{\{1,\ldots, T\}} we set \eqn{X_t=\frac{1}{T}\sum_{k=1}^T X_k}.
 }
 \seealso{
 \code{\link{timedom}}

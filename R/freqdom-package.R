@@ -41,4 +41,4 @@
 #' @references Hormann Siegfried and Kidzinski Lukasz.
 #' \emph{A note on estimation in Hilbertian linear models.}
 #' Scandinavian journal of statistics 42.1 (2015): 43-62.
-"_PACKAGE"
+#"_PACKAGE"

@@ -7,33 +7,31 @@
 freqdom(F, freq)
 }
 \arguments{
-\item{F}{a set of \eqn{L} operators represented as an array of dimensions \eqn{L \times p_1 \times p_2}.}
+\item{F}{an array. The elements \eqn{F[,,k], 1\leq k\leq K}, are complex valued \eqn{(d_1\times d_2)} matrices (all of same dimension).}
 
-\item{freq}{a vector of length \eqn{L} of frequencies on which the operators are defined. \code{freq[i]} corresponds to the operator \code{F[i,,]}.}
+\item{freq}{a vector of dimension \eqn{K} containing frequencies in \eqn{[-\pi,\pi]}.}
 }
 \value{
-A frequency domain operator represented as a list with elements
+Returns an object of class \code{freqdom}. An object of class  \code{freqdom} is a list containing the following components:
 \itemize{
-\item \code{$operators} = \eqn{F},
-\item \code{$freq} = \code{freq}.
+\item \code{operators} returns the array F as given in the argument.
+\item \code{freq} returns the vector freq as given in the argument.
 }
 }
 \description{
-Converts an array of filters into a frequency-domain object enabling further manipulation using
-frequency-domain methods such as \code{\link{fourier.inverse}}.
-Typically, these objects are created through a Fourier transform (\code{\link{fourier.transform}})
-of time-domain objects (multivariate time series or filters \code{\link{timedom}}).
+Creates an object of class  \code{freqdom}. This object corresponds to functional with domain \eqn{[-\pi,\pi]} and some complex vector space as codomain.
 }
 \details{
-\code{freqdom} is a technical class of objects which simplifies manipulation of linear operators in frequency domain. It
-enables representation of a sequence of frequency domain operators (a sequence of matrices) in a single object, which can be used in
-\code{\link{fourier.inverse}} or any of the \code{freqdom.*} functions.
+This class is used to describe a frequency domain functional (like a spectral density matrix, a discrete Fourier transform, an impulse response function, etc.)
+on selected frequencies. Formally we consider a collection \eqn{[F_1,\ldots,F_K]} of complex-valued matrices \eqn{F_k}, all of which have the same dimension
+\eqn{d_1\times d_2}. Moreover, we consider frequencies \eqn{\{\omega_1,\ldots, \omega_K\}\subset[-\pi,\pi]}. The object this function creates corresponds
+to the mapping \eqn{f: \mathrm{freq}\to \mathbf{C}^{d_1\times d_2}}, where \eqn{\omega_k\mapsto F_k}.
 
-For a given set of operators \eqn{\{X_k : k \in freq \}}, such that \eqn{X_k \in \mathbf{C}^{p_1\times p_2}}
-for some \code{freq} \eqn{ \subset \mathbf{Z}}, the function \code{freqdom} creates an object which we refer to as a \code{freqdom} object.
-We assume that frequencies \code{freq} are defined on the interval \eqn{[-\pi,\pi]}.
-
-For an array \code{F} of dimensions \eqn{L \times p_1 \times p_2}, each element \code{F[i,,]} corresponds to freq \code{freq[i]} for \eqn{1 \leq i \leq L}.
+Consider, for example, the discrete Fourier transform of a vector time series \eqn{X_1,\ldots, X_T}:. It is defined as
+\deqn{
+  D_T(\omega)=\frac{1}{\sqrt{T}}\sum_{t=1}^T X_t e^{-it\omega},\quad \omega\in[-\pi,\pi].
+}
+We may choose \eqn{\omega_k=2\pi k/K-\pi} and \eqn{F_k=D_T(\omega_k)}. Then, the object \code{freqdom} creates, is corresponding to the function which associates \eqn{\omega_k} and \eqn{D_T(\omega_k)}.
 }
 \seealso{
 \code{\link{fourier.transform}}

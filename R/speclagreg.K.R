@@ -20,7 +20,8 @@ tc = function(X){t(Conj(X))}
 #' w = 0.4
 #' Y = w*X + (1-w)*rar(n,d=d,Psi=matrix(0,d,d))	# independent d-dim variables
 #' K = speclagreg.K(X, Y, lags=-2:2)
-# @export 
+#' @noRd
+# @export
 speclagreg.K = function(X,Y,lags=0:0,freq=NULL,p=10,q=10,weights="Bartlett"){  
   n = dim(X)[1]
   d = dim(X)[2]

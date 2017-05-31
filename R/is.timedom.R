@@ -1,7 +1,7 @@
-#' Checks if a given object is of time domain type (\code{\link{timedom}}).
+#' Checks if an object belongs to the class (\code{\link{timedom}}).
 #'
-#' @title Checks if a given object is of time domain type
-#' @param X any object
+#' @title Checks if an object belongs to the class timedom
+#' @param X some object
 #' @return \code{TRUE} if \code{X} is of type \code{\link{timedom}}, \code{FALSE} otherwise
 #' @seealso \code{\link{freqdom}}, \code{\link{timedom}}, \code{\link{is.freqdom}}
 #' @export 

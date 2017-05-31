@@ -2,18 +2,18 @@
 % Please edit documentation in R/is.timedom.R
 \name{is.timedom}
 \alias{is.timedom}
-\title{Checks if a given object is of time domain type}
+\title{Checks if an object belongs to the class timedom}
 \usage{
 is.timedom(X)
 }
 \arguments{
-\item{X}{any object}
+\item{X}{some object}
 }
 \value{
 \code{TRUE} if \code{X} is of type \code{\link{timedom}}, \code{FALSE} otherwise
 }
 \description{
-Checks if a given object is of time domain type (\code{\link{timedom}}).
+Checks if an object belongs to the class (\code{\link{timedom}}).
 }
 \seealso{
 \code{\link{freqdom}}, \code{\link{timedom}}, \code{\link{is.freqdom}}

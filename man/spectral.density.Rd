@@ -9,32 +9,38 @@ spectral.density(X, Y = X, V = diag(dim(X)[2]), freq = (-100:100/100) *
   "Tukey", "Parzen", "Bohman", "Daniell", "ParzenCogburnDavis"))
 }
 \arguments{
-\item{X}{first process}
+\item{X}{vector time series given in matrix form. Each row corresponds to a timepoint.}
 
-\item{Y}{second process, if \code{NULL} then spectral density of X is computed}
+\item{Y}{vector time series given in matrix form. Each row corresponds to a timepoint.}
 
-\item{V}{correlation structure between coefficients of vectors (default diagonal)}
+\item{freq}{a vector containing frequencies in \eqn{[-\pi, \pi]} on which the spectral density should be evaluated.}
 
-\item{freq}{evaluation grid - vector of values between \code{[-pi,pi]}}
+\item{q}{window size for the kernel estimator, i.e. a positive integer.}
 
-\item{q}{size of the window (covariances from -q to q will be computed)}
-
-\item{weights}{kernel used to decay significance of covariances with higher lags ('Bartlett', 'trunc', 'Tukey', 'Parzen', 'Bohman', 'Daniell', 'ParzenCogburnDavis').}
+\item{weights}{kernel used in the spectral smoothing. By default the Bartlett kernel is chosen.}
 }
 \value{
-Frequency Domain Operator object
+Returns an object of class \code{freqdom}. The list is containing the following components:
+\itemize{
+\item \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the spectral density matrix evaluated at the \eqn{k}-th frequency listed in freq.
+\item \code{freq} returns argument vector freq.
+}
 }
 \description{
-Computes the spectral density of processes \eqn{X_t} and \eqn{Y_t} using
-a Bartlett style estimator, i.e.
-\deqn{ \hat F_\theta^{XY} = \sum_{k=-q}^q W(|k|/q) \hat C_{XY}^k e^{-i\theta k},}
-where \eqn{\theta \in [-\pi,\pi]} and \eqn{\hat C_{XY}^k} is the estimated covariance with lag \eqn{k}.
-Quality of the estimation depends on choise of the window size \eqn{q}
-and \eqn{W} (\code{weights}).
-For details on spectral density estimation please refer to "Time Series: Theory and Methods"
-by Peter J. Brockwell and Richard A. Davis.
-Note that estimator is calculated on the finite grid \code{thetas} so #' in some cases
-numerical quality can be improved by choosing a more dense set.
+Estimates the spectral density and cross spectral density of vector time series.
+}
+\details{
+Let \eqn{[X_1,\ldots, X_T]^\prime} be a \eqn{T\times d_1} matrix and \eqn{[Y_1,\ldots, Y_T]^\prime} be a \eqn{T\times d_2} matrix. We stack the vectors and assume that \eqn{(X_t^\prime,Y_t^\prime)^\prime} is a stationary multivariate time series of dimension \eqn{d_1+d_2}. The cross-spectral density between the two time series \eqn{(X_t)} and \eqn{(Y_t)} is defined as
+\deqn{  
+  \sum_{h\in\mathbf{Z}} \mathrm{Cov}(X_h,Y_0) e^{-ih\omega}.
+}
+The function \code{spectral.density} determines the empirical cross-spectral density between the two time series \eqn{(X_t)} and \eqn{(Y_t)}. The estimator is of form
+\deqn{
+  \widehat{\mathcal{F}}^{XY}(\omega)=\sum_{|h|\leq q} w(|k|/q)\widehat{C}^{XY}(h)e^{-ih\omega},
+}
+with \eqn{\widehat{C}^{XY}(h)} defined in \code{cov.structure} Here \eqn{w} is a kernel of the specified type and \eqn{q} is the window size.  By default the Bartlett kernel \eqn{w(x)=1-|x|} is used.
+
+See, e.g., Chapter 10 and 11 in Brockwell and Davis (1991) for details.
 }
 \examples{
 X = rar(100)

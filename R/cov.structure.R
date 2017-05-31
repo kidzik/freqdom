@@ -1,36 +1,29 @@
-#' Estimate the covariance structure of two stationary multivariate time series
-#' on a given set of lags \eqn{[-q,q]}.
+#' This function is used to estimate a collection of cross-covariances of two stationary time series.
 #' 
-#' Given a stationary multivariate time series (\eqn{X_t}',\eqn{Y_t}')' of dimentian \eqn{p_1 + p_2}
-#' this function determines empirical lagged covariances between the series \eqn{X_t} and \eqn{Y_t}. More
-#' precisely, it returns 
-#' \deqn{(\hat C^{XY}(h): h \in \{ -q,...,0,...,q\})}
-#' where \eqn{\hat C^{XY}(h)} is the empirical version of \eqn{Cov(X_{h} Y_0)}. 
-#' For a sample of size \eqn{T} we set \eqn{\mu^X = \frac{1}{T}\sum_{t=1}^T X_t} and
-#' \eqn{\mu^Y = \frac{1}{T}\sum_{t=1}^T Y_t}. Then for \eqn{h \geq 0} we define
+#' Let \eqn{[X_1,\ldots, X_T]^\prime} be a \eqn{T\times d_1} matrix and
+#' \eqn{[Y_1,\ldots, Y_T]^\prime} be a \eqn{T\times d_2} matrix. We stack the vectors and
+#' assume that \eqn{(X_t^\prime,Y_t^\prime)^\prime} is a stationary multivariate time series
+#' of dimension \eqn{d_1+d_2}. This function determines empirical lagged covariances between
+#' the series \eqn{(X_t)} and \eqn{(Y_t)}. More precisely it determines
+#' \deqn{ (\widehat{C}^{XY}(h)\colon h\in lags), }
+#' where \eqn{\widehat{C}^{XY}(h)} is the empirical version of \eqn{\mathrm{Cov}(X_h,Y_0)}.
+#' For a sample of size \eqn{T} we set \eqn{\hat\mu^X=\frac{1}{T}\sum_{t=1}^T X_t$ and $\hat\mu^Y=\frac{1}{T}\sum_{t=1}^T Y_t} and
 #' \deqn{\hat C^{XY}(h) = \frac{1}{T}\sum_{t=1}^{T-h} (X_{t+h} - \hat\mu^X)(Y_{t} - \hat\mu^Y)'}
 #' and for \eqn{h < 0}
 #' \deqn{\hat C^{XY}(h) = \frac{1}{T}\sum_{t=|h|+1}^{T} (X_{t+h} - \hat\mu^X)(Y_{t} - \hat\mu^Y)'.}
-#' 
-#' If \eqn{Y_t} is not given, we assume \eqn{Y_t := X_t} and the function will return autocovariances of \eqn{X_t}.
-#' 
-#' Use \code{\link{lagged.cov}} to estimate a particular lag.
 #'
 #' @title Estimate cross-covariances of two stationary multivariate time series
-#'
-#' @param X a multivariate time series represented as a \eqn{T \times p_1} matrix,
-#'  where \eqn{T} is the number of observations and \eqn{p_1} is the number of covariates.
-#' @param Y a multivariate time series represented as a \eqn{T \times p_2} matrix,
-#'  where \eqn{T} is the number of observations and \eqn{p_2} is the number of covariates.
-#'  If \eqn{Y = NULL} then \eqn{Y := X} is used and autocovariances of \eqn{X} are computed.
-#' @param q covariances for lags \eqn{|h| \leq q} 
-#' \code{q} must be a positive integer.
-#' @return Function returns a time domain object (\code{\link{timedom}}) of dimensions \eqn{(2q + 1) \times p_1 \times p_2}
-#' representing the estimated covariance structure on lags \eqn{\{ -q,...,0,...,q\}}. 
+#' 
+#' @param X vector time series given in matrix form. Each row corresponds to a timepoint.
+#' @param Y vector time series given in matrix form. Each row corresponds to a timepoint.
+#' @param lags an integer-valued vector \eqn{(\ell_1,\ldots, \ell_K)} containing the lags for which covariances are calculated.
+#' @return An object of class \code{timedom}. The list contains
+#' * \code{operators} an array. Element \code{[,,k]} contains the covariance matrix related to lag \eqn{\ell_k}.
+#' * \code{lags} returns the lags vector from the arguments.
 #' @seealso \code{\link{lagged.cov}}
-#' @references Peter J. Brockwell and Richard A. Davis
-#' \emph{Time Series: Theory and Methods}
-#' Springer Series in Statistics, 2009
+# @references Peter J. Brockwell and Richard A. Davis
+# \emph{Time Series: Theory and Methods}
+# Springer Series in Statistics, 2009
 #' @export
 #' @examples
 #' X = rar(100)

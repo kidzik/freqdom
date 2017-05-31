@@ -7,24 +7,24 @@ inv.fourier.one = function(R,lag){
   A / length(R$freq)
 }
 
-#' For a given set of lags \eqn{G \subset \mathbf{Z}} and a set of operators
-#' \eqn{R = \{ R_k : k \in S \}} (\code{\link{freqdom}}), where \eqn{S \subset [-\pi,\pi]},
-#' the function \code{fourier.inverse} evaluates the Inverse Fourier transform of
-#' \eqn{R} on the set of lags \eqn{G}.
+#' Computes Fourier coefficients of some functional represented by an object of class \code{freqdom}.
 #' 
-#' Given a series of lags \eqn{G \subset \mathbf{Z}} and a set of operators
-#' \eqn{R = \{ R_\theta : \theta \in S \}} (\code{\link{freqdom}}), where \eqn{S \subset [-\pi,\pi]},
-#' the function \code{fourier.inverse} evaluates the Fourier transform of \eqn{R}  on each \eqn{\theta \in G}.
-#' More precisely, for each \eqn{k \in G} it computes
-#' \deqn{ A_k = \frac{1}{|S|} \sum_{\theta \in S} R_\theta e^{i\theta k}.}
+#' Consider a function \eqn{F \colon [-\pi,\pi]\to\mathbf{C}^{d_1\times d_2}}. Its \eqn{k}-th Fourier coefficient is given as 
+#' \deqn{
+#'   \frac{1}{2\pi}\int_{-\pi}^\pi F(\omega) \exp(ik\omega)d\omega.
+#' }
+#' We represent the function \eqn{F} by an object of class \code{freqdom} and approximate the integral via
+#' \deqn{
+#' \frac{1}{|F\$freq|}\sum_{\omega\in {F\$freq}} F(\omega) \exp(i k\omega),
+#' }
+#' for \eqn{h\in} lags.
 #' 
-#' It returns a time-domain operator \eqn{A = \{ A_k : k \in G \}}.
 #' @title Inverse Fourier Transform of a given frequency-domain filter.
-#' @param F a frequency-domain filter of type \code{\link{freqdom}}, i.e. a set of linear operators \eqn{R_k \in \mathbf{R}^{p \times p}}
-#' on a discreet grid defined of \eqn{[-\pi,\pi]}. 
-#' @param lags a vector lags on which the inverse Fourier transform should be evaluated. 
-#' @return A time-domain object (\code{\link{timedom}}), a set of linear operators \eqn{A_k \in \mathbf{R}^{p_1 \times p_2}}
-#' for selected lags \code{lags}. Every operator \eqn{A_k} is the inverse Fourier transform of \eqn{R} evaluated at lag \eqn{k}.
+#' @param F an object of class \code{freqdom} which is corresponding to a function with values in \eqn{\mathbf{C}^{d_1\times d_2}}. To guarantee accuracy of inversion it is important that \eqn{F\$freq} is a dense grid of frequencies in \eqn{[-\pi,\pi]}.
+#' @param lags lags of the Fourier coefficients to be computed.
+#' @return An object of class \code{timedom}. The list has the following components:
+#' * \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the \eqn{k}-th Fourier coefficients.
+#' * \code{lags} the lags of the corresponding Fourier coefficient.
 #' @export
 #' @seealso \code{\link{fourier.transform}}
 #' @examples
@@ -36,7 +36,7 @@ inv.fourier.one = function(R,lag){
 #' SXX = spectral.density(X)
 #' R = freqdom.ratio(SYX,SXX, n)
 #' A = fourier.inverse(R) 
-fourier.inverse = function(F,lags=0:0){
+fourier.inverse = function(F,lags=0){
   if (!is.freqdom(F))
     stop("F must be a freqdom object")
   if (!is.numeric(lags) || !is.vector(lags))

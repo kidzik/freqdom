@@ -6,6 +6,7 @@
 #' @return n x d matrix with independent n observations
 #' @importFrom graphics plot
 #' @importFrom stats rnorm
+#' @noRd
 # @export
 #' @examples
 #' bm = rbm(100)

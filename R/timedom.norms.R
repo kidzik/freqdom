@@ -1,14 +1,17 @@
-#' Given a time-domain filter \eqn{\{A_k : k \in S\}} (\code{\link{timedom}}) for some lags \eqn{S}, \code{timedom.norms}
-#' returns \eqn{\{\|A_k\| : k \in S\}} for a given norm \eqn{\| \cdot \|}.
+#' This function determines the norms of the matrices defining some linear filter.
+#' 
+#' Computes \eqn{\|A_h\|} for \eqn{h} in the set of lags belonging to the object A. When type
+#' is \code{2} then \eqn{\|A\|} is the spectral radius of \eqn{A}. When type is \code{F}
+#' then \eqn{\|A\|} is the Frobenius norm (or the Hilbert-Schmidt norm, or Schatten 2-norm) of
+#' \eqn{A}. If type is \code{O} then the Schatten 1-norm is computed.
 #' 
 #' @title Compute operator norms of elements of a filter
-#' @param A a time-domain filter \code{\link{timedom}}, i.e. a set of linear operators \eqn{A_k \in \mathbf{R}^{p_1 \times p_2}}
-#' for some set \eqn{S \subset \mathbf{Z}} of lags.
-#' @param type the matrix norm to be used as in \link{base::norm}
+#' @param A an object of class \code{timedom}
+#' @param type matrix norm to be used as in \link{base::norm}
 #' @export
-#' @return A list with elements
-#' * \code{$norms} - a vector of the length \eqn{S} with the \eqn{k}-th covariate equal \eqn{\|A_{lags(k)}\|},
-#' * \code{$lags} - \code{lags} corresponding to the computed norms.
+#' @return A list which contains the following components:
+#' * \code{lags} a vector containing the lags of \eqn{A}.
+#' * \code{norms} a vector containing the norms of the matrices defining \eqn{A}.
 #' @examples
 #' d = 2
 #' 

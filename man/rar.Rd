@@ -8,24 +8,38 @@ rar(n, d = 2, Psi = NULL, burnin = 10, noise = c("mnormal", "mt"),
   sigma = NULL, df = 4)
 }
 \arguments{
-\item{n}{number of observations to generate}
+\item{n}{number of observations to generate.}
 
-\item{d}{dimension of the process}
+\item{d}{dimension of the time series.}
 
-\item{Psi}{serie of regression operators (if one matrix is given it is treated as regressor with lag 1)}
+\item{Psi}{array of \eqn{p \geq 1} coefficient matrices. \code{Psi[,,k]} is the \eqn{k}-th coefficient. If no value is set then we generate a vector autoregressive process of order 1. Then, \code{Psi[,,1]} is proportional to \eqn{\exp(-|i-j|\colon 1\leq i, j\leq d)} and such that the spectral radius of \code{Psi[,,1]} is 1/2.}
 
-\item{noise}{the noise we want to add}
+\item{burnin}{an integer \eqn{\geq 0}. It specifies a number of initial  observations to be trashed to achieve stationarity.}
 
-\item{first}{the first element of a series}
+\item{noise}{\code{mnormal} for multivariate normal noise or \code{mt} for multivariate student t noise. If not specified \code{mnormal} is chosen.}
+
+\item{sigma}{covariance  or scale matrix of the innovations.}
+
+\item{df}{degrees of fredom if \code{noise = "mt"}.}
 }
 \value{
-an AR series of vectors
+A matrix with d columns and n rows. Each row corresponds to one time point.
 }
 \description{
-Simulate \code{n} observarions multivariate autoregressive time series, i.e.
-\deqn{ X_t = \sum_{k=0}^p A_k X_{t-k} + \varepsilon_t,}
-where \eqn{\varepsilon_t} is a \code{d}-dimensional white noise and \eqn{A_k} are \eqn{d \times d} matrices
-and \eqn{X_t = 0} for \eqn{t \leq 0}.
+Generates a zero mean vector autoregressive process.
+}
+\details{
+We simulate a vector autoregressive process
+\deqn{
+  X_t=\sum_{k=1}^p \Psi_k X_{t-k}+\varepsilon_t,\quad 1\leq t\leq n.
+}
+The innovation process \eqn{\varepsilon_t} is either multivariate normal or multivarite
+\eqn{t} with a predefined covariance/scale matrix sigma and zero mean. The noise is generated
+with the package \code{mvtnorm}. For Gaussian noise we use \code{rmvnorm()}. For Student-t noise
+we use \code{rmvt}. The parameters sigma and df are imported as arguments, otherwise we use default
+settings. To initialise the process we set
+\eqn{[X_{1-p},\ldots,X_{0}]=[\varepsilon_{1-p},\ldots,\varepsilon_{0}]}. When \code{burnin} is set
+equal to \eqn{K} then, \eqn{n+K} observations are generated and the first \eqn{K} will be trashed.
 }
 \examples{
 nbase = 10

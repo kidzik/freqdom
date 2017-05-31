@@ -1,12 +1,19 @@
-#' Generates \eqn{n} observations of a \eqn{d}-dimensional moving average process with operators A, i.e.
-#' \deqn{ Y_t = \sum_{i \in L_A} A_i X_t },
-#' where L_A is a set of lags on which operators A_i are defined.
+#' Generates a zero mean vector moving average process.
+#' 
+#' We simulate a vector moving average process
+#' \deqn{
+#'   X_t=\varepsilon_t+\sum_{k=1}^q \Psi_k \varepsilon_{t-k},\quad 1\leq t\leq n.
+#' }
+#' The innovation process \eqn{\varepsilon_t} is either multivariate normal or multivarite \eqn{t} with a predefined covariance/scale matrix sigma and zero mean. The noise is generated with the package \code{mvtnorm}. For Gaussian noise we use \code{rmvnorm()}. For Student-t noise we use \code{rmvt()}. The parameters sigma and df are imported as arguments, otherwise we use default settings.
 #'
 #' @title Moving avarege process
-#' @param n number of observations to generate
-#' @param d number of dimensions of the process
-#' @param Psi time domain object describing operators 
-#' @param noise the underlying X process
+#' @param n number of observations to generate.
+#' @param d dimension of the time series.
+#' @param Psi array of coefficient matrices. \code{Psi[,,k]} is the \eqn{k}-th coefficient. If no value is set then we generate a vector moving average process of order \eqn{1}. Then, \code{Psi[,,1]} is proportional to \eqn{\exp(-|i-j|\colon 1\leq i, j\leq d)} and such that the spectral radius of \code{Psi[,,1]} is \eqn{1/2}.
+#' @param noise \code{mnormal} for multivariate normal noise or \code{mt} for multivariate \eqn{t} noise. If not specified \code{mnormal} is chosen.
+#' @param sigma covariance  or scale matrix of the innovations.
+#' @param df degrees of fredom if \code{noise = "mt"}.
+#' @return A matrix with d columns and n rows. Each row corresponds to one time point.
 #' @export
 rma = function(n, d = 2, Psi = NULL, noise = c("mnormal","mt"), sigma = NULL, df = 4)
 {
@@ -31,6 +38,7 @@ rma.old = function(n, lag=2, d=NULL, noise=NULL)
   rma.proc(rar(n+lag-1,d=d,noise=noise))
 }
 
+#' @noRd
 # @export
 rma.proc = function(TS, lag=2){
   n = dim(TS)[1]

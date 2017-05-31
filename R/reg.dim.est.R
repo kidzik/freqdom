@@ -22,6 +22,7 @@ reg.dim.est.treshold = function(n,norm,Kconst=NULL){
 #' @param Kconst parameter for fitting the convergence rate to 1/(Kconst*n^{1/2})
 #' @return number of 'safe' eigendirections
 #' @seealso \code{\link{reg.est}}, \code{\link{pseudoinverse}}
+#' @noRd
 # @export
 #' @references Siegfried Hormann and Lukasz Kidzinski
 #' A note on estimation in Hilbertian linear models

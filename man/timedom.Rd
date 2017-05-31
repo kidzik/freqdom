@@ -7,42 +7,27 @@
 timedom(A, lags = 1:dim(A)[1])
 }
 \arguments{
-\item{A}{a set of \eqn{L} operators represented as an array of size \eqn{L \times p_1 \times p_2} or
-a matrix of size \eqn{T \times p} representing a multivariate time series}
+\item{A}{The elements \eqn{A[,,k], 1\leq k\leq K}, are real valued \eqn{(d_1\times d_2)} matrices (all of same dimension). These matrices define a linear filter.}
 
-\item{lags}{a vector of length \eqn{L} of lags on which operators are defined. \code{lags[i]} corresponds to the operator \code{A[i,,]}}
+\item{lags}{a vector of increasing integers. It corresponds to the time lags of the filter.}
 }
 \value{
-A time domain object represented as a list with elements
+Returns an object of class \code{timedom}. An object of class  \code{timedom} is a list containing the following components:
 \itemize{
-\item \code{$operators} - defined by \eqn{A},
-\item \code{$lags} - \code{lags} if they are provided or, otherwise, \eqn{\{1,2,...,L\}} where \eqn{L} is the number of observations in \eqn{A},
+\item \code{operators} - operators & returns the array A as given in the argument.
+\item \code{lags} - returns the vector of lags as given in the argument.
 }
-
-dependnig on the type of the input.
 }
 \description{
-Converts a multivariate time series or a time-domain filter into a time-domain object, enabling further manipulation using
-time domain methods such as \code{\link{fourier.transform}} or \code{\link{filter.process}}.
+Creates an object of class \code{timedom}. This object corresponds to a linear filter.
 }
 \details{
-\code{timedom} is a technical class of objects which simplifies manipulation of lagged multivariate linear filters and multivariate time series. It
-enables representation of a series of filters (a set of matrices) in a single object, which can be used in
-\code{\link{fourier.transform}}, \code{\link{filter.process}} and other functions.
-For generality and simplicity of representation, we assume that a multivariate time series \eqn{X_t}
-with elements in \eqn{\mathbf{R}^p} and \eqn{t \in \{1,2,...T\}} is also a set of matrices of size \eqn{p \times 1}.
-With such representation, functions such as \code{\link{fourier.transform}} are invariant to the type
-of the object, i.e. they behave the same for time-domain filters and for multivariate time series.
-
-For a given set of operators \eqn{\{B_k : k \in lags\}}, such that \eqn{X_k \in \mathbf{R}^{p_1\times p_2}}
-for \code{lags} \eqn{ \subset \mathbf{Z}}, the function \code{timedom} creates an object which we refer to as a \code{timedom} object.
-
-If the data is given as an array \code{A} of size \eqn{L \times p_1 \times p_2} and a vector of \code{lags} is
-provided, then the element \code{A[i,,]} corresponds tothe lag \code{lags[i]} (see example). If \code{lags} are not given
-we assume \code{lags} be \eqn{\{1,2,...,L\}}.
-
-If the data is given as a matrix \eqn{A} of size \eqn{T \times p_1} representing a time series,
-then we assume it's of dimensions \eqn{T \times p_1 \times 1} and set \code{lags} to \eqn{\{1,2,...,T\}}.
+This class is used to describe a linear filter, i.e. a sequence of matrices, each of which correspond to a certain lag. Filters can, for example, be used to transform a sequence \eqn{(X_t)} into a new sequence \eqn{(Y_t)} by defining
+\deqn{
+ Y_t=\sum_k A_kX_{t-k}.
+}
+See \code{filter.process()}.
+Formally we consider a collection \eqn{[A_1,\ldots,A_K]} of complex-valued matrices \eqn{A_k}, all of which have the same dimension \eqn{d_1\times d_2}. Moreover, we consider lags \eqn{\ell_1<\ell_2<\cdots<\ell_K}. The object this function creates corresponds to the mapping \eqn{f: \mathrm{lags}\to \mathbf{R}^{d_1\times d_2}}, where \eqn{\ell_k\mapsto A_k}.
 }
 \examples{
 d = 2

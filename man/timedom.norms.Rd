@@ -7,21 +7,25 @@
 timedom.norms(A, type = c("O", "I", "F", "M", "2"))
 }
 \arguments{
-\item{A}{a time-domain filter \code{\link{timedom}}, i.e. a set of linear operators \eqn{A_k \in \mathbf{R}^{p_1 \times p_2}}
-for some set \eqn{S \subset \mathbf{Z}} of lags.}
+\item{A}{an object of class \code{timedom}}
 
-\item{type}{the matrix norm to be used as in \link{base::norm}}
+\item{type}{matrix norm to be used as in \link{base::norm}}
 }
 \value{
-A list with elements
+A list which contains the following components:
 \itemize{
-\item \code{$norms} - a vector of the length \eqn{S} with the \eqn{k}-th covariate equal \eqn{\|A_{lags(k)}\|},
-\item \code{$lags} - \code{lags} corresponding to the computed norms.
+\item \code{lags} a vector containing the lags of \eqn{A}.
+\item \code{norms} a vector containing the norms of the matrices defining \eqn{A}.
 }
 }
 \description{
-Given a time-domain filter \eqn{\{A_k : k \in S\}} (\code{\link{timedom}}) for some lags \eqn{S}, \code{timedom.norms}
-returns \eqn{\{\|A_k\| : k \in S\}} for a given norm \eqn{\| \cdot \|}.
+This function determines the norms of the matrices defining some linear filter.
+}
+\details{
+Computes \eqn{\|A_h\|} for \eqn{h} in the set of lags belonging to the object A. When type
+is \code{2} then \eqn{\|A\|} is the spectral radius of \eqn{A}. When type is \code{F}
+then \eqn{\|A\|} is the Frobenius norm (or the Hilbert-Schmidt norm, or Schatten 2-norm) of
+\eqn{A}. If type is \code{O} then the Schatten 1-norm is computed.
 }
 \examples{
 d = 2

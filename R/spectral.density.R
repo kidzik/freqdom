@@ -1,26 +1,31 @@
-#' Computes the spectral density of processes \eqn{X_t} and \eqn{Y_t} using
-#' a Bartlett style estimator, i.e.
-#' \deqn{ \hat F_\theta^{XY} = \sum_{k=-q}^q W(|k|/q) \hat C_{XY}^k e^{-i\theta k},}
-#' where \eqn{\theta \in [-\pi,\pi]} and \eqn{\hat C_{XY}^k} is the estimated covariance with lag \eqn{k}. 
-#' Quality of the estimation depends on choise of the window size \eqn{q}
-#' and \eqn{W} (\code{weights}).
-#' For details on spectral density estimation please refer to "Time Series: Theory and Methods"
-#' by Peter J. Brockwell and Richard A. Davis.
-#' Note that estimator is calculated on the finite grid \code{thetas} so #' in some cases
-#' numerical quality can be improved by choosing a more dense set.
+#' Estimates the spectral density and cross spectral density of vector time series. 
+#'
+#' Let \eqn{[X_1,\ldots, X_T]^\prime} be a \eqn{T\times d_1} matrix and \eqn{[Y_1,\ldots, Y_T]^\prime} be a \eqn{T\times d_2} matrix. We stack the vectors and assume that \eqn{(X_t^\prime,Y_t^\prime)^\prime} is a stationary multivariate time series of dimension \eqn{d_1+d_2}. The cross-spectral density between the two time series \eqn{(X_t)} and \eqn{(Y_t)} is defined as 
+#' \deqn{  
+#'   \sum_{h\in\mathbf{Z}} \mathrm{Cov}(X_h,Y_0) e^{-ih\omega}.
+#' }
+#' The function \code{spectral.density} determines the empirical cross-spectral density between the two time series \eqn{(X_t)} and \eqn{(Y_t)}. The estimator is of form
+#' \deqn{
+#'   \widehat{\mathcal{F}}^{XY}(\omega)=\sum_{|h|\leq q} w(|k|/q)\widehat{C}^{XY}(h)e^{-ih\omega},
+#' }
+#' with \eqn{\widehat{C}^{XY}(h)} defined in \code{cov.structure} Here \eqn{w} is a kernel of the specified type and \eqn{q} is the window size.  By default the Bartlett kernel \eqn{w(x)=1-|x|} is used.
+#' 
+#' See, e.g., Chapter 10 and 11 in Brockwell and Davis (1991) for details. 
 #'
 #' @title Compute the cross spectral density of processes X and Y 
-#' @param X first process 
-#' @param Y second process, if \code{NULL} then spectral density of X is computed
-#' @param V correlation structure between coefficients of vectors (default diagonal)
-#' @param freq evaluation grid - vector of values between \code{[-pi,pi]}
-#' @param q size of the window (covariances from -q to q will be computed)
-#' @param weights kernel used to decay significance of covariances with higher lags ('Bartlett', 'trunc', 'Tukey', 'Parzen', 'Bohman', 'Daniell', 'ParzenCogburnDavis').
-#' @return Frequency Domain Operator object
+#' @param X vector time series given in matrix form. Each row corresponds to a timepoint.
+#' @param Y vector time series given in matrix form. Each row corresponds to a timepoint.
+#' @param freq a vector containing frequencies in \eqn{[-\pi, \pi]} on which the spectral density should be evaluated.
+#' @param q window size for the kernel estimator, i.e. a positive integer.
+#' @param weights kernel used in the spectral smoothing. By default the Bartlett kernel is chosen.
+#' @return Returns an object of class \code{freqdom}. The list is containing the following components:
+#' * \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the spectral density matrix evaluated at the \eqn{k}-th frequency listed in freq.
+#' * \code{freq} returns argument vector freq.
 #' @references Peter J. Brockwell and Richard A. Davis
 #' \emph{Time Series: Theory and Methods}
 #' Springer Series in Statistics, 2009
-# @export
+# @noRd
+#' @export
 #' @keywords spec
 #' @examples
 #' X = rar(100)

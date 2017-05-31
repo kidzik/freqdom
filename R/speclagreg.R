@@ -25,6 +25,7 @@
 #' #estimate regressors in model $Y_t = \sum_{i\in Z} A_i X_{t-i}$
 #' A = speclagreg(X,Y) 
 #' # check an advanced examples in demo(lagged.reg)
+#' @noRd
 # @export
 speclagreg = function(X,Y,K=NULL,lags=0:0,freq=NULL,p=10,q=10,weights="Bartlett")
 {
