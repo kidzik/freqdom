@@ -50,8 +50,10 @@ lagged.cov = function(X,Y=NULL,lag=0){
   if (n - 1 <= h)
 	  stop(paste("Not enough observations to compute lagged covariance with lag",h))
 	  
-      X=(diag(n)-matrix(rep(1,n^2),ncol=n)/n)%*%X
-	  Y=(diag(n)-matrix(rep(1,n^2),ncol=n)/n)%*%Y
+  # X=(diag(n)-matrix(rep(1,n^2),ncol=n)/n)%*%X
+	# Y=(diag(n)-matrix(rep(1,n^2),ncol=n)/n)%*%Y
+	X = t(t(X) - colMeans(X))
+	Y = t(t(Y) - colMeans(Y))
 	
   M = t(X[1:(n-h),]) %*% (Y[1:(n-h)+h,])/(n)
 	if (lag < 0){

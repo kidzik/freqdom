@@ -14,7 +14,7 @@ timedom(A, lags = 1:dim(A)[1])
 \value{
 Returns an object of class \code{timedom}. An object of class  \code{timedom} is a list containing the following components:
 \itemize{
-\item \code{operators} - operators & returns the array A as given in the argument.
+\item \code{operators} - returns the array A as given in the argument.
 \item \code{lags} - returns the vector of lags as given in the argument.
 }
 }
@@ -30,13 +30,13 @@ See \code{filter.process()}.
 Formally we consider a collection \eqn{[A_1,\ldots,A_K]} of complex-valued matrices \eqn{A_k}, all of which have the same dimension \eqn{d_1\times d_2}. Moreover, we consider lags \eqn{\ell_1<\ell_2<\cdots<\ell_K}. The object this function creates corresponds to the mapping \eqn{f: \mathrm{lags}\to \mathbf{R}^{d_1\times d_2}}, where \eqn{\ell_k\mapsto A_k}.
 }
 \examples{
-d = 3
-
-A = array(0,c(d,d,2))
-A[,,1] = 2 * diag(d:1)/d
-A[,,2] = 1.5 * diag(d:1)/d
-OP = timedom(A,c(-2,1))
-print(OP)
+# In this example we apply the difference operator: Delta X_t= X_t-X_{t-1} to a time series
+X = rar(20)
+OP = array(0,c(2,2,2))
+OP[,,1] = diag(2)
+OP[,,2] = -diag(2)
+A = timedom(OP, lags = c(0,1))
+filter.process(X, A)
 }
 \seealso{
 \code{\link{freqdom}}, \code{\link{is.timedom}}

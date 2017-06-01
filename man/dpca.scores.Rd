@@ -13,7 +13,7 @@ dpca.scores(X, dpcs)
 dpca.filter(spectral.density(X))} is used.}
 }
 \value{
-A \eqn{T\times} Ndpc-matix with \code{Ndpc = dim(dpcs\eqn{\$}operators)[1]}. The \eqn{\ell}-th column contains the \eqn{\ell}-th dynamic principal component score sequence.
+A \eqn{T\times Ndpc}-matix with \code{Ndpc = dim(dpcs\eqn{\$}operators)[1]}. The \eqn{\ell}-th column contains the \eqn{\ell}-th dynamic principal component score sequence.
 }
 \description{
 Computes the dynamic principal component score vectors of a vector time series.
@@ -23,9 +23,9 @@ The \eqn{\ell}-th dynamic principal components score sequence is defined by
 \deqn{
   Y_{\ell t}:=\sum_{k\in\mathbf{Z}}  \phi_{\ell k}^\prime X_{t-k},\quad 1\leq \ell\leq d,
 }
-where \eqn{\phi_{\ell k}} are the dynamic PC filters as explained in  \code{dpca.filters}. For the sample version the sum extends over the range of lags for which the \eqn{\phi_{\ell k}} are defined. The actual operation carried out is \code{filter.process(X, A = dpcs)}.
+where \eqn{\phi_{\ell k}} are the dynamic PC filters as explained in  \code{\link{dpca.filters}}. For the sample version the sum extends over the range of lags for which the \eqn{\phi_{\ell k}} are defined. The actual operation carried out is \code{filter.process(X, A = dpcs)}.
 
-We for more details we refer to Chapter 9 in Brillinger (2001), Chapter 7.8 in Shumway and Stoffer (2006) and to H"ormann et al. (2015).
+We for more details we refer to Chapter 9 in Brillinger (2001), Chapter 7.8 in Shumway and Stoffer (2006) and to Hormann et al. (2015).
 }
 \references{
 Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
@@ -39,5 +39,5 @@ Shumway, R.H., and Stoffer, D.S.
 \emph{Time Series Analysis and Its Applications} (2006), Springer, New York.
 }
 \seealso{
-\code{\link{dpca.inverse}}, \code{\link{dprcomp}}
+\code{\link{dpca.filters}}, \code{\link{dpca.KLexpansion}}, \code{\link{dpca.var}}
 }

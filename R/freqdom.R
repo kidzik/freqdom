@@ -15,10 +15,18 @@
 #' 
 #' @param F an array. The elements \eqn{F[,,k], 1\leq k\leq K}, are complex valued \eqn{(d_1\times d_2)} matrices (all of same dimension).
 #' @param freq a vector of dimension \eqn{K} containing frequencies in \eqn{[-\pi,\pi]}.
-#' @return Returns an object of class \code{freqdom}. An object of class  \code{freqdom} is a list containing the following components:
+#' @return Returns an object of class \code{\link{freqdom}}. An object of class  \code{\link{freqdom}} is a list containing the following components:
 #' * \code{operators} returns the array F as given in the argument.
 #' * \code{freq} returns the vector freq as given in the argument.
 #' @seealso \code{\link{fourier.transform}}
+#' @examples
+#' i = complex(imaginary=1)
+#' OP = array(0, c(2, 2, 3))
+#' OP[,,1] = diag(2) * exp(i)/2
+#' OP[,,2] = diag(2)
+#' OP[,,3] = diag(2) * exp(-i)/2
+#' freq = c(-pi/3, 0, pi/3)
+#' A = freqdom(OP, freq)
 #' @export
 freqdom = function (F,freq)
 {

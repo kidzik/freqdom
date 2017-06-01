@@ -25,7 +25,7 @@
 #' \emph{Time Series} (2001), SIAM, San Francisco.
 #' @references Shumway, R.H., and Stoffer, D.S.
 #' \emph{Time Series Analysis and Its Applications} (2006), Springer, New York.
-#' @seealso \code{\link{dpca.inverse}}, \code{\link{dpca.scores}}, \code{\link{dpca.KLexpansion}}
+#' @seealso \code{\link{dpca.var}}, \code{\link{dpca.scores}}, \code{\link{dpca.KLexpansion}}
 #' @export
 dpca.filters = function(F, L = 10){
   if (!is.freqdom(F))

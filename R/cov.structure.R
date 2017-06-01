@@ -17,10 +17,9 @@
 #' @param X vector time series given in matrix form. Each row corresponds to a timepoint.
 #' @param Y vector time series given in matrix form. Each row corresponds to a timepoint.
 #' @param lags an integer-valued vector \eqn{(\ell_1,\ldots, \ell_K)} containing the lags for which covariances are calculated.
-#' @return An object of class \code{timedom}. The list contains
+#' @return An object of class \code{\link{timedom}}. The list contains
 #' * \code{operators} an array. Element \code{[,,k]} contains the covariance matrix related to lag \eqn{\ell_k}.
 #' * \code{lags} returns the lags vector from the arguments.
-#' @seealso \code{\link{lagged.cov}}
 # @references Peter J. Brockwell and Richard A. Davis
 # \emph{Time Series: Theory and Methods}
 # Springer Series in Statistics, 2009

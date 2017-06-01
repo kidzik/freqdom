@@ -7,12 +7,12 @@
 fourier.inverse(F, lags = 0)
 }
 \arguments{
-\item{F}{an object of class \code{freqdom} which is corresponding to a function with values in \eqn{\mathbf{C}^{d_1\times d_2}}. To guarantee accuracy of inversion it is important that \eqn{F\$}freq is a dense grid of frequencies in \eqn{[-\pi,\pi]}.}
+\item{F}{an object of class \code{\link{freqdom}} which is corresponding to a function with values in \eqn{\mathbf{C}^{d_1\times d_2}}. To guarantee accuracy of inversion it is important that \eqn{F\$}freq is a dense grid of frequencies in \eqn{[-\pi,\pi]}.}
 
 \item{lags}{lags of the Fourier coefficients to be computed.}
 }
 \value{
-An object of class \code{timedom}. The list has the following components:
+An object of class \code{\link{timedom}}. The list has the following components:
 \itemize{
 \item \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the \eqn{k}-th Fourier coefficient.
 \item \code{lags} the lags of the corresponding Fourier coefficient.
@@ -22,7 +22,8 @@ An object of class \code{timedom}. The list has the following components:
 Computes Fourier coefficients of some functional represented by an object of class \code{freqdom}.
 }
 \details{
-Consider a function \eqn{F \colon [-\pi,\pi]\to\mathbf{C}^{d_1\times d_2}}. Its \eqn{k}-th Fourier coefficient is given as
+Consider a function \eqn{F \colon [-\pi,\pi]\to\mathbf{C}^{d_1\times d_2}}. Its \eqn{k}-th Fourier
+coefficient is given as
 \deqn{
   \frac{1}{2\pi}\int_{-\pi}^\pi F(\omega) \exp(ik\omega)d\omega.
 }

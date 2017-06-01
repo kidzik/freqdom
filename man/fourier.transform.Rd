@@ -23,10 +23,10 @@ Consider a filter (a sequence of vectors or matrices) \eqn{(A_k)_{k\in A\$lags}}
 for all frequencies \eqn{\omega} listed in the vector \code{freq}.
 }
 \examples{
+# We compute the discrete Fourier transform (DFT) of a time series X_1,..., X_T.
+
 X = rar(100)
-C = cov.structure(X,lags=-2:2)
-F = fourier.transform(C) # a simple spectral density estimator
-Cinv = fourier.inverse(F)
+DFT = fourier.transform(tdX) / sqrt(dim(X)[1])
 }
 \seealso{
 \code{\link{fourier.inverse}}

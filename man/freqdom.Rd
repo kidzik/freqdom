@@ -12,7 +12,7 @@ freqdom(F, freq)
 \item{freq}{a vector of dimension \eqn{K} containing frequencies in \eqn{[-\pi,\pi]}.}
 }
 \value{
-Returns an object of class \code{freqdom}. An object of class  \code{freqdom} is a list containing the following components:
+Returns an object of class \code{\link{freqdom}}. An object of class  \code{\link{freqdom}} is a list containing the following components:
 \itemize{
 \item \code{operators} returns the array F as given in the argument.
 \item \code{freq} returns the vector freq as given in the argument.
@@ -32,6 +32,15 @@ Consider, for example, the discrete Fourier transform of a vector time series \e
   D_T(\omega)=\frac{1}{\sqrt{T}}\sum_{t=1}^T X_t e^{-it\omega},\quad \omega\in[-\pi,\pi].
 }
 We may choose \eqn{\omega_k=2\pi k/K-\pi} and \eqn{F_k=D_T(\omega_k)}. Then, the object \code{freqdom} creates, is corresponding to the function which associates \eqn{\omega_k} and \eqn{D_T(\omega_k)}.
+}
+\examples{
+i = complex(imaginary=1)
+OP = array(0, c(2, 2, 3))
+OP[,,1] = diag(2) * exp(i)/2
+OP[,,2] = diag(2)
+OP[,,3] = diag(2) * exp(-i)/2
+freq = c(-pi/3, 0, pi/3)
+A = freqdom(OP, freq)
 }
 \seealso{
 \code{\link{fourier.transform}}

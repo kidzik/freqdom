@@ -35,8 +35,8 @@ We simulate a vector autoregressive process
 }
 The innovation process \eqn{\varepsilon_t} is either multivariate normal or multivarite
 \eqn{t} with a predefined covariance/scale matrix sigma and zero mean. The noise is generated
-with the package \code{mvtnorm}. For Gaussian noise we use \code{rmvnorm()}. For Student-t noise
-we use \code{rmvt}. The parameters sigma and df are imported as arguments, otherwise we use default
+with the package \code{mvtnorm}. For Gaussian noise we use \code{\link[mvtnorm]{rmvnorm}}. For Student-t noise
+we use \code{\link[mvtnorm]{rmvt}}. The parameters sigma and df are imported as arguments, otherwise we use default
 settings. To initialise the process we set
 \eqn{[X_{1-p},\ldots,X_{0}]=[\varepsilon_{1-p},\ldots,\varepsilon_{0}]}. When \code{burnin} is set
 equal to \eqn{K} then, \eqn{n+K} observations are generated and the first \eqn{K} will be trashed.
@@ -46,4 +46,7 @@ nbase = 10
 Psi = t((1:nbase) \%*\% t(sin(1:nbase * 2*pi/nbase)) / (nbase*nbase))
 process = rar(30, Psi=Psi, sigma=diag(nbase:1)/nbase)
 plot(process[,1], type="l")
+}
+\seealso{
+\code{\link{rma}}
 }

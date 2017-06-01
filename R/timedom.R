@@ -12,19 +12,19 @@
 #' @param A The elements \eqn{A[,,k], 1\leq k\leq K}, are real valued \eqn{(d_1\times d_2)} matrices (all of same dimension). These matrices define a linear filter.
 #' @param lags a vector of increasing integers. It corresponds to the time lags of the filter.
 #' @return Returns an object of class \code{timedom}. An object of class  \code{timedom} is a list containing the following components:
-#' * \code{operators} - operators & returns the array A as given in the argument.
+#' * \code{operators} - returns the array A as given in the argument.
 #' * \code{lags} - returns the vector of lags as given in the argument.
 #' @seealso \code{\link{freqdom}}, \code{\link{is.timedom}}
 #' @export
 #' 
 #' @examples
-#' d = 3
-#' 
-#' A = array(0,c(d,d,2))
-#' A[,,1] = 2 * diag(d:1)/d
-#' A[,,2] = 1.5 * diag(d:1)/d
-#' OP = timedom(A,c(-2,1))
-#' print(OP)
+#' # In this example we apply the difference operator: Delta X_t= X_t-X_{t-1} to a time series
+#' X = rar(20)
+#' OP = array(0,c(2,2,2))
+#' OP[,,1] = diag(2)
+#' OP[,,2] = -diag(2)
+#' A = timedom(OP, lags = c(0,1))
+#' filter.process(X, A)
 timedom = function (A,lags=1:dim(A)[1])
 {
   res = list()

@@ -14,7 +14,7 @@ cov.structure(X, Y = X, lags = 0)
 \item{lags}{an integer-valued vector \eqn{(\ell_1,\ldots, \ell_K)} containing the lags for which covariances are calculated.}
 }
 \value{
-An object of class \code{timedom}. The list contains
+An object of class \code{\link{timedom}}. The list contains
 \itemize{
 \item \code{operators} an array. Element \code{[,,k]} contains the covariance matrix related to lag \eqn{\ell_k}.
 \item \code{lags} returns the lags vector from the arguments.
@@ -40,7 +40,4 @@ and for \eqn{h < 0}
 X = rar(100)
 Y = rar(100)
 cov.structure(X,Y)
-}
-\seealso{
-\code{\link{lagged.cov}}
 }

@@ -31,5 +31,11 @@ We simulate a vector moving average process
 \deqn{
   X_t=\varepsilon_t+\sum_{k=1}^q \Psi_k \varepsilon_{t-k},\quad 1\leq t\leq n.
 }
-The innovation process \eqn{\varepsilon_t} is either multivariate normal or multivarite \eqn{t} with a predefined covariance/scale matrix sigma and zero mean. The noise is generated with the package \code{mvtnorm}. For Gaussian noise we use \code{rmvnorm()}. For Student-t noise we use \code{rmvt()}. The parameters sigma and df are imported as arguments, otherwise we use default settings.
+The innovation process \eqn{\varepsilon_t} is either multivariate normal or multivarite \eqn{t} with
+a predefined covariance/scale matrix sigma and zero mean. The noise is generated with the
+package \code{mvtnorm}. For Gaussian noise we use \code{\link[mvtnorm]{rmvnorm}}. For Student-t noise we use
+\code{\link[mvtnorm]{rmvt}}. The parameters sigma and df are imported as arguments, otherwise we use default settings.
+}
+\seealso{
+\code{\link{rar}}
 }
