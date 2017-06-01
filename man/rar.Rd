@@ -12,7 +12,7 @@ rar(n, d = 2, Psi = NULL, burnin = 10, noise = c("mnormal", "mt"),
 
 \item{d}{dimension of the time series.}
 
-\item{Psi}{array of \eqn{p \geq 1} coefficient matrices. \code{Psi[,,k]} is the \eqn{k}-th coefficient. If no value is set then we generate a vector autoregressive process of order 1. Then, \code{Psi[,,1]} is proportional to \eqn{\exp(-|i-j|\colon 1\leq i, j\leq d)} and such that the spectral radius of \code{Psi[,,1]} is 1/2.}
+\item{Psi}{array of \eqn{p \geq 1} coefficient matrices. \code{Psi[,,k]} is the \eqn{k}-th coefficient. If no value is set then we generate a vector autoregressive process of order 1. Then, \code{Psi[,,1]} is proportional to \eqn{\exp(-(i+j)\colon 1\leq i, j\leq d)} and such that the spectral radius of \code{Psi[,,1]} is 1/2.}
 
 \item{burnin}{an integer \eqn{\geq 0}. It specifies a number of initial  observations to be trashed to achieve stationarity.}
 
@@ -20,13 +20,13 @@ rar(n, d = 2, Psi = NULL, burnin = 10, noise = c("mnormal", "mt"),
 
 \item{sigma}{covariance  or scale matrix of the innovations.}
 
-\item{df}{degrees of fredom if \code{noise = "mt"}.}
+\item{df}{degrees of freedom if \code{noise = "mt"}.}
 }
 \value{
 A matrix with d columns and n rows. Each row corresponds to one time point.
 }
 \description{
-Generates a zero mean vector autoregressive process.
+Generates a zero mean vector autoregressive process of a given order.
 }
 \details{
 We simulate a vector autoregressive process
@@ -44,9 +44,6 @@ equal to \eqn{K} then, \eqn{n+K} observations are generated and the first \eqn{K
 \examples{
 nbase = 10
 Psi = t((1:nbase) \%*\% t(sin(1:nbase * 2*pi/nbase)) / (nbase*nbase))
-process = rar(30, Psi=Psi, sd=0.2)
-pdf(file='simulated.arh1.pdf')
-plot(process)
-title("Simulated ARH(1)")
-dev.off()
+process = rar(30, Psi=Psi, sigma=diag(nbase:1)/nbase)
+plot(process[,1], type="l")
 }

@@ -36,24 +36,27 @@
 #' Y = rar(100)
 #' lagged.cov(X,Y)
 lagged.cov = function(X,Y=NULL,lag=0){
-  if (base::is.null(Y))
+  if (is.null(Y))
 		Y = X
 
-  if (base::dim(X)[1] != base::dim(Y)[1])
+  if (dim(X)[1] != dim(Y)[1])
     stop("Number of observations must be equal")
-  if (!base::is.matrix(X) || !base::is.matrix(Y))
+  if (!is.matrix(X) || !is.matrix(Y))
     stop("X and Y must be matrices")
   
-	n = base::dim(X)[1]
-	h = base::abs(lag)
+	n = dim(X)[1]
+	h = abs(lag)
 	
   if (n - 1 <= h)
-	  base::stop(base::paste("Too little observations to compute lagged covariance with lag",h))
+	  stop(paste("Not enough observations to compute lagged covariance with lag",h))
+	  
+      X=(diag(n)-matrix(rep(1,n^2),ncol=n)/n)%*%X
+	  Y=(diag(n)-matrix(rep(1,n^2),ncol=n)/n)%*%Y
 	
-  M = base::t(X[1:(n-h),]) %*% (Y[1:(n-h)+h,])/(n)
+  M = t(X[1:(n-h),]) %*% (Y[1:(n-h)+h,])/(n)
 	if (lag < 0){
-	  M = base::t(Y[1:(n-h),]) %*% (X[1:(n-h)+h,])/(n)
-	  M = base::t(M)
+	  M = t(Y[1:(n-h),]) %*% (X[1:(n-h)+h,])/(n)
+	  M = t(M)
 	}
 	M
 }

@@ -1,4 +1,4 @@
-#' Checks if an object belongs to the class (\code{\link{timedom}}).
+#' Checks if an object belongs to the class \code{\link{timedom}}.
 #'
 #' @title Checks if an object belongs to the class timedom
 #' @param X some object

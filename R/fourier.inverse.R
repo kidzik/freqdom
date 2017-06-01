@@ -19,23 +19,21 @@ inv.fourier.one = function(R,lag){
 #' }
 #' for \eqn{h\in} lags.
 #' 
-#' @title Inverse Fourier Transform of a given frequency-domain filter.
-#' @param F an object of class \code{freqdom} which is corresponding to a function with values in \eqn{\mathbf{C}^{d_1\times d_2}}. To guarantee accuracy of inversion it is important that \eqn{F\$freq} is a dense grid of frequencies in \eqn{[-\pi,\pi]}.
+#' @title Coefficiets of a discrete Fourier transform.
+#' @param F an object of class \code{freqdom} which is corresponding to a function with values in \eqn{\mathbf{C}^{d_1\times d_2}}. To guarantee accuracy of inversion it is important that \eqn{F\$}freq is a dense grid of frequencies in \eqn{[-\pi,\pi]}.
 #' @param lags lags of the Fourier coefficients to be computed.
 #' @return An object of class \code{timedom}. The list has the following components:
-#' * \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the \eqn{k}-th Fourier coefficients.
+#' * \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the \eqn{k}-th Fourier coefficient.
 #' * \code{lags} the lags of the corresponding Fourier coefficient.
 #' @export
-#' @seealso \code{\link{fourier.transform}}
+#' @seealso \code{\link{fourier.transform}}, \code{\link{freqdom}}
 #' @examples
-#' n = 100
-#' X = rar(n)
-#' Y = rar(n)
-#' #estimate regressors in model $Y_t = \sum_{i\in Z} A_i X_{t-i}$
-#' SYX = spectral.density(Y, X)
-#' SXX = spectral.density(X)
-#' R = freqdom.ratio(SYX,SXX, n)
-#' A = fourier.inverse(R) 
+#' Y=rar(100)
+#' grid=c(pi*(1:2000)/1000-pi) #a dense grid on -pi, pi
+#' fourier.inverse(spectral.density(Y, q=2, freq=grid))
+#' #compare this to
+#' cov.structure(Y)
+
 fourier.inverse = function(F,lags=0){
   if (!is.freqdom(F))
     stop("F must be a freqdom object")

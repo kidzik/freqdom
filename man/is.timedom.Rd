@@ -13,7 +13,7 @@ is.timedom(X)
 \code{TRUE} if \code{X} is of type \code{\link{timedom}}, \code{FALSE} otherwise
 }
 \description{
-Checks if an object belongs to the class (\code{\link{timedom}}).
+Checks if an object belongs to the class \code{\link{timedom}}.
 }
 \seealso{
 \code{\link{freqdom}}, \code{\link{timedom}}, \code{\link{is.freqdom}}

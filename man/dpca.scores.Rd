@@ -2,7 +2,7 @@
 % Please edit documentation in R/dpca.scores.R
 \name{dpca.scores}
 \alias{dpca.scores}
-\title{Compute scores of dynamic principal components}
+\title{Obtain dynamic principal components scores}
 \usage{
 dpca.scores(X, dpcs)
 }
@@ -13,10 +13,10 @@ dpca.scores(X, dpcs)
 dpca.filter(spectral.density(X))} is used.}
 }
 \value{
-A \eqn{(T\times Ndpc)}-matix with \code{Ndpc = dim(dpcs\eqn{\$}operators)[1]}. The \eqn{\ell}-th column contains the \eqn{\ell}-th dynamic principal component score sequence.
+A \eqn{T\times} Ndpc-matix with \code{Ndpc = dim(dpcs\eqn{\$}operators)[1]}. The \eqn{\ell}-th column contains the \eqn{\ell}-th dynamic principal component score sequence.
 }
 \description{
-Computes the dynamic principal component scores of a vector time series.
+Computes the dynamic principal component score vectors of a vector time series.
 }
 \details{
 The \eqn{\ell}-th dynamic principal components score sequence is defined by

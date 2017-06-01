@@ -9,10 +9,10 @@
 #' @title Moving avarege process
 #' @param n number of observations to generate.
 #' @param d dimension of the time series.
-#' @param Psi array of coefficient matrices. \code{Psi[,,k]} is the \eqn{k}-th coefficient. If no value is set then we generate a vector moving average process of order \eqn{1}. Then, \code{Psi[,,1]} is proportional to \eqn{\exp(-|i-j|\colon 1\leq i, j\leq d)} and such that the spectral radius of \code{Psi[,,1]} is \eqn{1/2}.
+#' @param Psi array of coefficient matrices. \code{Psi[,,k]} is the \eqn{k}-th coefficient. If no value is set then we generate a vector moving average process of order \eqn{1}. Then, \code{Psi[,,1]} is proportional to \eqn{\exp(-(i+j)\colon 1\leq i, j\leq d)} and such that the spectral radius of \code{Psi[,,1]} is \eqn{1/2}.
 #' @param noise \code{mnormal} for multivariate normal noise or \code{mt} for multivariate \eqn{t} noise. If not specified \code{mnormal} is chosen.
 #' @param sigma covariance  or scale matrix of the innovations.
-#' @param df degrees of fredom if \code{noise = "mt"}.
+#' @param df degrees of freedom if \code{noise = "mt"}.
 #' @return A matrix with d columns and n rows. Each row corresponds to one time point.
 #' @export
 rma = function(n, d = 2, Psi = NULL, noise = c("mnormal","mt"), sigma = NULL, df = 4)
@@ -24,7 +24,9 @@ rma = function(n, d = 2, Psi = NULL, noise = c("mnormal","mt"), sigma = NULL, df
   if (is.null(d))
     stop("Can't determine the dimension. Specify d or give Psi.")
   if (is.null(Psi))
-    Psi = timedom(diag(d),lags=0)
+  	Psi = exp(-(1:d))%*%t(exp(-(1:d)))
+	Psi = Psi/norm(Psi,type="2")/2
+    Psi = timedom(Psi,lags=0)
   if (is.null(sigma))
     sigma = diag(d)
   

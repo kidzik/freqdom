@@ -12,7 +12,7 @@
 #' 
 #' See, e.g., Chapter 10 and 11 in Brockwell and Davis (1991) for details. 
 #'
-#' @title Compute the cross spectral density of processes X and Y 
+#' @title Compute the cross spectral density of two vector processes. 
 #' @param X vector time series given in matrix form. Each row corresponds to a timepoint.
 #' @param Y vector time series given in matrix form. Each row corresponds to a timepoint.
 #' @param freq a vector containing frequencies in \eqn{[-\pi, \pi]} on which the spectral density should be evaluated.
@@ -27,11 +27,7 @@
 # @noRd
 #' @export
 #' @keywords spec
-#' @examples
-#' X = rar(100)
-#' Y = rar(100)
-#' spectral.density(X,Y)
-spectral.density = function(X,Y=X,V=diag(dim(X)[2]),
+spectral.density = function(X,Y=X,
                             freq=(-100:100/100)*pi,q=max(1,floor(dim(X)[1]^(1/3))),
                             weights=c('Bartlett', 'trunc', 'Tukey', 'Parzen', 'Bohman', 'Daniell', 'ParzenCogburnDavis')){
   if (is.vector(weights))
@@ -52,7 +48,7 @@ spectral.density = function(X,Y=X,V=diag(dim(X)[2]),
 	Ch = cov.structure(X,Y,-q:q)
 
   for (i in 1:(q*2+1))
-    Ch$operators[i,,] = Ch$operators[i,,] %*% V
+    Ch$operators[i,,] = Ch$operators[i,,] 
 	
   wfunc = weights.Bartlett
   if (is.null(weights))

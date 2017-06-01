@@ -2,7 +2,7 @@
 #'
 #' This function makes an eigendecomposition for each of the matrices \code{F\$operator[,,k]}.
 #' 
-#' @title Eigendevompose a frequency domain operator at each frequency
+#' @title Eigendecompose a frequency domain operator at each frequency
 #' @param F an object of class freqdom. The matrices \code{F\$operator[,,k]} are required to be square matrices, say \eqn{d \times d}.
 #' @return Returns a list. The list is containing the following components:
 #' * \code{vectors} an array containing \eqn{d} matrices. The \eqn{i}-th matrix contains in its \eqn{k}-th row the eigenvectors belonging to the \eqn{i}-th largest eigenvalue of \code{F\$operator[,,k]}.
@@ -13,6 +13,7 @@
 # @references Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
 # \emph{Dynamic functional principal components.} Journal of the Royal
 # Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
+#' @seealso \code{\link{freqdom}}
 #' @export
 freqdom.eigen = function(F){
   # TODO: It would be cleaner if this function returned two frequency domain objects

@@ -25,7 +25,7 @@ This function determines the norms of the matrices defining some linear filter.
 Computes \eqn{\|A_h\|} for \eqn{h} in the set of lags belonging to the object A. When type
 is \code{2} then \eqn{\|A\|} is the spectral radius of \eqn{A}. When type is \code{F}
 then \eqn{\|A\|} is the Frobenius norm (or the Hilbert-Schmidt norm, or Schatten 2-norm) of
-\eqn{A}. If type is \code{O} then the Schatten 1-norm is computed.
+\eqn{A}.
 }
 \examples{
 d = 2

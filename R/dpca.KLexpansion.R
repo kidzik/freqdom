@@ -18,8 +18,11 @@
 #' @references Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
 #' \emph{Dynamic functional principal components.} Journal of the Royal
 #' Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
+#' @references Brillinger, D.
 #' \emph{Time Series} (2001), SIAM, San Francisco.
 #' @references Shumway, R.H., and Stoffer, D.S.
+#' \emph{Time Series Analysis and Its Applications} (2006), Springer, New York.
+#' @seealso \code{\link{dpca.filters}}, \code{\link{dpca.inverse}}, \code{\link{dpca.scores}}
 #' @export
 dpca.KLexpansion = function(X,dpcs){
   t(rev(dpcs)) %c% X

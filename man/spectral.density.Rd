@@ -2,11 +2,11 @@
 % Please edit documentation in R/spectral.density.R
 \name{spectral.density}
 \alias{spectral.density}
-\title{Compute the cross spectral density of processes X and Y}
+\title{Compute the cross spectral density of two vector processes.}
 \usage{
-spectral.density(X, Y = X, V = diag(dim(X)[2]), freq = (-100:100/100) *
-  pi, q = max(1, floor(dim(X)[1]^(1/3))), weights = c("Bartlett", "trunc",
-  "Tukey", "Parzen", "Bohman", "Daniell", "ParzenCogburnDavis"))
+spectral.density(X, Y = X, freq = (-100:100/100) * pi, q = max(1,
+  floor(dim(X)[1]^(1/3))), weights = c("Bartlett", "trunc", "Tukey", "Parzen",
+  "Bohman", "Daniell", "ParzenCogburnDavis"))
 }
 \arguments{
 \item{X}{vector time series given in matrix form. Each row corresponds to a timepoint.}
@@ -41,11 +41,6 @@ The function \code{spectral.density} determines the empirical cross-spectral den
 with \eqn{\widehat{C}^{XY}(h)} defined in \code{cov.structure} Here \eqn{w} is a kernel of the specified type and \eqn{q} is the window size.  By default the Bartlett kernel \eqn{w(x)=1-|x|} is used.
 
 See, e.g., Chapter 10 and 11 in Brockwell and Davis (1991) for details.
-}
-\examples{
-X = rar(100)
-Y = rar(100)
-spectral.density(X,Y)
 }
 \references{
 Peter J. Brockwell and Richard A. Davis

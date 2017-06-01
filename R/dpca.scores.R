@@ -1,4 +1,4 @@
-#' Computes the dynamic principal component scores of a vector time series.
+#' Computes the dynamic principal component score vectors of a vector time series.
 #' 
 #' The \eqn{\ell}-th dynamic principal components score sequence is defined by
 #' \deqn{
@@ -8,11 +8,11 @@
 #' 
 #' We for more details we refer to Chapter 9 in Brillinger (2001), Chapter 7.8 in Shumway and Stoffer (2006) and to H"ormann et al. (2015).
 #'
-#' @title Compute scores of dynamic principal components
+#' @title Obtain dynamic principal components scores
 #' @param X a vector time series given as a \eqn{(T\times d)}-matix. Each row corresponds to a timepoint.
 #' @param dpcs an object of class \code{timedom}, representing the dpca filters obtained from the sample X. If \code{dpsc = NULL}, then \code{dpcs =
 #' dpca.filter(spectral.density(X))} is used.
-#' @return A \eqn{(T\times Ndpc)}-matix with \code{Ndpc = dim(dpcs\eqn{\$}operators)[1]}. The \eqn{\ell}-th column contains the \eqn{\ell}-th dynamic principal component score sequence.
+#' @return A \eqn{T\times} Ndpc-matix with \code{Ndpc = dim(dpcs\eqn{\$}operators)[1]}. The \eqn{\ell}-th column contains the \eqn{\ell}-th dynamic principal component score sequence.
 #' @seealso \code{\link{dpca.inverse}}, \code{\link{dprcomp}}
 #' @references Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
 #' \emph{Dynamic functional principal components.} Journal of the Royal

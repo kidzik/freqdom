@@ -12,13 +12,13 @@ rma(n, d = 2, Psi = NULL, noise = c("mnormal", "mt"), sigma = NULL,
 
 \item{d}{dimension of the time series.}
 
-\item{Psi}{array of coefficient matrices. \code{Psi[,,k]} is the \eqn{k}-th coefficient. If no value is set then we generate a vector moving average process of order \eqn{1}. Then, \code{Psi[,,1]} is proportional to \eqn{\exp(-|i-j|\colon 1\leq i, j\leq d)} and such that the spectral radius of \code{Psi[,,1]} is \eqn{1/2}.}
+\item{Psi}{array of coefficient matrices. \code{Psi[,,k]} is the \eqn{k}-th coefficient. If no value is set then we generate a vector moving average process of order \eqn{1}. Then, \code{Psi[,,1]} is proportional to \eqn{\exp(-(i+j)\colon 1\leq i, j\leq d)} and such that the spectral radius of \code{Psi[,,1]} is \eqn{1/2}.}
 
 \item{noise}{\code{mnormal} for multivariate normal noise or \code{mt} for multivariate \eqn{t} noise. If not specified \code{mnormal} is chosen.}
 
 \item{sigma}{covariance  or scale matrix of the innovations.}
 
-\item{df}{degrees of fredom if \code{noise = "mt"}.}
+\item{df}{degrees of freedom if \code{noise = "mt"}.}
 }
 \value{
 A matrix with d columns and n rows. Each row corresponds to one time point.

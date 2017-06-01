@@ -2,7 +2,7 @@
 % Please edit documentation in R/freqdom.eigen.R
 \name{freqdom.eigen}
 \alias{freqdom.eigen}
-\title{Eigendevompose a frequency domain operator at each frequency}
+\title{Eigendecompose a frequency domain operator at each frequency}
 \usage{
 freqdom.eigen(F)
 }
@@ -22,4 +22,7 @@ Gives the eigendecomposition of objects of class \code{freqdom}.
 }
 \details{
 This function makes an eigendecomposition for each of the matrices \code{F\$operator[,,k]}.
+}
+\seealso{
+\code{\link{freqdom}}
 }

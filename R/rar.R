@@ -1,4 +1,4 @@
-#' Generates a zero mean vector autoregressive process.
+#' Generates a zero mean vector autoregressive process of a given order.
 #'
 #' We simulate a vector autoregressive process
 #' \deqn{
@@ -15,22 +15,19 @@
 #' @title Simulate a multivariate autoregressive time series
 #' @param n number of observations to generate.
 #' @param d dimension of the time series.
-#' @param Psi array of \eqn{p \geq 1} coefficient matrices. \code{Psi[,,k]} is the \eqn{k}-th coefficient. If no value is set then we generate a vector autoregressive process of order 1. Then, \code{Psi[,,1]} is proportional to \eqn{\exp(-|i-j|\colon 1\leq i, j\leq d)} and such that the spectral radius of \code{Psi[,,1]} is 1/2.
+#' @param Psi array of \eqn{p \geq 1} coefficient matrices. \code{Psi[,,k]} is the \eqn{k}-th coefficient. If no value is set then we generate a vector autoregressive process of order 1. Then, \code{Psi[,,1]} is proportional to \eqn{\exp(-(i+j)\colon 1\leq i, j\leq d)} and such that the spectral radius of \code{Psi[,,1]} is 1/2.
 #' @param burnin an integer \eqn{\geq 0}. It specifies a number of initial  observations to be trashed to achieve stationarity.
 #' @param noise \code{mnormal} for multivariate normal noise or \code{mt} for multivariate student t noise. If not specified \code{mnormal} is chosen.
 #' @param sigma covariance  or scale matrix of the innovations.
-#' @param df degrees of fredom if \code{noise = "mt"}.
+#' @param df degrees of freedom if \code{noise = "mt"}.
 #' @importFrom graphics plot title
 #' @return A matrix with d columns and n rows. Each row corresponds to one time point.
 #' @export
 #' @examples
 #' nbase = 10
 #' Psi = t((1:nbase) %*% t(sin(1:nbase * 2*pi/nbase)) / (nbase*nbase))
-#' process = rar(30, Psi=Psi, sd=0.2)
-#' pdf(file='simulated.arh1.pdf')
-#' plot(process)
-#' title("Simulated ARH(1)")
-#' dev.off()
+#' process = rar(30, Psi=Psi, sigma=diag(nbase:1)/nbase)
+#' plot(process[,1], type="l")
 rar = function(n, d = 2, Psi = NULL, burnin = 10, noise = c('mnormal', 'mt'), sigma = NULL, df = 4)
 {
 	if (!is.null(Psi))
@@ -51,12 +48,13 @@ rar = function(n, d = 2, Psi = NULL, burnin = 10, noise = c('mnormal', 'mt'), si
 	if (is.null(sigma))
 	  sigma = diag(d)
 	
-	if (!is.positive.definite(sigma))
-		stop("Wrong covariance matrix. Sigma must be a positive definite matrix.")
+	if (det(sigma)<0 || !isSymmetric(sigma))
+		stop("sigma is not a covariance matrix.")
 	
 	# if no operator Psi is specified then use Identity
 	if (is.null(Psi))
-		Psi = diag(d)
+		Psi = exp(-(1:d))%*%t(exp(-(1:d)))
+		Psi = Psi/norm(Psi,type="2")/2
 
 	# build coefficients matrix (initially null)
 	coef = matrix(0,n+burnin,d)

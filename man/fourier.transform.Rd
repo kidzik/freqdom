@@ -2,7 +2,7 @@
 % Please edit documentation in R/fourier.transform.R
 \name{fourier.transform}
 \alias{fourier.transform}
-\title{Computes the Fourier transform of a given series of operators or a given multivariate time series}
+\title{Computes the Fourier transform of a filter given as \code{timedom} object.}
 \usage{
 fourier.transform(A, freq = pi * -100:100/100)
 }
@@ -19,12 +19,12 @@ Computes the frequency response function of a linear filter.
 }
 \details{
 Consider a filter (a sequence of vectors or matrices) \eqn{(A_k)_{k\in A\$lags}}. Then this function computes
-\deqn{\sum_{k\in L} A_k e^{-ik\omega}}
+\deqn{\sum_{k\in A\$lags} A_k e^{-ik\omega}}
 for all frequencies \eqn{\omega} listed in the vector \code{freq}.
 }
 \examples{
-X = rar(100,d=2)
-C = cov.structure(X)
+X = rar(100)
+C = cov.structure(X,lags=-2:2)
 F = fourier.transform(C) # a simple spectral density estimator
 Cinv = fourier.inverse(F)
 }
