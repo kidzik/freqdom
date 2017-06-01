@@ -9,7 +9,7 @@ print.timedom = function (x, ...) {
   if (operators)
     for (i in 1:length(x$lags)){
     cat(paste("$operators[",i,",,] (operator at the lag ",x$lags[i],")\n",sep=""))
-    print(x$operators[i,,])
+    print(x$operators[,,i])
     cat("\n")
   }
   cat(paste("Dimentions:",paste(dim(x$operators)[-1],collapse=" x "),"\n"))
@@ -30,7 +30,7 @@ print.freqdom = function (x, ...) {
   if (operators)
     for (i in 1:length(x$freq)){
     cat(paste("$operators[",i,",,] (operator at frequency ",x$freq[i],")\n",sep=""))
-    print(signif(x$operators[i,,],4))
+    print(signif(x$operators[,,i],4))
     cat("\n")
   }
   cat(paste("$freq (sample frequencies)\n"))

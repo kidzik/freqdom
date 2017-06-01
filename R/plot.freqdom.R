@@ -17,9 +17,9 @@ plot.freqdom = function(x, xcoef=NULL, ycoef=NULL, type='cartesian', ...){
 
   D = dim(SD$operators)
   if (is.null(xcoef))
-    xcoef = 1:D[2]
+    xcoef = 1:D[1]
   if (is.null(ycoef))
-    ycoef = 1:D[3]
+    ycoef = 1:D[2]
 
   if (!is.vector(xcoef) || !is.numeric(xcoef))
     stop("x must be a numeric vector")
@@ -49,10 +49,10 @@ plot.fd.coef = function(SD, x, y, ylim=NULL, type='cartesian', ...){
     f2 = Arg
   }
   if (is.null(ylim)){
-    ylim = min(f1(SD$operators[,x,y]),f2(SD$operators[,x,y]))
-    ylim = c(ylim,max(f1(SD$operators[,x,y]),f2(SD$operators[,x,y])))
+    ylim = min(f1(SD$operators[x,y,]),f2(SD$operators[x,y,]))
+    ylim = c(ylim,max(f1(SD$operators[x,y,]),f2(SD$operators[x,y,])))
   }
-  plot(SD$freq, f1(SD$operators[,x,y]),t='l',xlab="frequency",ylab="value",ylim=ylim, ...)
-  lines(SD$freq, f2(SD$operators[,x,y]),t='l',col=2)
+  plot(SD$freq, f1(SD$operators[x,y,]),t='l',xlab="frequency",ylab="value",ylim=ylim, ...)
+  lines(SD$freq, f2(SD$operators[x,y,]),t='l',col=2)
   title(paste("Coeficient (",x,",",y,") of Frequency Domain Operator", sep=""))
 }

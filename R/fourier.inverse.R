@@ -1,9 +1,9 @@
 # get one lag: A_lag = \int R e^{itlag}
 inv.fourier.one = function(R,lag){
-  A = array(0,dim(R$operators)[2:3])
+  A = array(0,dim(R$operators)[1:2])
   A[,] = 0
   for (theta in 1:length(R$freq))
-    A = A + R$operators[theta,,] * exp(R$freq[theta]*1i*lag)
+    A = A + R$operators[,,theta] * exp(R$freq[theta]*1i*lag)
   A / length(R$freq)
 }
 
@@ -43,11 +43,11 @@ fourier.inverse = function(F,lags=0){
     stop("lags must be a vector of integers")
   
   H = length(lags)
-  A = array(0, dim=c(H, dim(F$operators)[2:3]))
+  A = array(0, dim=c(dim(F$operators)[1:2],H))
 
   # TODO: this should be FFT
   for (h in 1:H)
-    A[h,,] = inv.fourier.one(F,lags[h])
+    A[,,h] = inv.fourier.one(F,lags[h])
   
   timedom(Re(A),lags)
 }

@@ -34,7 +34,7 @@
 #' Journal of Time Series Analysis 36.4 (2015): 541-561.
 #' @noRd
 # @export
-freqdom.inverse = function(S,n=NULL,K=NULL){
+freqdom.inverse = function(S, n=NULL, K=NULL){
   if (!is.freqdom(S))
     stop("S must be a freqdom object")
   if (!is.null(K) && !is.positiveint(K+1) && is.vector(K))
@@ -58,12 +58,12 @@ freqdom.inverse = function(S,n=NULL,K=NULL){
     # Instead of inversing S we just take several eigendirections
     
     D = dim(S$operators)
-    A = matrix(S$operators[theta,,],D[2],D[3])
+    A = matrix(S$operators[,,theta],D[1],D[2])
     
     curK = K
     if (is.vector(K) && length(K) > 1)
       curK = K[theta]
-    R$operators[theta,,] = pseudoinverse(A,curK)
+    R$operators[,,theta] = pseudoinverse(A,curK)
   }
   R
 }

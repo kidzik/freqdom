@@ -34,13 +34,13 @@ freqdom.kronecker = function(F,G){
   D1 = dim(F$operators)
   D2 = dim(G$operators)
   D = c(0,0,0)
+  D[1] = D1[1]*D2[1]
   D[2] = D1[2]*D2[2]
-  D[3] = D1[3]*D2[3]
-  D[1] = D1[1]
+  D[3] = D1[3]
   R$operators = array(0,D)
 
   for (theta in 1:length(F$freq))
-    R$operators[theta,,] = F$operators[theta,,] %x% G$operators[theta,,]
+    R$operators[,,theta] = F$operators[,,theta] %x% G$operators[,,theta]
   R
 }
 

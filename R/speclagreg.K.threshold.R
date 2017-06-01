@@ -5,7 +5,7 @@ speclagreg.K.threshold = function(X,Y,freq){
   
   SXX = spectral.density(X,freq=freq)
   for (i in 1:length(K)){
-    E = eigen(SXX$operators[i,,])
+    E = eigen(SXX$operators[,,i])
     K[i] = max(1,sum(abs(E$values) > th))
   }
   

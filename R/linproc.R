@@ -32,8 +32,8 @@ linproc = function(X, A, noise=NULL){
 	if (is.null(noise))
 		noise = function(n){ rep(0,n) }
   WN = c()
-  for (i in 1:dim(X)[1])
-    WN = rbind(WN,noise(dim(A$operators)[2]))
+  for (i in 1:dim(X)[3])
+    WN = rbind(WN, noise(dim(A$operators)[1]))
   
   # concolution + noise
   X = A %c% X

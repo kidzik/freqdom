@@ -32,7 +32,7 @@ timedom.norms = function(A, type = c("O", "I", "F", "M", "2")){
   v = c()
   D = dim(A$operators)
   for (i in 1:D[1])
-    v = c(v,mynorm(matrix(A$operators[i,,],D[2],D[3])))
+    v = c(v,mynorm(matrix(A$operators[,,i],D[2],D[3])))
   R$norms = v
   R
 }

@@ -32,15 +32,15 @@ timedom = function (A,lags=1:dim(A)[1])
   if (is.vector(A)){
     if (is.null(lags))
       lags = 1:length(A)
-    res$operators = array(0,c(length(A),1,1))
-    res$operators[,1,1] = A
+    res$operators = array(0,c(1,1,length(A)))
+    res$operators[1,1,] = A
   }
   else if (is.matrix(A)){
     if (is.null(lags))
       lags = 1:dim(A)[1]
 
-    res$operators = array(0,c(dim(A)[1],dim(A)[2],1))
-    res$operators[,,1] = A
+    res$operators = array(0,c(dim(A)[2],1,dim(A)[1]))
+    res$operators[,1,] = t(A)
   }
   else if (is.array(A) && length(dim(A)) == 3)
   {

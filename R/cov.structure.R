@@ -46,10 +46,10 @@ cov.structure = function(X,Y=X,lags=0){
 	nbasisY = dim(Y)[2]
 	n = dim(X)[1]
 
-	Ch = array(0,c(2*lrange+1,nbasisX,nbasisY))
+	Ch = array(0,c(nbasisX,nbasisY,2*lrange+1))
 	
 	for (h in (-lrange):lrange)
-		Ch[h+lrange+1,,] = lagged.cov(X,Y,h)
+		Ch[,,h+lrange+1] = lagged.cov(X,Y,h)
 	Ch
   
   A = timedom(Ch,-lrange:lrange)

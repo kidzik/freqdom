@@ -51,9 +51,9 @@ lagreg.est = function (X,Y,lags=-5:5,K=NULL,Kconst=1){
   
   RES = Dv %*% pseudoinverse(Cv,K)
 
-  A = array(0,c(length(lags),nbasisY,nbasisX))
+  A = array(0,c(nbasisY,nbasisX,length(lags)))
   for (i in 1:length(lags)){
-    A[i,,] = RES[,(i-1) * nbasisX + 1:nbasisX]
+    A[,,i] = RES[,(i-1) * nbasisX + 1:nbasisX]
   }
   
   timedom(A,lags)

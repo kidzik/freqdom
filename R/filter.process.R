@@ -19,12 +19,12 @@ filter.process = function(X, A){
     stop("X must be a multivariate time series (a matrix of observations)")
   
   n = dim(X)[1]
-  nbasis = dim(A$operators)[2]
+  nbasis = dim(A$operators)[1]
   Y = matrix(0,n,nbasis)
   
   for (component in 1:nbasis)
   {
-    IP = A$operators[,component,] %*% t(X)
+    IP = t(X %*% A$operators[component,,])
     for (i in 1:length(A$lags)){
       lag = A$lags[i]
       IP[i,] = colshift(IP[i,],lag)

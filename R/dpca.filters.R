@@ -38,11 +38,11 @@ dpca.filters = function(F, L = 10){
   
 	d = dim(E$vectors)[2]
 
-  XI = array(0,c(length(lags),d,d))
+  XI = array(0,c(d,d,length(lags)))
 
 	for (component in 1:d)
-    XI[,component,] = t(exp(-(F$freq %*% t(lags)) * 1i)) %*% E$vectors[,,component] / length(F$freq) 
+    XI[component,,] = t(exp(-(F$freq %*% t(lags)) * 1i)) %*% t(E$vectors[,component,]) / length(F$freq) 
   # TODO: this is just 'fourier.inverse' written in a fancy way - should be simplified
 
-	timedom(Re(XI[length(lags):1,,]),lags)
+	timedom(Re(XI[,,length(lags):1]),lags)
 }

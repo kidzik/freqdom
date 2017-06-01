@@ -28,16 +28,16 @@ freqdom.product = function(F,G){
     stop("F must be a freqdom object")
   if (!is.freqdom(G))
     stop("G must be a freqdom object")
-  if (dim(F$operators)[3] != dim(G$operators)[2])
+  if (dim(F$operators)[2] != dim(G$operators)[1])
     stop("Dimensions of operators don't match")
   
   R = G
   D = c(dim(F$operators)[1],
-        dim(F$operators)[2],
-        dim(G$operators)[3])
+        dim(G$operators)[2],
+        dim(F$operators)[3])
   R$operators = array(0,D)
   for (theta in 1:length(F$freq))
-    R$operators[theta,,] = F$operators[theta,,] %*% G$operators[theta,,]
+    R$operators[,,theta] = F$operators[,,theta] %*% (G$operators[,,theta])
   R
 }
 

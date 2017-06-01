@@ -47,7 +47,7 @@ reglag.significance = function(X, Y, A, alpha = 0.05, plot = FALSE, ...)
   #Cinv = solve(C)
   
   for (i in 1:length(SX$freq)){
-    SX$operators[i,,] = Cinv %*% SX$operators[i,,] %*% Cinv
+    SX$operators[,,i] = Cinv %*% SX$operators[,,i] %*% Cinv
   }
 
   brillinger = TRUE
@@ -56,27 +56,27 @@ reglag.significance = function(X, Y, A, alpha = 0.05, plot = FALSE, ...)
     # Get the asymptotic distribution of operators under the null
     # as Brillinger suggests in Theorem 8.10.2
     PROD = freqdom.kronecker(SX,SY)
-    B = fourier.inverse(PROD)$operators[1,,] / n
+    B = fourier.inverse(PROD)$operators[,,1] / n
     
     invB = pseudoinverse(B,K = dim(B)[1])
     
     # 'normalise' operators with invB
     W = c()
     for (i in 1:length(A$lags))
-      W = c(W,c(A$operators[i,,]) %*% invB %*% c(A$operators[i,,]))
+      W = c(W,c(A$operators[,,i]) %*% invB %*% c(A$operators[,,i]))
     W = Re(W)
   }
   else{ # TODO: NOT READY YET
     # Make it a bit simpler
     n = dim(X)[1]
     PROD = freqdom.ratio(SY,SX,n)
-    B = fourier.inverse(PROD)$operators[1,,] / n
+    B = fourier.inverse(PROD)$operators[,,1] / n
     invB = solve(B) # Invert B
     
     # 'normalise' operators with invB
     W = c()
     for (i in 1:length(A$lags)){
-      res = t(A$operators[i,,]) %*% B %*% (A$operators[i,,])
+      res = t(A$operators[,,i]) %*% B %*% (A$operators[,,i])
       W = c(W,trace(res))
     }
   }

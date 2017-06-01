@@ -48,7 +48,7 @@ spectral.density = function(X,Y=X,
 	Ch = cov.structure(X,Y,-q:q)
 
   for (i in 1:(q*2+1))
-    Ch$operators[i,,] = Ch$operators[i,,] 
+    Ch$operators[,,i] = Ch$operators[,,i] 
 	
   wfunc = weights.Bartlett
   if (is.null(weights))
@@ -72,8 +72,8 @@ spectral.density = function(X,Y=X,
   
   weights = wfunc(-q:q/q)
   
-  for (i in 1:dim(Ch$operators)[1])
-    Ch$operators[i,,] = weights[i] * Ch$operators[i,,]
+  for (i in 1:dim(Ch$operators)[3])
+    Ch$operators[,,i] = weights[i] * Ch$operators[,,i]
   
   fourier.transform(Ch, freq=thetas)
 }

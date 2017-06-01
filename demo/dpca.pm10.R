@@ -27,7 +27,7 @@ Y1[,-1] = 0
 Xpca = Y1 %*% t(PR$rotation)
 
 ## Dynamic PCA ##
-XI.est = dprcomp(t(X$coef),q=20,weights="Bartlett",freq=pi*(-150:150/150))  # finds the optimal filter
+XI.est = dpca.filters(spectral.density(t(X$coef)))  # finds the optimal filter
 Y.est = XI.est %c% t(X$coef)  # applies the filter
 Y.est[,-1] = 0 # forces the use of only one component
 Xdpca.est = t(rev(XI.est)) %c% Y.est    # deconvolution
