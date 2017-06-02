@@ -42,13 +42,13 @@ spectral.density = function(X,Y=X,
   
   thetas = freq
   
-	nbasisX = dim(X)[2]
-	nbasisY = dim(Y)[2]
-	n = dim(X)[1]
-	Ch = cov.structure(X,Y,-q:q)
+  nbasisX = dim(X)[2]
+  nbasisY = dim(Y)[2]
+  n = dim(X)[1]
+  Ch = cov.structure(X,Y,-q:q)
 
-  for (i in 1:(q*2+1))
-    Ch$operators[,,i] = Ch$operators[,,i] 
+#  for (i in 1:(q*2+1))
+#    Ch$operators[,,i] = Ch$operators[,,i]  (todo: what was that?!?)
 	
   wfunc = weights.Bartlett
   if (is.null(weights))

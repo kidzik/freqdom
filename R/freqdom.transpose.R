@@ -15,7 +15,7 @@
 #' The elements of the object correspond to \eqn{S_\theta'} as defined above.
 #' @seealso \code{\link{freqdom.product}}, \code{\link{freqdom.ratio}}
 #' @noRd
-#' @export
+# @export
 freqdom.transpose = function(x){
   lags = freqdom.lags(x)
   for (i in 1:length(lags))
@@ -23,8 +23,9 @@ freqdom.transpose = function(x){
   x
 }
 
-#' @export t freqdom
+# @export t freqdom
+#' @S3method t freqdom
 t.freqdom = freqdom.transpose
 
-#' @export t timedom
+#' @S3method t freqdom
 t.timedom = freqdom.transpose

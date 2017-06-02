@@ -59,6 +59,6 @@ colshift = function(col,lag){
 #' @return Multivariate time series \eqn{Y_t} represented as a matrix \eqn{T \times p_2}.
 #' @seealso \code{\link{filter.process}}, \code{\link{timedom}}
 #' @export
-`%c%` <- function(A, X){
+`%c%` <- function(X, A){
   filter.process(X, A)
 }

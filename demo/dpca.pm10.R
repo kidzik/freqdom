@@ -27,10 +27,10 @@ Y1[,-1] = 0
 Xpca = Y1 %*% t(PR$rotation)
 
 ## Dynamic PCA ##
-XI.est = dpca.filters(spectral.density(t(X$coef)))  # finds the optimal filter
-Y.est = XI.est %c% t(X$coef)  # applies the filter
+XI.est = dpca.filters(spectral.density(t(X$coef),q=20),lags=-10:10)  # finds the optimal filter
+Y.est = t(X$coef) %c% freqdom.transpose(XI.est)  # applies the filter
 Y.est[,-1] = 0 # forces the use of only one component
-Xdpca.est = t(rev(XI.est)) %c% Y.est    # deconvolution
+Xdpca.est = Y.est %c% rev(XI.est)    # deconvolution
 
 # Creates functional objects
 Xdpca.est.fd = fd(t(Re(Xdpca.est)),basis=X$basis)
@@ -39,9 +39,9 @@ Xpca.fd = fd(t(Xpca),basis=X$basis)
 # Write down results
 ind = 1:n
 cat("NMSE PCA =  ")
-cat(MSE(t(X$coef)[ind,],Xdpca.est[ind,]) / MSE(t(X$coef)[ind,],0))
-cat("\nNMSE DPCA = ")
 cat(MSE(t(X$coef)[ind,],Xpca[ind,]) / MSE(t(X$coef)[ind,],0))
+cat("\nNMSE DPCA = ")
+cat(MSE(t(X$coef)[ind,],Xdpca.est[ind,]) / MSE(t(X$coef)[ind,],0))
 cat("\n")
 
 # Figure 1: 10 observations reconstructed from the first component
@@ -63,7 +63,7 @@ plot(XorgM,xlab="Intraday time", ylab="Sqrt(PM10)",lwd=c(4,rep(1,n)))
 # Figure 3: 5 elements of the first filter
 d = 3
 for (i in (11 - d):(11 + d)){
-  F = fd((XI.est$operators[i,1,]),X$basis)
+  F = fd((XI.est$operators[1,,i]),X$basis)
   F$basis$rangeval = i - 11 + c(0,1)
   if (i == 11 - d){
     xlim = c(-d,d+1)
@@ -102,7 +102,7 @@ for (c in 0:7){
   s2 = s2*2 - 1
   s3 = s3*2 - 1
   
-  FI = fd(t(Re(XI.est$operators[(L+1+1):(L+1-1),1,])),basis=X$basis)
+  FI = fd(t(Re(XI.est$operators[1,,(L+1+1):(L+1-1)])),basis=X$basis)
   MEAN = mean(Xorg)
   MEAN = MEAN + FI[1] * s1
   MEAN = MEAN + FI[2] * s2

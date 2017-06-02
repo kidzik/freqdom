@@ -34,10 +34,11 @@ We represent the function \eqn{F} by an object of class \code{freqdom} and appro
 for \eqn{h\in} lags.
 }
 \examples{
-Y=rar(100)
-grid=c(pi*(1:2000)/1000-pi) #a dense grid on -pi, pi
+Y = rar(100)
+grid = c(pi*(1:2000) / 1000 - pi) #a dense grid on -pi, pi
 fourier.inverse(spectral.density(Y, q=2, freq=grid))
-#compare this to
+
+# compare this to
 cov.structure(Y)
 }
 \seealso{

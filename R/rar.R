@@ -52,10 +52,11 @@ rar = function(n, d = 2, Psi = NULL, burnin = 10, noise = c('mnormal', 'mt'), si
 	if (det(sigma)<0 || !isSymmetric(sigma))
 		stop("sigma is not a covariance matrix.")
 	
-	# if no operator Psi is specified then use Identity
-	if (is.null(Psi))
+	# if no operator than make some default
+	if (is.null(Psi)){
 		Psi = exp(-(1:d))%*%t(exp(-(1:d)))
 		Psi = Psi/norm(Psi,type="2")/2
+	}
 
 	# build coefficients matrix (initially null)
 	coef = matrix(0,n+burnin,d)
@@ -71,7 +72,7 @@ rar = function(n, d = 2, Psi = NULL, burnin = 10, noise = c('mnormal', 'mt'), si
 
 	D = dim(Psi)[3]
 	if (is.na(D)){
-		Psi = array(Psi, c(1,dim(Psi)))
+		Psi = array(Psi, c(dim(Psi),1))
 		D=1
 	}
 
@@ -80,7 +81,7 @@ rar = function(n, d = 2, Psi = NULL, burnin = 10, noise = c('mnormal', 'mt'), si
 	for (i in 2:(n+burnin)){
 		last = min(D,i-1)
 		for (j in 1:last){
-			coef[i,] = coef[i,] + as.matrix(Psi[j,,]) %*% coef[i-j,]
+			coef[i,] = coef[i,] + as.matrix(Psi[,,j]) %*% coef[i-j,]
 		}
 		coef[i,] = coef[i,] + fnoise()
 	}

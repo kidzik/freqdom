@@ -27,10 +27,11 @@ rma = function(n, d = 2, Psi = NULL, noise = c("mnormal","mt"), sigma = NULL, df
     stop ("d must be a positive integer")
   if (is.null(d))
     stop("Can't determine the dimension. Specify d or give Psi.")
-  if (is.null(Psi))
-  	Psi = exp(-(1:d))%*%t(exp(-(1:d)))
-	Psi = Psi/norm(Psi,type="2")/2
-    Psi = timedom(Psi,lags=0)
+  if (is.null(Psi)){
+  	Psi = exp(-(1:d)) %*% t(exp(-(1:d)))
+  	Psi = Psi/norm(Psi,type="2")/2
+  	Psi = timedom(Psi,lags=0)
+  }
   if (is.null(sigma))
     sigma = diag(d)
   

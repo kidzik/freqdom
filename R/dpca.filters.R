@@ -27,22 +27,20 @@
 #' \emph{Time Series Analysis and Its Applications} (2006), Springer, New York.
 #' @seealso \code{\link{dpca.var}}, \code{\link{dpca.scores}}, \code{\link{dpca.KLexpansion}}
 #' @export
-dpca.filters = function(F, L = 10){
+dpca.filters = function(F, lags = 0){
   if (!is.freqdom(F))
     stop("F must be a freqdom operator")
-  if (L < 0)
-    stop("L must be a non-negative integer")
+  if (length(lags) < 0)
+    stop("lags must be a vector of positive length")
 
-  lags = -L:L
+  L = max(abs(lags))
+  lags_full = -L:L
   E = freqdom.eigen(F)
-  
-	d = dim(E$vectors)[2]
+  d = dim(E$vectors)[2]
 
-  XI = array(0,c(d,d,length(lags)))
+  XI = array(0,c(d,d,length(lags_full)))
 
-	for (component in 1:d)
-    XI[component,,] = t(exp(-(F$freq %*% t(lags)) * 1i)) %*% t(E$vectors[,component,]) / length(F$freq) 
-  # TODO: this is just 'fourier.inverse' written in a fancy way - should be simplified
-
-	timedom(Re(XI[,,length(lags):1]),lags)
+  fd.E = freqdom(E$vectors,freq = F$freq)
+  fd.E$values = E$values
+  fourier.inverse(fd.E,lags = lags)
 }

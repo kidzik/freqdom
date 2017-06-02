@@ -17,3 +17,47 @@ OP[,,3] = c(-5,5)
 
 if (sum((fourier.inverse(fourier.transform(timedom(OP,-1:1)),lags = -1:1)$operators - OP)^2)> 0.01)
   stop("Fourier transform error")
+
+DPC = dpca.filters(spectral.density(X),0)
+if (any((dim(DPC$operators) - c(2,2,1)) != 0 ))
+  stop("Wrong sizes")
+
+X[,2] = X[,1]
+DPC = dpca.filters(spectral.density(X),0)
+if (any((dim(DPC$operators) - c(2,2,1)) != 0 ))
+  stop("Wrong sizes")
+
+##
+
+library(freqdom)
+
+set.seed(4)
+
+precision = 0.0001
+
+OP = array(0,c(2,2,3))
+OP[,,1] = matrix(1:4,2)
+OP[,,2] = matrix(5:8,2)
+OP[,,3] = matrix(9:12,2)
+
+A = timedom(OP,c(-1,0,2))
+
+X = t(matrix(rnorm(200),2))
+Xt = timedom(X)
+
+Xf = fourier.transform(Xt,freq=pi * (-200:200 / 200))
+Af = fourier.transform(A,freq=pi * (-200:200 / 200))
+
+Y = A %c% X    # time domain convolution
+Cf = Af %*% Xf # frequency domain product
+
+Yt = fourier.inverse(Cf,1:100)
+Yr = Yt$operators[,1,]
+
+par(mfrow=c(1,1))
+plot(Y[,1])
+lines(Yr[1,])
+
+##
+
+rma(100,2,A)
