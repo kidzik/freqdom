@@ -20,7 +20,7 @@ spectral.density(X, Y = X, freq = (-100:100/100) * pi, q = max(1,
 \item{weights}{kernel used in the spectral smoothing. By default the Bartlett kernel is chosen.}
 }
 \value{
-Returns an object of class \code{freqdom}. The list is containing the following components:
+Returns an object of class \code{\link{freqdom}}. The list is containing the following components:
 \itemize{
 \item \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the spectral density matrix evaluated at the \eqn{k}-th frequency listed in freq.
 \item \code{freq} returns argument vector freq.

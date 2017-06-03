@@ -10,7 +10,7 @@ dpca.var(F)
 \item{F}{\eqn{(d\times d)} spectral density matrix, provided as an object of class \code{freqdom}. To guarantee accuracy of numerical integration it is important that \eqn{F\$}freq is a dense grid of frequencies in \eqn{[-\pi,\pi]}.}
 }
 \value{
-A \eqn{(2\times d)}-matix. The first row contains the \eqn{v_\ell} the second row contains the cumulative sums of the \eqn{v_\ell}.
+A \eqn{d}-dimensional vector containing the \eqn{v_\ell}.
 }
 \description{
 Computes the proportion and cumulative proportion of variance explained by a given number of dynamic principal components.

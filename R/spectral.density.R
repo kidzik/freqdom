@@ -18,7 +18,7 @@
 #' @param freq a vector containing frequencies in \eqn{[-\pi, \pi]} on which the spectral density should be evaluated.
 #' @param q window size for the kernel estimator, i.e. a positive integer.
 #' @param weights kernel used in the spectral smoothing. By default the Bartlett kernel is chosen.
-#' @return Returns an object of class \code{freqdom}. The list is containing the following components:
+#' @return Returns an object of class \code{\link{freqdom}}. The list is containing the following components:
 #' * \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the spectral density matrix evaluated at the \eqn{k}-th frequency listed in freq.
 #' * \code{freq} returns argument vector freq.
 #' @references Peter J. Brockwell and Richard A. Davis
@@ -27,12 +27,13 @@
 # @noRd
 #' @export
 #' @keywords spec
-spectral.density = function(X,Y=X,
-                            freq=(-100:100/100)*pi,q=max(1,floor(dim(X)[1]^(1/3))),
-                            weights=c('Bartlett', 'trunc', 'Tukey', 'Parzen', 'Bohman', 'Daniell', 'ParzenCogburnDavis')){
+spectral.density = function(X, Y = X,
+                            freq = (-100:100/100)*pi,
+                            q = max(1,floor(dim(X)[1]^(1/3))),
+                            weights = c('Bartlett', 'trunc', 'Tukey', 'Parzen', 'Bohman', 'Daniell', 'ParzenCogburnDavis')){
   if (is.vector(weights))
     weights = "Bartlett"
-
+  
   if (!is.matrix(X) || !is.matrix(Y))
     stop("X and Y must be matrices")
   if (dim(X)[1] != dim(Y)[1])
@@ -46,10 +47,10 @@ spectral.density = function(X,Y=X,
   nbasisY = dim(Y)[2]
   n = dim(X)[1]
   Ch = cov.structure(X,Y,-q:q)
-
-#  for (i in 1:(q*2+1))
-#    Ch$operators[,,i] = Ch$operators[,,i]  (todo: what was that?!?)
-	
+  
+  #  for (i in 1:(q*2+1))
+  #    Ch$operators[,,i] = Ch$operators[,,i]  (todo: what was that?!?)
+  
   wfunc = weights.Bartlett
   if (is.null(weights))
 	  wfunc = weights.Bartlett

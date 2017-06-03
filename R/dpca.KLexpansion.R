@@ -24,6 +24,6 @@
 #' \emph{Time Series Analysis and Its Applications} (2006), Springer, New York.
 #' @seealso \code{\link{dpca.filters}}, \code{\link{filter.process}}, \code{\link{dpca.scores}}, \code{\link{rev}}
 #' @export
-dpca.KLexpansion = function(X,dpcs){
-  t(rev(dpcs)) %c% X
+dpca.KLexpansion = function(X, dpcs){
+  X %c% freqdom.transpose(rev(dpcs))
 }

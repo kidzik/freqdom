@@ -23,6 +23,5 @@
 #' \emph{Time Series Analysis and Its Applications} (2006), Springer, New York.
 #' @export
 dpca.scores = function(X,dpcs){
-  dpcs %c% X
+  X %c% dpcs
 }
-

@@ -2,14 +2,17 @@
 % Please edit documentation in R/filter.process.R
 \name{filter.process}
 \alias{filter.process}
+\alias{\%c\%}
 \title{Convolute (filter) a multivariate time series using a time-domain filter}
 \usage{
 filter.process(X, A)
+
+X \%c\% A
 }
 \arguments{
 \item{X}{vector time series given in matrix form. Each row corresponds to a timepoint.}
 
-\item{A}{an object of class \code{timedom}.}
+\item{A}{an object of class \code{\link{timedom}}.}
 }
 \value{
 A matrix. Row \eqn{t} corresponds to \eqn{Y_t}.
@@ -23,6 +26,13 @@ Let \eqn{[X_1,\ldots, X_T]^\prime} be a \eqn{T\times d} matrix corresponding to 
 The index \eqn{k} of \eqn{A_k} is determined by the lags defined for the time domain object.
 When index \eqn{t-k} falls outside the domain \eqn{\{1,\ldots, T\}} we set \eqn{X_t=\frac{1}{T}\sum_{k=1}^T X_k}.
 }
+\section{Functions}{
+\itemize{
+\item \code{filter.process}: Multivariate convolution (filter) in the time domain
+
+\item \code{\%c\%}: Convenience operator for \code{filter.process} function
+}}
+
 \seealso{
 \code{\link{timedom}}
 }

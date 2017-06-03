@@ -47,7 +47,7 @@ freqdom.eigen = function(F){
   }
   
   E
-#  OneSideFilter(E,10,thetas)
+  #  OneSideFilter(E,10,thetas)
 }
 
 

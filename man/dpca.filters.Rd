@@ -4,7 +4,7 @@
 \alias{dpca.filters}
 \title{Compute DPCA filter coefficients}
 \usage{
-dpca.filters(F, L = 10)
+dpca.filters(F, Ndpc = dim(F$operators)[2], q = 1, thresh = NULL)
 }
 \arguments{
 \item{F}{\eqn{(d\times d)} spectral density matrix, provided as an object of class \code{freqdom}.}

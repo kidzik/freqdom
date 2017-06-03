@@ -6,7 +6,7 @@
 #' 
 #' We define \deqn{H_\theta = F_\theta G_\theta} as a matrix product of \eqn{F_\theta} and \eqn{G_\theta}, i.e. \eqn{H_\theta \in \mathbf{R}^{p\times r}}.
 #' Function \code{freqdom.product} returns \eqn{H = \{ H_\theta : \theta \in S \}}.
-#'  
+#' 
 #' @title Compute a matrix product of two frequency-domain operators
 #' @param F frequency-domain filter of type \code{\link{freqdom}}, i.e. a set of linear operators \eqn{F_\theta \in \mathbf{R}^{p \times q}} defined
 #' on a discreet grid defined \eqn{S \subset [-\pi,\pi]}. 
@@ -15,6 +15,7 @@
 #' @return Function returns a frequency domain object (\code{\link{freqdom}}) of dimensions \eqn{L \times p \times r}, where \eqn{L} is the 
 #' size of the evaluation grid. The elements correspond to \eqn{F_\theta * G_\theta} defined above.
 #' @seealso \code{\link{freqdom.inverse}}, \code{\link{freqdom.ratio}}
+#' @describeIn freqdom.product Frequency-wise matrix product of two frequency-domain operators
 #' @noRd
 #' @examples
 #' n = 100
@@ -43,16 +44,19 @@ freqdom.product = function(F,G){
 
 oldprod <- `%*%`
 
-#' Frequency-wise or time-wise matrix product. Takes two elements
-#' \code{freqdom} or \code{timedom} and multiplies them on
-#' each frequency or time point. If objects of other type are provided
-#' then the standard multiplication is applied.
-#'  
-#' @title Frequency-wise or component-wise matrix product. 
-#' @param e1 first element
-#' @param e2 second element
-#' @return object of the same type as e1 but with new dimensions
-#' @export
+# Frequency-wise or time-wise matrix product. Takes two elements
+# \code{freqdom} or \code{timedom} and multiplies them on
+# each frequency or time point. If objects of other type are provided
+# then the standard multiplication is applied.
+#  
+# @title Frequency-wise or component-wise matrix product. 
+# @param e1 first element
+# @param e2 second element
+# @return object of the same type as e1 but with new dimensions
+#' @title Compute a matrix product of two frequency-domain operators
+# @describeIn freqdom.product Convenience operator for \code{freqdom.product} function
+#' @noRd
+# @export
 `%*%` <- function (e1,e2) {
   if (is.freqdom(e1) && is.freqdom(e2))
     freqdom.product(e1,e2)

@@ -12,7 +12,8 @@
 #'
 #' @title Proportion of variance explained.
 #' @param F \eqn{(d\times d)} spectral density matrix, provided as an object of class \code{freqdom}. To guarantee accuracy of numerical integration it is important that \eqn{F\$}freq is a dense grid of frequencies in \eqn{[-\pi,\pi]}.
-#' @return A \eqn{(2\times d)}-matix. The first row contains the \eqn{v_\ell} the second row contains the cumulative sums of the \eqn{v_\ell}.
+# @return A \eqn{(2\times d)}-matix. The first row contains the \eqn{v_\ell} the second row contains the cumulative sums of the \eqn{v_\ell}.
+#' @return A \eqn{d}-dimensional vector containing the \eqn{v_\ell}.
 #' @seealso \code{\link{dpca.filters}}, \code{\link{dpca.KLexpansion}}, \code{\link{dpca.scores}},
 #' @references Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
 #' \emph{Dynamic functional principal components.} Journal of the Royal
@@ -23,5 +24,9 @@
 #' \emph{Time Series Analysis and Its Applications} (2006), Springer, New York.
 #' @export
 dpca.var = function(F){
-  stop("Not implemented")
+  # stop("Not implemented")
+  if (!is.freqdom(F))
+    stop("F must be a freqdom operator")
+  E = freqdom.eigen(F)
+  Re(rowSums(E$values) / sum(freqdom.trace(F)$values))
 }

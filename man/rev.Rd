@@ -2,25 +2,40 @@
 % Please edit documentation in R/rev.R
 \name{rev}
 \alias{rev}
-\title{Invert the lags or the grid parameters of a \code{\link{freqdom}} object}
+\alias{rev.freqdom}
+\alias{rev.timedom}
+\title{Invert the lags or the grid parameters of a \code{\link{freqdom}} or a \code{\link{timedom}} object}
 \usage{
-rev(x)
+\method{rev}{freqdom}(x)
+
+\method{rev}{timedom}(x)
 }
 \arguments{
-\item{x}{a frequency-domain filter of type \code{\link{freqdom}}, i.e. a set of linear operators \eqn{S_k \in \mathbf{R}^{p_1 \times p_2}}
-on a discreet grid defined of \eqn{[-\pi,\pi]}.}
+\item{x}{a frequency-domain filter of type \code{\link{freqdom}} or a time-domain filter of type \code{\link{timedom}}, i.e. a set of linear operators \eqn{S_k \in \mathbf{R}^{p_1 \times p_2}}
+defined on \eqn{k \in G \subset \mathbf{Z}.}}
 }
 \value{
-Function returns a frequency domain object (\code{\link{freqdom}}) of the same dimensions and
+Function returns a frequency-domain object (\code{\link{freqdom}}) or a time-domain object (\code{\link{time}}) of the same dimensions,
 with the same operators but with the inverted order of operators.
 }
 \description{
-For a given frequency-domain operator \code{x} (\code{\link{freqdom}}), the function \code{rev} inverts the order of the operators.
+\itemize{
+\item For a given frequency-domain operator \code{x} (\code{\link{freqdom}}), the function \code{rev} inverts the evaluation grid.
+}
+
+\itemize{
+\item For a given time-domain operator \code{x} (\code{\link{timedom}}), the function \code{rev} inverts time.
+}
 }
 \details{
-Let \eqn{S = \{ S_\theta : \theta \in G \}}, where \eqn{G} is a finite grid
-of frequencies in \eqn{G \subset [-\pi,\pi]}.
-Let \eqn{\theta_1, \theta_2, ..., \theta_L} be a sorted sequence of elements of \eqn{G}
-Function \code{rev} inverts the order of this sequence, i.e. it returns an operator
+Let \eqn{S = \{ S_k : k \in G \}} be an ordered set of operators, where \eqn{G} is a finite grid
+of frequencies in \eqn{G \subset [-\pi,\pi]} or set of lags \eqn{G \subset \mathbf{Z}}.
+Let \eqn{k_1, k_2, ..., k_L} be a sorted sequence of elements of \eqn{G}
+Function \code{rev} inverts the order of this sequence, i.e. it returns an ordered set of operators
 \deqn{F = \{ F_{\theta_i} : \theta_{L - i + 1} \in G \}.}
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{timedom}: Reverts time in a \code{\link{timedom}} object
+}}
+

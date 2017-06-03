@@ -27,20 +27,37 @@
 #' \emph{Time Series Analysis and Its Applications} (2006), Springer, New York.
 #' @seealso \code{\link{dpca.var}}, \code{\link{dpca.scores}}, \code{\link{dpca.KLexpansion}}
 #' @export
-dpca.filters = function(F, lags = 0){
+dpca.filters = function(F, Ndpc = dim(F$operators)[2], q = 1, thresh = NULL){
   if (!is.freqdom(F))
     stop("F must be a freqdom operator")
-  if (length(lags) < 0)
-    stop("lags must be a vector of positive length")
+  if (q <= 0)
+    stop("q must be positive")
+  
+  if (!is.null(thresh))
+    q = 20
 
-  L = max(abs(lags))
-  lags_full = -L:L
+  lags_full = -q:q
   E = freqdom.eigen(F)
   d = dim(E$vectors)[2]
 
-  XI = array(0,c(d,d,length(lags_full)))
-
-  fd.E = freqdom(E$vectors,freq = F$freq)
+  XI = array(0, c(d, d, length(lags_full)))
+  
+  fd.E = freqdom(E$vectors, freq = F$freq)
   fd.E$values = E$values
-  fourier.inverse(fd.E,lags = lags)
+  
+  
+  A = fourier.inverse(fd.E, lags = lags_full)
+
+  if (!is.null(thresh)){
+    nms = timedom.norms(A)$norms
+    r = c(nms[q+1],nms[q:1] + nms[(q+2):(2*q+1)])
+    rsum = sum(r)
+    w = which(cumsum(r / rsum) > thresh)
+    if (length(w) == 0)
+      lags = lags_full
+    else
+      lags = (-(w[1]-1)):(w[1]-1)
+    A = timedom.trunc(A, lags = lags)
+  }
+  A
 }

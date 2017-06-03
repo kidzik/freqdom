@@ -23,9 +23,8 @@ freqdom.transpose = function(x){
   x
 }
 
-# @export t freqdom
-#' @S3method t freqdom
+#' @export t freqdom
 t.freqdom = freqdom.transpose
 
-#' @S3method t freqdom
+#' @export t freqdom
 t.timedom = freqdom.transpose

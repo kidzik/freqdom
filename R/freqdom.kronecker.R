@@ -30,7 +30,7 @@ freqdom.kronecker = function(F,G){
     stop("G must be a freqdom object")
   
   R = G
-
+  
   D1 = dim(F$operators)
   D2 = dim(G$operators)
   D = c(0,0,0)
@@ -38,7 +38,7 @@ freqdom.kronecker = function(F,G){
   D[2] = D1[2]*D2[2]
   D[3] = D1[3]
   R$operators = array(0,D)
-
+  
   for (theta in 1:length(F$freq))
     R$operators[,,theta] = F$operators[,,theta] %x% G$operators[,,theta]
   R
@@ -46,19 +46,19 @@ freqdom.kronecker = function(F,G){
 
 oldkronprod <- `%x%`
 
-#' Frequency-wise or time-wise Kronecker product. Takes two elements
-#' \code{freqdom} or \code{timedom} and applies the Kronecker product on
-#' each frequency or time point. If objects of other type are provided
-#' then the standard function is applied.
-#'  
-#' @title Frequency-wise or component-wise Kronecker product. 
-#' @param e1 first element
-#' @param e2 second element
-#' @return object of the same type as e1 but with new dimensions
-#' @export
-`%x%` <- function (e1,e2) {
-  if (is.freqdom(e1) && is.freqdom(e2))
-    freqdom.kronecker(e1,e2)
-  else
-    oldkronprod(e1,e2)
-}
+#' #' Frequency-wise or time-wise Kronecker product. Takes two elements
+#' #' \code{freqdom} or \code{timedom} and applies the Kronecker product on
+#' #' each frequency or time point. If objects of other type are provided
+#' #' then the standard function is applied.
+#' #'  
+#' #' @title Frequency-wise or component-wise Kronecker product. 
+#' #' @param e1 first element
+#' #' @param e2 second element
+#' #' @return object of the same type as e1 but with new dimensions
+#' #' @export
+#' `%x%` <- function (e1,e2) {
+#'   if (is.freqdom(e1) && is.freqdom(e2))
+#'     freqdom.kronecker(e1,e2)
+#'   else
+#'     oldkronprod(e1,e2)
+#' }

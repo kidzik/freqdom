@@ -25,14 +25,16 @@ timedom.norms = function(A, type = c("O", "I", "F", "M", "2")){
     stop ("A must be a time domain filter")
   
   mynorm = norm
+  if (is.vector(type))
+    type= "O"
   if (type=='2')
     mynorm = norm.spec
   R = list()
   R$lags = A$lags
   v = c()
   D = dim(A$operators)
-  for (i in 1:D[1])
-    v = c(v,mynorm(matrix(A$operators[,,i],D[2],D[3])))
+  for (i in 1:D[3])
+    v = c(v,mynorm(matrix(A$operators[,,i],D[1],D[2])))
   R$norms = v
   R
 }
