@@ -20,7 +20,7 @@ filter.process = function(X, A){
     stop("X must be a multivariate time series (a matrix of observations)")
   
   n = dim(X)[1]
-  nbasis = dim(A$operators)[1]
+  nbasis = dim(A$operators)[2]
   Y = matrix(0,n,nbasis)
   
   for (component in 1:nbasis)

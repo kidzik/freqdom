@@ -18,6 +18,9 @@
 #' @export
 freqdom.transpose = function(x){
   lags = freqdom.lags(x)
+  newdim = dim(x$operators)
+  newdim[1:2] = newdim[2:1]
+  x$operators = array(x$operators, newdim)
   for (i in 1:length(lags))
     x$operators[,,i] = t(x$operators[,,i])
   x

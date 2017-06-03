@@ -72,5 +72,10 @@ dpca.filters = function(F, Ndpc = dim(F$operators)[2], q = 1, thresh = NULL){
       lags = (-(w[1]-1)):(w[1]-1)
     A = timedom.trunc(A, lags = lags)
   }
+  if (Ndpc < dim(A$operators)[2]){
+    newdim = dim(A$operators)
+    newdim[2] = Ndpc
+    A$operators = array(A$operators[,1:Ndpc,],newdim)
+  }
   A
 }
