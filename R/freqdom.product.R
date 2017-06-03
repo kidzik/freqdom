@@ -17,6 +17,7 @@
 #' @seealso \code{\link{freqdom.inverse}}, \code{\link{freqdom.ratio}}
 #' @describeIn freqdom.product Frequency-wise matrix product of two frequency-domain operators
 #' @noRd
+#' @export
 #' @examples
 #' n = 100
 #' X = rar(n)
@@ -42,24 +43,10 @@ freqdom.product = function(F,G){
   R
 }
 
-oldprod <- `%*%`
-
-# Frequency-wise or time-wise matrix product. Takes two elements
-# \code{freqdom} or \code{timedom} and multiplies them on
-# each frequency or time point. If objects of other type are provided
-# then the standard multiplication is applied.
-#  
-# @title Frequency-wise or component-wise matrix product. 
-# @param e1 first element
-# @param e2 second element
-# @return object of the same type as e1 but with new dimensions
+#' @describeIn freqdom.product Convenience operator for \code{freqdom.product} function
 #' @title Compute a matrix product of two frequency-domain operators
-# @describeIn freqdom.product Convenience operator for \code{freqdom.product} function
 #' @noRd
-# @export
-`%*%` <- function (e1,e2) {
-  if (is.freqdom(e1) && is.freqdom(e2))
-    freqdom.product(e1,e2)
-  else
-    oldprod(e1,e2)
-}
+#' @export
+#' @exportMethod %*%
+setGeneric("%*%")
+setMethod("%*%", signature("freqdom", "freqdom"), function(x, y) freqdom.product(x,y))

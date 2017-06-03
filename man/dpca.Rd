@@ -4,25 +4,34 @@
 \alias{dpca}
 \title{Apply DPCA}
 \usage{
-dpca(X, q = 3, thresh = NULL, Ndpc = dim(X)[2], center = TRUE, ...)
+dpca(X, q = NULL, thresh = 0.9, Ndpc = dim(X)[2], center = TRUE, ...)
 }
 \arguments{
-\item{X}{...}
+\item{X}{data matrix}
 
-\item{Ndpc}{...}
+\item{q}{as in \code{\link{dpca.filters}}}
 
-\item{center}{...}
+\item{thresh}{as in \code{\link{dpca.filters}}}
 
-\item{...}{...}
+\item{Ndpc}{as in \code{\link{dpca.filters}}}
 
-\item{lags}{..}
+\item{center}{should X be centered before applying DPCA}
+
+\item{...}{as in \code{\link{spectral.density}}}
 }
 \value{
-A list
+A list containing
+\itemize{
+\item \code{scores} DPCA scores (\code{\link{dpca.scores}})
+\item \code{filters} DPCA filters (\code{\link{dpca.filters}})
+\item \code{spec.density} spectral density of X (\code{\link{spectral.density}})
+\item \code{var} long-run variance explained by components of filters (\code{\link{dpca.var}})
+\item \code{Xhat} Karhunen-Loeve expansion using Ndpc dynamic principal components (\code{\link{dpca.KLexpansion}})
+}
 }
 \description{
 Applies DPCA to a multivariate time series
 }
 \details{
-Apply
+Apply DPCA
 }

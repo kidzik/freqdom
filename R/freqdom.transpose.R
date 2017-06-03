@@ -23,8 +23,13 @@ freqdom.transpose = function(x){
   x
 }
 
-#' @export t freqdom
-t.freqdom = freqdom.transpose
+# @exportMethod t freqdom
+#freqdom.transpose
 
-#' @export t freqdom
-t.timedom = freqdom.transpose
+# @exportMethod t freqdom
+#t.timedom = freqdom.transpose
+
+#' @exportMethod t
+setGeneric("t")
+setMethod("t", signature = "timedom", freqdom.transpose)
+setMethod("t", signature = "freqdom", freqdom.transpose)

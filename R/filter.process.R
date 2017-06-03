@@ -25,7 +25,7 @@ filter.process = function(X, A){
   
   for (component in 1:nbasis)
   {
-    IP = t(X %*% A$operators[component,,])
+    IP = t(X %*% A$operators[,component,])
     for (i in 1:length(A$lags)){
       lag = A$lags[i]
       IP[i,] = colshift(IP[i,],lag)

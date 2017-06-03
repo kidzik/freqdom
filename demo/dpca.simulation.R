@@ -7,8 +7,8 @@ n = 100
 # temporal dependance in the process
 # Generate n observations of a AR(1) process
 P = matrix(c(1,-9,-3,1),2,2)
-P = 0.9* P / norm.spec(P)
-X = rar(n, Psi=P, noise=function(n){0.1*rnorm(n)})
+P = 0.9* P / norm(P,type="O")
+X = rar(n, Psi=P, sigma = diag(2)*0.1)
 
 # standard PCA
 PR = prcomp(X)
@@ -17,10 +17,10 @@ PR$x[,2] = 0 # use only the first component
 X.est.static = PR$x %*% PR$rotation
 
 # dynamic PCA
-XI = dprcomp(X,-10:10,q=15)
-Y = XI %c% X
+XI = dpca.filters(spectral.density(X,q=15),q=10)
+Y = X %c% XI
 Y[,2] = 0 # use only the first score
-X.est = t(rev(XI)) %c% Y # recover X from first score
+X.est = Y  %c% freqdom.transpose(rev(XI)) # recover X from first score
 
 # Compute variance explained by PCA
 M1 = MSE(X,X.est.static)

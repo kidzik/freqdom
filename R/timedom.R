@@ -1,3 +1,6 @@
+#@exportClass timedom
+#setClass("timedom", representation(operators = "array", lags = "vector"))
+
 #' Creates an object of class \code{timedom}. This object corresponds to a linear filter.
 #'
 #' This class is used to describe a linear filter, i.e. a sequence of matrices, each of which correspond to a certain lag. Filters can, for example, be used to transform a sequence \eqn{(X_t)} into a new sequence \eqn{(Y_t)} by defining
@@ -39,8 +42,8 @@ timedom = function (A,lags=1:dim(A)[1])
     if (is.null(lags))
       lags = 1:dim(A)[1]
 
-    res$operators = array(0,c(dim(A)[2],1,dim(A)[1]))
-    res$operators[,1,] = t(A)
+    res$operators = array(0,c(1,dim(A)[2],dim(A)[1]))
+    res$operators[1,,] = t(A)
   }
   else if (is.array(A) && length(dim(A)) == 3)
   {
@@ -56,3 +59,4 @@ timedom = function (A,lags=1:dim(A)[1])
   class(res) = 'timedom'
   res
 }
+

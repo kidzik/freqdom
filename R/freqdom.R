@@ -1,3 +1,6 @@
+#@exportClass freqdom
+#setClass("freqdom", representation(operators = "array", freq = "vector"))
+
 #' Creates an object of class  \code{freqdom}. This object corresponds to functional with domain \eqn{[-\pi,\pi]} and some complex vector space as codomain.
 #'
 #' This class is used to describe a frequency domain functional (like a spectral density matrix, a discrete Fourier transform, an impulse response function, etc.)

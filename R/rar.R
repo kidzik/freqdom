@@ -45,7 +45,7 @@ rar = function(n, d = 2, Psi = NULL, burnin = 10, noise = c('mnormal', 'mt'), si
 		stop("Can't determine the dimension. Specify d or give Psi.")
 	if (d < 1)
 		stop("Wrong dimension. d must be positive.")
-
+	
 	if (is.null(sigma))
 	  sigma = diag(d)
 	
@@ -86,6 +86,6 @@ rar = function(n, d = 2, Psi = NULL, burnin = 10, noise = c('mnormal', 'mt'), si
 		coef[i,] = coef[i,] + fnoise()
 	}
 
-	# return time series
+	# return the time series
 	coef[(burnin+1):(burnin+n),]
 }

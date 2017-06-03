@@ -36,6 +36,5 @@ linproc = function(X, A, noise=NULL){
     WN = rbind(WN, noise(dim(A$operators)[1]))
   
   # concolution + noise
-  X = A %c% X
-  X + WN
+  X %c% A + WN
 }

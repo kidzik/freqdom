@@ -1,11 +1,12 @@
-#' Compute the mean square error between \eqn{X_t} and \eqn{Y_t}, as \deqn{\frac{1}{n} \sum_{k=1}^n \|X_k-Y_k\|^2,} 
-#' where \eqn{\|\cdot\|} denotes a Euclidian norm and \eqn{n} is the number of observations.
+#' Compute the mean square distance between \eqn{X_k} and \eqn{Y_k}, i.e. \deqn{\frac{1}{n} \sum_{k=1}^n \|X_k-Y_k\|^2,} 
+#' where \eqn{\|\cdot\|} denotes a Euclidean norm and \eqn{n} is the number of observations.
 #'
 #' @title Compute a mean square error between X and Y
 #' @param X first matrix to compare
 #' @param Y second matrix to compare
 #' @return Estimated mean square error
 #' @export
+#' @noRd
 MSE = function(X,Y){ 
   if (is.vector(X))
     X = matrix(X)
