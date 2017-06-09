@@ -31,7 +31,7 @@ We represent the function \eqn{F} by an object of class \code{freqdom} and appro
 \deqn{
 \frac{1}{|F\$freq|}\sum_{\omega\in {F\$freq}} F(\omega) \exp(i k\omega),
 }
-for \eqn{h\in} lags.
+for \eqn{k\in} lags.
 }
 \examples{
 Y = rar(100)

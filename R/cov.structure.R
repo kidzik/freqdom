@@ -14,25 +14,24 @@
 #'
 #' @title Estimate cross-covariances of two stationary multivariate time series
 #' 
-#' @param X vector time series given in matrix form. Each row corresponds to a timepoint.
-#' @param Y vector time series given in matrix form. Each row corresponds to a timepoint.
+#' @param X vector or matrix. If matrix, then each row corresponds to a timepoint of a vector time series.
+#' @param Y vector or matrix. If matrix, then each row corresponds to a timepoint of a vector time series.
 #' @param lags an integer-valued vector \eqn{(\ell_1,\ldots, \ell_K)} containing the lags for which covariances are calculated.
 #' @return An object of class \code{\link{timedom}}. The list contains
-#' * \code{operators} an array. Element \code{[,,k]} contains the covariance matrix related to lag \eqn{\ell_k}.
-#' * \code{lags} returns the lags vector from the arguments.
+#' @value agag
+#' * \code{operators} \eqn{\quad} an array. Element \code{[,,k]} contains the covariance matrix related to lag \eqn{\ell_k}.
+#' * \code{lags} \eqn{\quad} returns the lags vector from the arguments.
 # @references Peter J. Brockwell and Richard A. Davis
 # \emph{Time Series: Theory and Methods}
 # Springer Series in Statistics, 2009
 #' @export
-#' @examples
-#' X = rar(100)
-#' Y = rar(100)
-#' cov.structure(X,Y)
+
 cov.structure = function(X,Y=X,lags=0){
   # if no Y compute autocovariance
 	if (is.null(Y))
 		Y = X
-	
+	if (is.vector(X)) X = as.matrix(X)
+	if (is.vector(Y)) Y = as.matrix(Y)
 	lrange = as.integer(max(abs(lags)))
   
 	if (!is.integer(lrange))

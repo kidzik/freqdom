@@ -53,12 +53,12 @@ lagged.cov = function(X,Y=NULL,lag=0){
   # X=(diag(n)-matrix(rep(1,n^2),ncol=n)/n)%*%X
 	# Y=(diag(n)-matrix(rep(1,n^2),ncol=n)/n)%*%Y
 	X = t(t(X) - colMeans(X))
-	Y = t(t(Y) - colMeans(Y))
+	Y = t(t(Y)- colMeans(Y))
 	
-  M = t(X[1:(n-h),]) %*% (Y[1:(n-h)+h,])/(n)
+  M = t(X[1:(n-h)+h,]) %*% (Y[1:(n-h),])/n
 	if (lag < 0){
-	  M = t(Y[1:(n-h),]) %*% (X[1:(n-h)+h,])/(n)
-	  M = t(M)
+	 M = t(Y[1:(n-h)+h,]) %*% (X[1:(n-h),])/n
+	 M = t(M)
 	}
 	M
 }

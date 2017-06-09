@@ -4,7 +4,7 @@
 \alias{dpca.filters}
 \title{Compute DPCA filter coefficients}
 \usage{
-dpca.filters(F, Ndpc = dim(F$operators)[2], q = 1, thresh = NULL)
+dpca.filters(F, Ndpc = dim(F$operators)[1], q = 30)
 }
 \arguments{
 \item{F}{\eqn{(d\times d)} spectral density matrix, provided as an object of class \code{freqdom}.}
@@ -13,16 +13,13 @@ dpca.filters(F, Ndpc = dim(F$operators)[2], q = 1, thresh = NULL)
 components to be computed. By default it is set equal to \eqn{d}.}
 
 \item{q}{a non-negative integer. DPCA filter coefficients at lags \eqn{|h|\leq} q will be computed.}
-
-\item{thresh}{a numerical number in \eqn{(0,1)}. Can be provided alternatively to q. The closer
-to 1, the more filter coefficients will be computed.}
 }
 \value{
 An object of class \code{timedom}.  The list has the following components:
 \itemize{
-\item \code{operators} an array. Each matrix in this array has dimension \eqn{d \times Ndpc} and is
-assigned to a certain lag. For a given lag \eqn{k}, the columns of the matrix correpsond to
-\eqn{\phi_{\ell k}^\prime}.
+\item \code{operators} an array. Each matrix in this array has dimension \eqn{Ndpc \times d} and is
+assigned to a certain lag. For a given lag \eqn{k}, the rows of the matrix correpsond to
+\eqn{\phi_{\ell k}}.
 \item \code{lags} a vector with the lags of the filter coefficients.
 }
 }
@@ -40,10 +37,6 @@ The index \eqn{\ell} is referring to the \eqn{\ell}-th largest dynamic eigenvalu
 spectral density (provided as on object of class \code{freqdom}) the function
 \code{dpca.filters()} computes \eqn{(\phi_{\ell k}\colon |k| \leq q)}. Filters will be computed
 for \eqn{1 \leq \ell \leq} Ndpc.
-
-Note that \eqn{\sum_{k\in\mathbf{Z}}\|\phi_{\ell k}\|^2=1}. If \code{q} is not provided, then
-\code{q} will be chosen as the smallest integer such that
-\eqn{\sum_{|k| \leq q}\|\phi_{\ell k}\|^2 \geq} thresh.
 
 For more details we refer to Chapter 9 in Brillinger (2001), Chapter 7.8 in Shumway and
 Stoffer (2006) and to Hormann et al. (2015).

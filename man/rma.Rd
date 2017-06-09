@@ -19,7 +19,7 @@ that the spectral radius of \code{Psi[,,1]} is \eqn{1/2}.}
 
 \item{noise}{\code{mnormal} for multivariate normal noise or \code{mt} for multivariate \eqn{t} noise. If not specified \code{mnormal} is chosen.}
 
-\item{sigma}{covariance  or scale matrix of the innovations.}
+\item{sigma}{covariance  or scale matrix of the innovations. If NULL then the identity matrix is used.}
 
 \item{df}{degrees of freedom if \code{noise = "mt"}.}
 }

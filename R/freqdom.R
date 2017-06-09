@@ -1,7 +1,7 @@
 #@exportClass freqdom
 #setClass("freqdom", representation(operators = "array", freq = "vector"))
 
-#' Creates an object of class  \code{freqdom}. This object corresponds to functional with domain \eqn{[-\pi,\pi]} and some complex vector space as codomain.
+#' Creates an object of class  \code{freqdom}. This object corresponds to a functional with domain \eqn{[-\pi,\pi]} and some complex vector space as codomain.
 #'
 #' This class is used to describe a frequency domain functional (like a spectral density matrix, a discrete Fourier transform, an impulse response function, etc.)
 #' on selected frequencies. Formally we consider a collection \eqn{[F_1,\ldots,F_K]} of complex-valued matrices \eqn{F_k}, all of which have the same dimension
@@ -16,7 +16,7 @@
 #'
 #' @title Converts an array of filters into a frequency-domain object
 #' 
-#' @param F an array. The elements \eqn{F[,,k], 1\leq k\leq K}, are complex valued \eqn{(d_1\times d_2)} matrices (all of same dimension).
+#' @param F a vector, a matrix or an array. For vectors \eqn{F[k], 1\leq k\leq K} are complex numbers. For matrices \eqn{F[k,]} are complex vectors. For arrays the elements \eqn{F[,,k]}, are complex valued \eqn{(d_1\times d_2)} matrices (all of same dimension).
 #' @param freq a vector of dimension \eqn{K} containing frequencies in \eqn{[-\pi,\pi]}.
 #' @return Returns an object of class \code{\link{freqdom}}. An object of class  \code{\link{freqdom}} is a list containing the following components:
 #' * \code{operators} returns the array F as given in the argument.
@@ -31,13 +31,35 @@
 #' freq = c(-pi/3, 0, pi/3)
 #' A = freqdom(OP, freq)
 #' @export
+
 freqdom = function (F,freq)
 {
-  if (!is.array(F) || length(dim(F)) != 3)
-    stop("F must be an array of evaluations")
-  
   res = list()
-  res$operators = F
+
+  if (is.vector(F)){
+	if(length(F) != length(freq))
+	stop("length of F must match number of frequencies")
+    res$operators = array(0,c(1,1,length(F)))
+    res$operators[1,1,] = F
+  }
+  else if (is.matrix(F)){
+	if(length(freq) != dim(F)[1])
+	stop("number of rows of F must match number of frequencies")
+    res$operators = array(0,c(1,dim(F)[2],dim(F)[1]))
+    res$operators[1,,] = t(F)
+  }
+  else if (is.array(F) && length(dim(F)) == 3)
+  {
+	if(length(freq) != dim(F)[3])
+	stop("number of matrices of F must match number of frequencies")
+    res$operators = F
+  }
+  else{
+    stop("F must be a vector, a matrix or an array")
+  }
+  if(length(freq)==1)
+  dimnames(res$operators)[[3]]<-list(paste("frequency", freq))
+  dimnames(res$operators)[[3]]<-paste("frequency", freq)
   res$freq = freq
   class(res) = 'freqdom'
   res

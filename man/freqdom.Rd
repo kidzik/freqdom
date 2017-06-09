@@ -7,7 +7,7 @@
 freqdom(F, freq)
 }
 \arguments{
-\item{F}{an array. The elements \eqn{F[,,k], 1\leq k\leq K}, are complex valued \eqn{(d_1\times d_2)} matrices (all of same dimension).}
+\item{F}{a vector, a matrix or an array. For vectors \eqn{F[k], 1\leq k\leq K} are complex numbers. For matrices \eqn{F[k,]} are complex vectors. For arrays the elements \eqn{F[,,k]}, are complex valued \eqn{(d_1\times d_2)} matrices (all of same dimension).}
 
 \item{freq}{a vector of dimension \eqn{K} containing frequencies in \eqn{[-\pi,\pi]}.}
 }
@@ -19,7 +19,7 @@ Returns an object of class \code{\link{freqdom}}. An object of class  \code{\lin
 }
 }
 \description{
-Creates an object of class  \code{freqdom}. This object corresponds to functional with domain \eqn{[-\pi,\pi]} and some complex vector space as codomain.
+Creates an object of class  \code{freqdom}. This object corresponds to a functional with domain \eqn{[-\pi,\pi]} and some complex vector space as codomain.
 }
 \details{
 This class is used to describe a frequency domain functional (like a spectral density matrix, a discrete Fourier transform, an impulse response function, etc.)

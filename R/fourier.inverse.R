@@ -18,7 +18,7 @@ inv.fourier.one = function(R,lag){
 #' \deqn{
 #' \frac{1}{|F\$freq|}\sum_{\omega\in {F\$freq}} F(\omega) \exp(i k\omega),
 #' }
-#' for \eqn{h\in} lags.
+#' for \eqn{k\in} lags.
 #' 
 #' @title Coefficiets of a discrete Fourier transform.
 #' @param F an object of class \code{\link{freqdom}} which is corresponding to a function with values in \eqn{\mathbf{C}^{d_1\times d_2}}. To guarantee accuracy of inversion it is important that \eqn{F\$}freq is a dense grid of frequencies in \eqn{[-\pi,\pi]}.
@@ -38,7 +38,7 @@ inv.fourier.one = function(R,lag){
 
 fourier.inverse = function(F,lags=0){
   if (!is.freqdom(F))
-    stop("F must be a freqdom object")
+    stop("F must be an object of class freqdom")
   if (!is.numeric(lags) || !is.vector(lags))
     stop("lags must be a vector of integers")
   

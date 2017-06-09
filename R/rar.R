@@ -18,7 +18,7 @@
 #' @param Psi array of \eqn{p \geq 1} coefficient matrices. \code{Psi[,,k]} is the \eqn{k}-th coefficient. If no value is set then we generate a vector autoregressive process of order 1. Then, \code{Psi[,,1]} is proportional to \eqn{\exp(-(i+j)\colon 1\leq i, j\leq d)} and such that the spectral radius of \code{Psi[,,1]} is 1/2.
 #' @param burnin an integer \eqn{\geq 0}. It specifies a number of initial  observations to be trashed to achieve stationarity.
 #' @param noise \code{mnormal} for multivariate normal noise or \code{mt} for multivariate student t noise. If not specified \code{mnormal} is chosen.
-#' @param sigma covariance  or scale matrix of the innovations.
+#' @param sigma covariance  or scale matrix of the innovations. By default the identity matrix.
 #' @param df degrees of freedom if \code{noise = "mt"}.
 #' @importFrom graphics plot title
 #' @return A matrix with d columns and n rows. Each row corresponds to one time point.
@@ -38,21 +38,15 @@ rar = function(n, d = 2, Psi = NULL, burnin = 10, noise = c('mnormal', 'mt'), si
 	  stop ("n must be a positive integer")
 	if (d < 1)
 	  stop ("d must be a positive integer")
-	if (is.vector(noise))
+	if (length(noise)>1)
 	  noise = 'mnormal'
-	
-	if (is.null(d))
-		stop("Can't determine the dimension. Specify d or give Psi.")
-	if (d < 1)
-		stop("Wrong dimension. d must be positive.")
-	
 	if (is.null(sigma))
 	  sigma = diag(d)
 	
 	if (det(sigma)<0 || !isSymmetric(sigma))
 		stop("sigma is not a covariance matrix.")
 	
-	# if no operator than make some default
+	# if no operator then make some default
 	if (is.null(Psi)){
 		Psi = exp(-(1:d))%*%t(exp(-(1:d)))
 		Psi = Psi/norm(Psi,type="2")/2
@@ -66,7 +60,7 @@ rar = function(n, d = 2, Psi = NULL, burnin = 10, noise = c('mnormal', 'mt'), si
 	}
 	if (noise == 'mt'){
 	  fnoise = function() {
-	    rmvt(n = 1, sigma = sigma, df=df)
+	    mvtnorm::rmvt(n = 1, sigma = sigma, df=df)
 	  }
 	}
 

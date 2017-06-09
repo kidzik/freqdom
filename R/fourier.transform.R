@@ -16,33 +16,29 @@
 #' DFT = fourier.transform(tdX) / sqrt(dim(X)[1])
 #' @export
 fourier.transform = function(A,freq=pi*-100:100/100){
-  if (is.vector(A) || is.matrix(A))
-    A = timedom(A)
   if (!is.timedom(A))
-    stop("A must be a time domain object")
+    stop("A must be an object of class timedom")
   
   thetas = freq
 
   if (!is.vector(thetas) || !is.numeric(thetas) ||
         max(thetas) > pi + 0.000001 || min(thetas) < - pi - 0.000001)
-    stop("freq must be a vector of real number from [-pi,pi] intercval")
+    stop("freq must be a vector of real numbers in [-pi,pi]")
   
   D = dim(A$operators)
   nbasisX = D[1]
   nbasisY = D[2]
   lags = A$lags
+  H = length(A$lags)
   
   S = array(0,c(nbasisX, nbasisY, length(thetas)))
   
   # Compute sum at each frequency (TODO: this should be FFT whenever possible)
   for (theta in 1:length(thetas))
   {
-    # Compute one summand
-    H = length(A$lags)
-    
+    # Compute one summand  
     for (h in 1:H){
-      lag = lags[h]
-      R = exp(-1i*lag*thetas[theta]) * A$operators[,,h]
+      R = exp(-1i*lags[h]*thetas[theta]) * A$operators[,,h]
       S[,,theta] = S[,,theta] + R
     }
     #S[,,theta] = (S[,,theta]) /(max(thetas) - min(thetas)) # TODO: CHECK

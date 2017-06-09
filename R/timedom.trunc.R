@@ -7,12 +7,9 @@
 #' @export 
 timedom.trunc = function(A, lags){
   if (!is.timedom(A))
-    stop ("A must be a time domain filter")
-  
-  D = dim(A$operators)
-  D[3] = sum(A$lags %in% lags)
-  A$operators = array(A$operators[,,A$lags %in% lags],D)
-  A$lags = intersect(lags,A$lags)
-  A
-}
+    stop ("A must be an object of class timedom") 
+   suboperators=A$operators[,,A$lags %in% lags,drop=FALSE] 
+   #drop=False guarantees that filter of length one is not converted from array to matrix
+   timedom(suboperators,lags=as.vector(intersect(lags,A$lags)))
+  }
 

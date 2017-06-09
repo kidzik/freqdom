@@ -17,13 +17,13 @@
 #' @noRd
 #' @export
 freqdom.transpose = function(x){
-  lags = freqdom.lags(x)
+	if(!is.timedom(x)) stop("x must be an object of class timedom")
   newdim = dim(x$operators)
   newdim[1:2] = newdim[2:1]
-  x$operators = array(x$operators, newdim)
-  for (i in 1:length(lags))
-    x$operators[,,i] = t(x$operators[,,i])
-  x
+  newoperators = array(0,newdim)
+  for (i in 1:length(x$lags))
+    newoperators[,,i] = t(x$operators[,,i])
+  timedom(newoperators,x$lags)
 }
 
 # @exportMethod t freqdom

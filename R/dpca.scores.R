@@ -22,6 +22,6 @@
 #' @references Shumway, R.H., and Stoffer, D.S.
 #' \emph{Time Series Analysis and Its Applications} (2006), Springer, New York.
 #' @export
-dpca.scores = function(X,dpcs){
+dpca.scores = function(X,dpcs = dpca.filters(spectral.density(X))){
   X %c% dpcs
 }

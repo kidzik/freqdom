@@ -7,18 +7,14 @@
 cov.structure(X, Y = X, lags = 0)
 }
 \arguments{
-\item{X}{vector time series given in matrix form. Each row corresponds to a timepoint.}
+\item{X}{vector or matrix. If matrix, then each row corresponds to a timepoint of a vector time series.}
 
-\item{Y}{vector time series given in matrix form. Each row corresponds to a timepoint.}
+\item{Y}{vector or matrix. If matrix, then each row corresponds to a timepoint of a vector time series.}
 
 \item{lags}{an integer-valued vector \eqn{(\ell_1,\ldots, \ell_K)} containing the lags for which covariances are calculated.}
 }
 \value{
 An object of class \code{\link{timedom}}. The list contains
-\itemize{
-\item \code{operators} an array. Element \code{[,,k]} contains the covariance matrix related to lag \eqn{\ell_k}.
-\item \code{lags} returns the lags vector from the arguments.
-}
 }
 \description{
 This function is used to estimate a collection of cross-covariances of two stationary time series.
@@ -35,9 +31,4 @@ For a sample of size \eqn{T} we set \eqn{\hat\mu^X=\frac{1}{T}\sum_{t=1}^T X_t$ 
 \deqn{\hat C^{XY}(h) = \frac{1}{T}\sum_{t=1}^{T-h} (X_{t+h} - \hat\mu^X)(Y_{t} - \hat\mu^Y)'}
 and for \eqn{h < 0}
 \deqn{\hat C^{XY}(h) = \frac{1}{T}\sum_{t=|h|+1}^{T} (X_{t+h} - \hat\mu^X)(Y_{t} - \hat\mu^Y)'.}
-}
-\examples{
-X = rar(100)
-Y = rar(100)
-cov.structure(X,Y)
 }

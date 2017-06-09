@@ -5,8 +5,8 @@
 #' @title Eigendecompose a frequency domain operator at each frequency
 #' @param F an object of class freqdom. The matrices \code{F\$operator[,,k]} are required to be square matrices, say \eqn{d \times d}.
 #' @return Returns a list. The list is containing the following components:
-#' * \code{vectors} an array containing \eqn{d} matrices. The \eqn{i}-th matrix contains in its \eqn{k}-th row the eigenvectors belonging to the \eqn{i}-th largest eigenvalue of \code{F\$operator[,,k]}.
-#' * \code{values} matrix containing in \eqn{k}-th row the eigenvalues of \code{F\$operator[,,k]}.
+#' * \code{vectors} an array containing \eqn{d} matrices. The \eqn{i}-th matrix contains in its \eqn{k}-th row the eigenvectors belonging to the \eqn{k}-th largest eigenvalue of \code{F\$operator[,,i]}.
+#' * \code{values} matrix containing in \eqn{k}-th column the eigenvalues of \code{F\$operator[,,k]}.
 #' * \code{freq} vector of frequencies defining the object F.
 #' @importFrom graphics par plot title
 #' @importFrom stats optim rnorm
@@ -18,11 +18,11 @@
 freqdom.eigen = function(F){
   # TODO: It would be cleaner if this function returned two frequency domain objects
   if (!is.freqdom(F))
-    stop("F must be a freqdom object")
+    stop("F must be an object of class freqdom")
   
   op = F$operators[,,1]
   if (dim(op)[1] != dim(op)[2])
-    stop("F$operators[,,theta] must be a square matrix")
+    stop("square matrices required")
   
   thetas = F$freq
   E = list()
@@ -37,12 +37,13 @@ freqdom.eigen = function(F){
   for (theta in 1:T)
   {
     Eg = close.eigen(F$operators[,,theta],Prev)
+    #Eg = eigen(F$operators[,,theta])
     Prev = Eg$vectors
     
     ## TAKE EIGEN WITHOUT(!) HEURISTIC
     #Eg = eigen(F$operators[,,theta])
     
-    E$vectors[,,theta] = Eg$vectors
+    E$vectors[,,theta] = t(Eg$vectors)
     E$values[,theta] = Eg$values
   }
   

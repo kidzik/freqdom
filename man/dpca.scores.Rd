@@ -4,7 +4,7 @@
 \alias{dpca.scores}
 \title{Obtain dynamic principal components scores}
 \usage{
-dpca.scores(X, dpcs)
+dpca.scores(X, dpcs = dpca.filters(spectral.density(X)))
 }
 \arguments{
 \item{X}{a vector time series given as a \eqn{(T\times d)}-matix. Each row corresponds to a timepoint.}

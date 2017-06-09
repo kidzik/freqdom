@@ -17,7 +17,9 @@
 # @describeIn rev Reverts time in a \code{\link{freqdom}} object
 #' @export
 rev.freqdom = function(x){
-  x$freq = rev(x$freq)
+  order=length(x$freq):1
+  x$operators = x$operators[,,order,drop=FALSE]
+  dimnames(x$operators)[[3]]<-paste("frequency", x$freq)
   x
 }
 
@@ -26,6 +28,8 @@ rev.freqdom = function(x){
 #' @describeIn rev Reverts time in a \code{\link{timedom}} object
 #' @export
 rev.timedom = function(x){
-  x$lags = rev(x$lags)
+  order=length(x$lags):1
+  x$operators = x$operators[,,order,drop=FALSE]
+  dimnames(x$operators)[[3]]<-paste("lag", x$lags)
   x
 }

@@ -4,14 +4,14 @@
 \alias{spectral.density}
 \title{Compute the cross spectral density of two vector processes.}
 \usage{
-spectral.density(X, Y = X, freq = (-100:100/100) * pi, q = max(1,
+spectral.density(X, Y = X, freq = (-1000:1000/1000) * pi, q = max(1,
   floor(dim(X)[1]^(1/3))), weights = c("Bartlett", "trunc", "Tukey", "Parzen",
   "Bohman", "Daniell", "ParzenCogburnDavis"))
 }
 \arguments{
-\item{X}{vector time series given in matrix form. Each row corresponds to a timepoint.}
+\item{X}{a vector or a vector time series given in matrix form. Each row corresponds to a timepoint.}
 
-\item{Y}{vector time series given in matrix form. Each row corresponds to a timepoint.}
+\item{Y}{a vector or vector time series given in matrix form. Each row corresponds to a timepoint.}
 
 \item{freq}{a vector containing frequencies in \eqn{[-\pi, \pi]} on which the spectral density should be evaluated.}
 

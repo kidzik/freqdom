@@ -2,36 +2,34 @@
 % Please edit documentation in R/dpca.R
 \name{dpca}
 \alias{dpca}
-\title{Apply DPCA}
+\title{Apply DPCA to some vector time series.}
 \usage{
-dpca(X, q = NULL, thresh = 0.9, Ndpc = dim(X)[2], center = TRUE, ...)
+dpca(X, q = 30, Ndpc = dim(X)[2], center = TRUE)
 }
 \arguments{
 \item{X}{data matrix}
 
 \item{q}{as in \code{\link{dpca.filters}}}
 
-\item{thresh}{as in \code{\link{dpca.filters}}}
-
 \item{Ndpc}{as in \code{\link{dpca.filters}}}
 
-\item{center}{should X be centered before applying DPCA}
-
-\item{...}{as in \code{\link{spectral.density}}}
+\item{center}{if TRUE then X will be centered before applying DPCA}
 }
 \value{
 A list containing
 \itemize{
-\item \code{scores} DPCA scores (\code{\link{dpca.scores}})
-\item \code{filters} DPCA filters (\code{\link{dpca.filters}})
-\item \code{spec.density} spectral density of X (\code{\link{spectral.density}})
-\item \code{var} long-run variance explained by components of filters (\code{\link{dpca.var}})
-\item \code{Xhat} Karhunen-Loeve expansion using Ndpc dynamic principal components (\code{\link{dpca.KLexpansion}})
+\item \code{scores} \eqn{\quad} DPCA scores (\code{\link{dpca.scores}})
+\item \code{filters} \eqn{\quad}  DPCA filters (\code{\link{dpca.filters}})
+\item \code{spec.density} \eqn{\quad}  spectral density of X (\code{\link{spectral.density}})
+\item \code{var} \eqn{\quad} amount of variance explained by dynamic principal components (\code{\link{dpca.var}})
+\item \code{Xhat} \eqn{\quad}  Karhunen-Loeve expansion using Ndpc dynamic principal components (\code{\link{dpca.KLexpansion}})
 }
 }
 \description{
-Applies DPCA to a multivariate time series
+Collects DPCA related functions of this package. Allows to extract filters (\code{\link{dpca.filters}}), scores
+(\code{\link{dpca.scores}}), the spectral density (\code{\link{spectral.density}}), etc. related to dynamic PCA of a
+multivariate  time series.
 }
 \details{
-Apply DPCA
+This function uses default settings for \code{spectral.density()} applied to data X.
 }

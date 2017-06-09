@@ -13,8 +13,8 @@
 #' See, e.g., Chapter 10 and 11 in Brockwell and Davis (1991) for details. 
 #'
 #' @title Compute the cross spectral density of two vector processes. 
-#' @param X vector time series given in matrix form. Each row corresponds to a timepoint.
-#' @param Y vector time series given in matrix form. Each row corresponds to a timepoint.
+#' @param X a vector or a vector time series given in matrix form. Each row corresponds to a timepoint.
+#' @param Y a vector or vector time series given in matrix form. Each row corresponds to a timepoint.
 #' @param freq a vector containing frequencies in \eqn{[-\pi, \pi]} on which the spectral density should be evaluated.
 #' @param q window size for the kernel estimator, i.e. a positive integer.
 #' @param weights kernel used in the spectral smoothing. By default the Bartlett kernel is chosen.
@@ -28,12 +28,13 @@
 #' @export
 #' @keywords spec
 spectral.density = function(X, Y = X,
-                            freq = (-100:100/100)*pi,
+                            freq = (-1000:1000/1000)*pi,
                             q = max(1,floor(dim(X)[1]^(1/3))),
                             weights = c('Bartlett', 'trunc', 'Tukey', 'Parzen', 'Bohman', 'Daniell', 'ParzenCogburnDavis')){
-  if (is.vector(weights))
+  if (length(weights)>1)
     weights = "Bartlett"
-  
+  if (is.vector(X)) X=as.matrix(X)
+  if (is.vector(Y)) Y=as.matrix(Y)
   if (!is.matrix(X) || !is.matrix(Y))
     stop("X and Y must be matrices")
   if (dim(X)[1] != dim(Y)[1])
@@ -47,34 +48,28 @@ spectral.density = function(X, Y = X,
   nbasisY = dim(Y)[2]
   n = dim(X)[1]
   Ch = cov.structure(X,Y,-q:q)
-  
-  #  for (i in 1:(q*2+1))
-  #    Ch$operators[,,i] = Ch$operators[,,i]  (todo: what was that?!?)
-  
-  wfunc = weights.Bartlett
-  if (is.null(weights))
-	  wfunc = weights.Bartlett
-  else if (weights=="Bartlett")
+    
+  if (weights=="Bartlett"){
     wfunc = weights.Bartlett
-  else if (weights=="trunc")
+  }else if (weights=="trunc"){
     wfunc = weights.trunc
-  else if (weights=="Tukey")
+  }else if (weights=="Tukey"){
     wfunc = weights.Tukey
-  else if (weights=="Parzen")
+  }else if (weights=="Parzen"){
     wfunc = weights.Parzen
-  else if (weights=="Bohman")
+  }else if (weights=="Bohman"){
     wfunc = weights.Bohman
-  else if (weights=="Daniell")
+  }else if (weights=="Daniell"){
     wfunc = weights.Daniell
-  else if (weights=="ParzenCogburnDavis")
+  }else if (weights=="ParzenCogburnDavis"){
     wfunc = weights.ParzenCogburnDavis
-  else
-    stop(paste("No weight function called",weights))
+  }else
+    stop(paste(weights, "is not a valid weight function"))
   
-  weights = wfunc(-q:q/q)
+  w = wfunc(-q:q/q)
   
   for (i in 1:dim(Ch$operators)[3])
-    Ch$operators[,,i] = weights[i] * Ch$operators[,,i]
+    Ch$operators[,,i] = w[i] * Ch$operators[,,i]
   
   fourier.transform(Ch, freq=thetas)
 }

@@ -4,7 +4,7 @@
 \alias{timedom.norms}
 \title{Compute operator norms of elements of a filter}
 \usage{
-timedom.norms(A, type = c("O", "I", "F", "M", "2"))
+timedom.norms(A, type = c("2", "O", "I", "F", "M"))
 }
 \arguments{
 \item{A}{an object of class \code{timedom}}
@@ -25,7 +25,7 @@ This function determines the norms of the matrices defining some linear filter.
 Computes \eqn{\|A_h\|} for \eqn{h} in the set of lags belonging to the object A. When type
 is \code{2} then \eqn{\|A\|} is the spectral radius of \eqn{A}. When type is \code{F}
 then \eqn{\|A\|} is the Frobenius norm (or the Hilbert-Schmidt norm, or Schatten 2-norm) of
-\eqn{A}.
+\eqn{A}. Same options as for the function \code{norm} as in base package.
 }
 \examples{
 d = 2

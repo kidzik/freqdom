@@ -1,6 +1,7 @@
 #' @noRd
 # @export
 freqdom.trace = function(x){
+	if(!is.freqdom(x)) stop("x must be an object of class freqdom")
   lags = freqdom.lags(x)
   res = list()
   res$values = rep(0,length(lags))

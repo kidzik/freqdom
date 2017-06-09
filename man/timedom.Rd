@@ -4,10 +4,10 @@
 \alias{timedom}
 \title{Converts a series of matrices into an object which relates a certain lag to each matrix.}
 \usage{
-timedom(A, lags = 1:dim(A)[1])
+timedom(A, lags)
 }
 \arguments{
-\item{A}{The elements \eqn{A[,,k], 1\leq k\leq K}, are real valued \eqn{(d_1\times d_2)} matrices (all of same dimension). These matrices define a linear filter.}
+\item{A}{Vector, matrix or array. If array, the elements \eqn{A[,,k], 1\leq k\leq K}, are real valued \eqn{(d_1\times d_2)} matrices (all of same dimension). If A is a matrix, the \eqn{k}-th row is treated as \eqn{A[,,k]}. Same for the \eqn{k}-th element of a vector. These matrices, vectors or scalars define a linear filter.}
 
 \item{lags}{a vector of increasing integers. It corresponds to the time lags of the filter.}
 }

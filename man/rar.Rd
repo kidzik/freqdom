@@ -18,7 +18,7 @@ rar(n, d = 2, Psi = NULL, burnin = 10, noise = c("mnormal", "mt"),
 
 \item{noise}{\code{mnormal} for multivariate normal noise or \code{mt} for multivariate student t noise. If not specified \code{mnormal} is chosen.}
 
-\item{sigma}{covariance  or scale matrix of the innovations.}
+\item{sigma}{covariance  or scale matrix of the innovations. By default the identity matrix.}
 
 \item{df}{degrees of freedom if \code{noise = "mt"}.}
 }

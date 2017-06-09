@@ -3,7 +3,7 @@
 #' Computes \eqn{\|A_h\|} for \eqn{h} in the set of lags belonging to the object A. When type
 #' is \code{2} then \eqn{\|A\|} is the spectral radius of \eqn{A}. When type is \code{F}
 #' then \eqn{\|A\|} is the Frobenius norm (or the Hilbert-Schmidt norm, or Schatten 2-norm) of
-#' \eqn{A}. 
+#' \eqn{A}. Same options as for the function \code{norm} as in base package.
 #' 
 #' @title Compute operator norms of elements of a filter
 #' @param A an object of class \code{timedom}
@@ -20,21 +20,25 @@
 #' A[2,,] = 1.5 * diag(d:1)/d
 #' OP = timedom(A,c(-2,1))
 #' timedom.norms(OP)
-timedom.norms = function(A, type = c("O", "I", "F", "M", "2")){
+timedom.norms = function(A, type = c("2", "O", "I", "F", "M")){
   if (!is.timedom(A))
-    stop ("A must be a time domain filter")
-  
-  mynorm = norm
-  if (is.vector(type))
-    type= "O"
-  if (type=='2')
-    mynorm = norm.spec
+    stop ("A must be an object of class timedom")
+  if (is.vector(type) || type=="2")
+  	mytype = "2"
+  if (type=="F" || type=="f")
+    mytype = "F"
+  if (type=="O"|| type=="o")
+    mytype = "O"
+  if (type=="I" || type=="i")
+    mytype = "I"
+  if (type=="M"|| type=="m")
+    mytype = "M"
   R = list()
   R$lags = A$lags
   v = c()
   D = dim(A$operators)
   for (i in 1:D[3])
-    v = c(v,mynorm(matrix(A$operators[,,i],D[1],D[2])))
+    v = c(v,norm(matrix(A$operators[,,i],D[1],D[2]),type=mytype))
   R$norms = v
   R
 }
