@@ -5,7 +5,7 @@
 #' @title Eigendecompose a frequency domain operator at each frequency
 #' @param F an object of class freqdom. The matrices \code{F\$operator[,,k]} are required to be square matrices, say \eqn{d \times d}.
 #' @return Returns a list. The list is containing the following components:
-#' * \code{vectors} an array containing \eqn{d} matrices. The \eqn{i}-th matrix contains in its \eqn{k}-th row the eigenvectors belonging to the \eqn{k}-th largest eigenvalue of \code{F\$operator[,,i]}.
+#' * \code{vectors} an array containing \eqn{d} matrices. The \eqn{i}-th matrix contains in its \eqn{k}-th row the conjugate transpose eigenvector belonging to the \eqn{k}-th largest eigenvalue of \code{F\$operator[,,i]}.
 #' * \code{values} matrix containing in \eqn{k}-th column the eigenvalues of \code{F\$operator[,,k]}.
 #' * \code{freq} vector of frequencies defining the object F.
 #' @importFrom graphics par plot title
@@ -43,7 +43,7 @@ freqdom.eigen = function(F){
     ## TAKE EIGEN WITHOUT(!) HEURISTIC
     #Eg = eigen(F$operators[,,theta])
     
-    E$vectors[,,theta] = t(Eg$vectors)
+    E$vectors[,,theta] = Conj(t(Eg$vectors))
     E$values[,theta] = Eg$values
   }
   

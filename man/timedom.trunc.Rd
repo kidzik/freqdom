@@ -17,3 +17,4 @@ An object of class \code{timedom}.
 \description{
 This function removes lags from a linear filter.
 }
+

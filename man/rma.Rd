@@ -42,3 +42,4 @@ package \code{mvtnorm}. For Gaussian noise we use \code{\link[mvtnorm]{rmvnorm}}
 \seealso{
 \code{\link{rar}}
 }
+

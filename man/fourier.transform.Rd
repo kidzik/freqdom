@@ -31,3 +31,4 @@ DFT = fourier.transform(tdX) / sqrt(dim(X)[1])
 \seealso{
 \code{\link{fourier.inverse}}
 }
+

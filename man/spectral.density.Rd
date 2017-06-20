@@ -21,16 +21,14 @@ spectral.density(X, Y = X, freq = (-1000:1000/1000) * pi, q = max(1,
 }
 \value{
 Returns an object of class \code{\link{freqdom}}. The list is containing the following components:
-\itemize{
-\item \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the spectral density matrix evaluated at the \eqn{k}-th frequency listed in freq.
-\item \code{freq} returns argument vector freq.
-}
+* \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the spectral density matrix evaluated at the \eqn{k}-th frequency listed in freq.
+* \code{freq} returns argument vector freq.
 }
 \description{
 Estimates the spectral density and cross spectral density of vector time series.
 }
 \details{
-Let \eqn{[X_1,\ldots, X_T]^\prime} be a \eqn{T\times d_1} matrix and \eqn{[Y_1,\ldots, Y_T]^\prime} be a \eqn{T\times d_2} matrix. We stack the vectors and assume that \eqn{(X_t^\prime,Y_t^\prime)^\prime} is a stationary multivariate time series of dimension \eqn{d_1+d_2}. The cross-spectral density between the two time series \eqn{(X_t)} and \eqn{(Y_t)} is defined as
+Let \eqn{[X_1,\ldots, X_T]^\prime} be a \eqn{T\times d_1} matrix and \eqn{[Y_1,\ldots, Y_T]^\prime} be a \eqn{T\times d_2} matrix. We stack the vectors and assume that \eqn{(X_t^\prime,Y_t^\prime)^\prime} is a stationary multivariate time series of dimension \eqn{d_1+d_2}. The cross-spectral density between the two time series \eqn{(X_t)} and \eqn{(Y_t)} is defined as 
 \deqn{  
   \sum_{h\in\mathbf{Z}} \mathrm{Cov}(X_h,Y_0) e^{-ih\omega}.
 }
@@ -48,3 +46,4 @@ Peter J. Brockwell and Richard A. Davis
 Springer Series in Statistics, 2009
 }
 \keyword{spec}
+

@@ -19,13 +19,9 @@ Function returns a frequency-domain object (\code{\link{freqdom}}) or a time-dom
 with the same operators but with the inverted order of operators.
 }
 \description{
-\itemize{
-\item For a given frequency-domain operator \code{x} (\code{\link{freqdom}}), the function \code{rev} inverts the evaluation grid.
-}
+* For a given frequency-domain operator \code{x} (\code{\link{freqdom}}), the function \code{rev} inverts the evaluation grid.
 
-\itemize{
-\item For a given time-domain operator \code{x} (\code{\link{timedom}}), the function \code{rev} inverts time.
-}
+* For a given time-domain operator \code{x} (\code{\link{timedom}}), the function \code{rev} inverts time.
 }
 \details{
 Let \eqn{S = \{ S_k : k \in G \}} be an ordered set of operators, where \eqn{G} is a finite grid

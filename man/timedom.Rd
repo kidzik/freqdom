@@ -13,10 +13,8 @@ timedom(A, lags)
 }
 \value{
 Returns an object of class \code{timedom}. An object of class  \code{timedom} is a list containing the following components:
-\itemize{
-\item \code{operators} - returns the array A as given in the argument.
-\item \code{lags} - returns the vector of lags as given in the argument.
-}
+* \code{operators} - returns the array A as given in the argument.
+* \code{lags} - returns the vector of lags as given in the argument.
 }
 \description{
 Creates an object of class \code{timedom}. This object corresponds to a linear filter.
@@ -27,7 +25,7 @@ This class is used to describe a linear filter, i.e. a sequence of matrices, eac
  Y_t=\sum_k A_kX_{t-k}.
 }
 See \code{filter.process()}.
-Formally we consider a collection \eqn{[A_1,\ldots,A_K]} of complex-valued matrices \eqn{A_k}, all of which have the same dimension \eqn{d_1\times d_2}. Moreover, we consider lags \eqn{\ell_1<\ell_2<\cdots<\ell_K}. The object this function creates corresponds to the mapping \eqn{f: \mathrm{lags}\to \mathbf{R}^{d_1\times d_2}}, where \eqn{\ell_k\mapsto A_k}.
+ Formally we consider a collection \eqn{[A_1,\ldots,A_K]} of complex-valued matrices \eqn{A_k}, all of which have the same dimension \eqn{d_1\times d_2}. Moreover, we consider lags \eqn{\ell_1<\ell_2<\cdots<\ell_K}. The object this function creates corresponds to the mapping \eqn{f: \mathrm{lags}\to \mathbf{R}^{d_1\times d_2}}, where \eqn{\ell_k\mapsto A_k}.
 }
 \examples{
 # In this example we apply the difference operator: Delta X_t= X_t-X_{t-1} to a time series
@@ -41,3 +39,4 @@ filter.process(X, A)
 \seealso{
 \code{\link{freqdom}}, \code{\link{is.timedom}}
 }
+

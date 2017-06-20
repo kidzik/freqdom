@@ -13,10 +13,8 @@ freqdom(F, freq)
 }
 \value{
 Returns an object of class \code{\link{freqdom}}. An object of class  \code{\link{freqdom}} is a list containing the following components:
-\itemize{
-\item \code{operators} returns the array F as given in the argument.
-\item \code{freq} returns the vector freq as given in the argument.
-}
+* \code{operators} returns the array F as given in the argument.
+* \code{freq} returns the vector freq as given in the argument.
 }
 \description{
 Creates an object of class  \code{freqdom}. This object corresponds to a functional with domain \eqn{[-\pi,\pi]} and some complex vector space as codomain.
@@ -45,3 +43,4 @@ A = freqdom(OP, freq)
 \seealso{
 \code{\link{fourier.transform}}
 }
+

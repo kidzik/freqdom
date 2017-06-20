@@ -50,3 +50,4 @@ plot(process[,1], type="l")
 \seealso{
 \code{\link{rma}}
 }
+

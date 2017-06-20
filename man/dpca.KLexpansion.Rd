@@ -43,3 +43,4 @@ Shumway, R.H., and Stoffer, D.S.
 \seealso{
 \code{\link{dpca.filters}}, \code{\link{filter.process}}, \code{\link{dpca.scores}}, \code{\link{rev}}
 }
+
