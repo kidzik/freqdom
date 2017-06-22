@@ -4,8 +4,7 @@
 #' \deqn{
 #'   \sum_{\ell=1}^L\sum_{k\in\mathbf{Z}} Y_{\ell, t+k} \phi_{\ell k},
 #' }
-#' where \eqn{\phi_{\ell k}} are the dynamic PC filters as explained in  \code{\link{dpca.filters}}. For the sample version the sum in \eqn{k} extends over the range of lags for which the \eqn{\phi_{\ell k}} are defined. The actual operation carried out is the command
-#' \code{filter.process(dpca.scores(X, dpcs),t(rev(dpsc)))}. The function \code{\link{rev}} reverts time.
+#' where \eqn{\phi_{\ell k}} are the dynamic PC filters as explained in  \code{\link{dpca.filters}} and \eqn{Y_{\ell k}} are dynamic  scores as explained in \code{\link{dpca.scores}}. For the sample version the sum in \eqn{k} extends over the range of lags for which the \eqn{\phi_{\ell k}} are defined.
 #' 
 #' For more details we refer to Chapter 9 in Brillinger (2001), Chapter 7.8 in Shumway and Stoffer (2006)
 #' and to Hormann et al. (2015).
@@ -25,5 +24,5 @@
 #' @seealso \code{\link{dpca.filters}}, \code{\link{filter.process}}, \code{\link{dpca.scores}}, \code{\link{rev}}
 #' @export
 dpca.KLexpansion = function(X, dpcs){
-  X %c% freqdom.transpose(rev(dpcs))
+  dpca.scores(X, dpcs) %c% freqdom.transpose(rev(dpcs))
 }

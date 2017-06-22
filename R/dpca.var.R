@@ -4,15 +4,14 @@
 #' \eqn{\ell}-th dynamic eigenvalue. The proportion of variance described by the \eqn{\ell}-th dynamic
 #' principal component is given as
 #' \deqn{v_\ell:=\int_{-\pi}^\pi \lambda_\ell(\omega)d\omega/\int_{-\pi}^\pi \mathrm{tr}(\mathcal{F}_\omega)d\omega.}
-#' This function numerically computes the vectors \eqn{(v_\ell\colon 1\leq \ell\leq d)} and
-#' \eqn{\big(\sum_{j=1}^\ell v_j\colon 1\leq \ell\leq d\big)}.
+#' This function numerically computes the vectors \eqn{(v_\ell\colon 1\leq \ell\leq d)}.
 #'
 #' For more details we refer to Chapter 9 in Brillinger (2001), Chapter 7.8 in Shumway and Stoffer (2006)
 #' and to Hormann et al. (2015).
 #'
 #' @title Proportion of variance explained.
 #' @param F \eqn{(d\times d)} spectral density matrix, provided as an object of class \code{freqdom}. To guarantee accuracy of numerical integration it is important that \eqn{F\$}freq is a dense grid of frequencies in \eqn{[-\pi,\pi]}.
-# @return A \eqn{(2\times d)}-matix. The first row contains the \eqn{v_\ell} the second row contains the cumulative sums of the \eqn{v_\ell}.
+# @return A vector containing the \eqn{v_\ell}.
 #' @return A \eqn{d}-dimensional vector containing the \eqn{v_\ell}.
 #' @seealso \code{\link{dpca.filters}}, \code{\link{dpca.KLexpansion}}, \code{\link{dpca.scores}},
 #' @references Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
