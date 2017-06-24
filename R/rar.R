@@ -49,7 +49,7 @@ rar = function(n, d = 2, Psi = NULL, burnin = 10, noise = c('mnormal', 'mt'), si
 	# if no operator then make some default
 	if (is.null(Psi)){
 		Psi = exp(-(1:d))%*%t(exp(-(1:d)))
-		Psi = Psi/norm(Psi,type="2")/2
+		Psi = Psi/norm(Psi,type="F")/2
 	}
 
 	# build coefficients matrix (initially null)
