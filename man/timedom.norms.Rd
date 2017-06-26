@@ -13,8 +13,10 @@ timedom.norms(A, type = c("2", "O", "I", "F", "M"))
 }
 \value{
 A list which contains the following components:
-* \code{lags} a vector containing the lags of \eqn{A}.
-* \code{norms} a vector containing the norms of the matrices defining \eqn{A}.
+\itemize{
+\item \code{lags} a vector containing the lags of \eqn{A}.
+\item \code{norms} a vector containing the norms of the matrices defining \eqn{A}.
+}
 }
 \description{
 This function determines the norms of the matrices defining some linear filter.
@@ -34,4 +36,3 @@ A[2,,] = 1.5 * diag(d:1)/d
 OP = timedom(A,c(-2,1))
 timedom.norms(OP)
 }
-

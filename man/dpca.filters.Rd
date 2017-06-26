@@ -16,10 +16,12 @@ components to be computed. By default it is set equal to \eqn{d}.}
 }
 \value{
 An object of class \code{timedom}.  The list has the following components:
-* \code{operators} an array. Each matrix in this array has dimension \eqn{Ndpc \times d} and is
+\itemize{
+\item \code{operators} an array. Each matrix in this array has dimension \eqn{Ndpc \times d} and is
 assigned to a certain lag. For a given lag \eqn{k}, the rows of the matrix correpsond to
 \eqn{\phi_{\ell k}}.
-* \code{lags} a vector with the lags of the filter coefficients.
+\item \code{lags} a vector with the lags of the filter coefficients.
+}
 }
 \description{
 For a given spectral density matrix dynamic principal component filter sequences are computed.
@@ -31,7 +33,10 @@ Dynamic principal components are linear filters \eqn{(\phi_{\ell k}\colon k\in \
 \deqn{
   \phi_{\ell k}:=\frac{1}{2\pi}\int_{-\pi}^\pi \varphi_\ell(\omega) \exp(-ik\omega) d\omega.
 }
-The index \eqn{\ell} is referring to the \eqn{\ell}-th largest dynamic eigenvalue. For a given
+The index \eqn{\ell} is referring to the \eqn{\ell}-th #'largest dynamic eigenvalue. Since the \eqn{\phi_{\ell k}} are #'real, we have \deqn{
+\phi_{\ell k}^\prime=\phi_{\ell k}^*=\frac{1}{2#'\pi}\int_{-\pi}^\pi \varphi_\ell^* \exp(ik\omega)d\omega.
+}
+For a given
 spectral density (provided as on object of class \code{freqdom}) the function
 \code{dpca.filters()} computes \eqn{(\phi_{\ell k}\colon |k| \leq q)}. Filters will be computed
 for \eqn{1 \leq \ell \leq} Ndpc.
@@ -53,4 +58,3 @@ Shumway, R.H., and Stoffer, D.S.
 \seealso{
 \code{\link{dpca.var}}, \code{\link{dpca.scores}}, \code{\link{dpca.KLexpansion}}
 }
-

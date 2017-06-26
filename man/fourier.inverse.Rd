@@ -13,15 +13,17 @@ fourier.inverse(F, lags = 0)
 }
 \value{
 An object of class \code{\link{timedom}}. The list has the following components:
-* \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the \eqn{k}-th Fourier coefficient.
-* \code{lags} the lags of the corresponding Fourier coefficient.
+\itemize{
+\item \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the \eqn{k}-th Fourier coefficient.
+\item \code{lags} the lags of the corresponding Fourier coefficient.
+}
 }
 \description{
 Computes Fourier coefficients of some functional represented by an object of class \code{freqdom}.
 }
 \details{
 Consider a function \eqn{F \colon [-\pi,\pi]\to\mathbf{C}^{d_1\times d_2}}. Its \eqn{k}-th Fourier
-coefficient is given as 
+coefficient is given as
 \deqn{
   \frac{1}{2\pi}\int_{-\pi}^\pi F(\omega) \exp(ik\omega)d\omega.
 }
@@ -42,4 +44,3 @@ cov.structure(Y)
 \seealso{
 \code{\link{fourier.transform}}, \code{\link{freqdom}}
 }
-

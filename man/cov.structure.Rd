@@ -25,11 +25,10 @@ Let \eqn{[X_1,\ldots, X_T]^\prime} be a \eqn{T\times d_1} matrix and
 assume that \eqn{(X_t^\prime,Y_t^\prime)^\prime} is a stationary multivariate time series
 of dimension \eqn{d_1+d_2}. This function determines empirical lagged covariances between
 the series \eqn{(X_t)} and \eqn{(Y_t)}. More precisely it determines
-\eqn{\widehat{C}^{XY}(h)} for \eqn{h\in} lags, 
+\eqn{\widehat{C}^{XY}(h)} for \eqn{h\in} lags,
 where \eqn{\widehat{C}^{XY}(h)} is the empirical version of \eqn{\mathrm{Cov}(X_h,Y_0)}.
 For a sample of size \eqn{T} we set \eqn{\hat\mu^X=\frac{1}{T}\sum_{t=1}^T X_t$ and $\hat\mu^Y=\frac{1}{T}\sum_{t=1}^T Y_t} and
 \deqn{\hat C^{XY}(h) = \frac{1}{T}\sum_{t=1}^{T-h} (X_{t+h} - \hat\mu^X)(Y_{t} - \hat\mu^Y)'}
 and for \eqn{h < 0}
 \deqn{\hat C^{XY}(h) = \frac{1}{T}\sum_{t=|h|+1}^{T} (X_{t+h} - \hat\mu^X)(Y_{t} - \hat\mu^Y)'.}
 }
-

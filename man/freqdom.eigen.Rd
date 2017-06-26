@@ -11,9 +11,11 @@ freqdom.eigen(F)
 }
 \value{
 Returns a list. The list is containing the following components:
-* \code{vectors} an array containing \eqn{d} matrices. The \eqn{i}-th matrix contains in its \eqn{k}-th row the conjugate transpose eigenvector belonging to the \eqn{k}-th largest eigenvalue of \code{F\$operator[,,i]}.
-* \code{values} matrix containing in \eqn{k}-th column the eigenvalues of \code{F\$operator[,,k]}.
-* \code{freq} vector of frequencies defining the object F.
+\itemize{
+\item \code{vectors} an array containing \eqn{d} matrices. The \eqn{i}-th matrix contains in its \eqn{k}-th row the conjugate transpose eigenvector belonging to the \eqn{k}-th largest eigenvalue of \code{F\$operator[,,i]}.
+\item \code{values} matrix containing in \eqn{k}-th column the eigenvalues of \code{F\$operator[,,k]}.
+\item \code{freq} vector of frequencies defining the object F.
+}
 }
 \description{
 Gives the eigendecomposition of objects of class \code{freqdom}.
@@ -24,4 +26,3 @@ This function makes an eigendecomposition for each of the matrices \code{F\$oper
 \seealso{
 \code{\link{freqdom}}
 }
-
