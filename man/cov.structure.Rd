@@ -15,6 +15,10 @@ cov.structure(X, Y = X, lags = 0)
 }
 \value{
 An object of class \code{\link{timedom}}. The list contains
+\itemize{
+\item \code{operators} \eqn{\quad} an array. Element \code{[,,k]} contains the covariance matrix related to lag \eqn{\ell_k}.
+\item \code{lags} \eqn{\quad} returns the lags vector from the arguments.
+}
 }
 \description{
 This function is used to estimate a collection of cross-covariances of two stationary time series.

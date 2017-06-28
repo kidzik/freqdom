@@ -2,7 +2,7 @@ inClass = function(X,cls){
   !is.null(oldClass(X)) && oldClass(X) == cls
 }
 
-#' freqdom Checks if an object belongs to the class \code{\link{freqdom}}.
+#' Checks if an object belongs to the class \code{\link{freqdom}}.
 #
 #' @title Checks if an object belongs to the class freqdom
 #' @param X some object

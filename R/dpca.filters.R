@@ -6,10 +6,11 @@
 #' \deqn{
 #'   \phi_{\ell k}:=\frac{1}{2\pi}\int_{-\pi}^\pi \varphi_\ell(\omega) \exp(-ik\omega) d\omega.
 #' }
-#' The index \eqn{\ell} is referring to the \eqn{\ell}-th #'largest dynamic eigenvalue. Since the \eqn{\phi_{\ell k}} are #'real, we have \deqn{
-#'\phi_{\ell k}^\prime=\phi_{\ell k}^*=\frac{1}{2#'\pi}\int_{-\pi}^\pi \varphi_\ell^* \exp(ik\omega)d\omega.
-#'}
-#'For a given
+#' The index \eqn{\ell} is referring to the \eqn{\ell}-th #'largest dynamic eigenvalue. Since the \eqn{\phi_{\ell k}} are
+#' real, we have \deqn{
+#' \phi_{\ell k}^\prime=\phi_{\ell k}^*=\frac{1}{2\pi}\int_{-\pi}^\pi \varphi_\ell^* \exp(ik\omega)d\omega.
+#' }
+#' For a given
 #' spectral density (provided as on object of class \code{freqdom}) the function
 #' \code{dpca.filters()} computes \eqn{(\phi_{\ell k}\colon |k| \leq q)}. Filters will be computed
 #' for \eqn{1 \leq \ell \leq} Ndpc.

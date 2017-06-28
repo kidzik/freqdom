@@ -18,7 +18,6 @@
 #' @param Y vector or matrix. If matrix, then each row corresponds to a timepoint of a vector time series.
 #' @param lags an integer-valued vector \eqn{(\ell_1,\ldots, \ell_K)} containing the lags for which covariances are calculated.
 #' @return An object of class \code{\link{timedom}}. The list contains
-#' @value agag
 #' * \code{operators} \eqn{\quad} an array. Element \code{[,,k]} contains the covariance matrix related to lag \eqn{\ell_k}.
 #' * \code{lags} \eqn{\quad} returns the lags vector from the arguments.
 # @references Peter J. Brockwell and Richard A. Davis
