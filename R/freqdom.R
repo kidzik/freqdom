@@ -14,13 +14,13 @@
 #' }
 #' We may choose \eqn{\omega_k=2\pi k/K-\pi} and \eqn{F_k=D_T(\omega_k)}. Then, the object \code{freqdom} creates, is corresponding to the function which associates \eqn{\omega_k} and \eqn{D_T(\omega_k)}.
 #'
-#' @title Converts an array of filters into a frequency-domain object
+#' @title Create an object corresponding to a frequency domain functional 
 #' 
 #' @param F a vector, a matrix or an array. For vectors \eqn{F[k], 1\leq k\leq K} are complex numbers. For matrices \eqn{F[k,]} are complex vectors. For arrays the elements \eqn{F[,,k]}, are complex valued \eqn{(d_1\times d_2)} matrices (all of same dimension).
 #' @param freq a vector of dimension \eqn{K} containing frequencies in \eqn{[-\pi,\pi]}.
 #' @return Returns an object of class \code{\link{freqdom}}. An object of class  \code{\link{freqdom}} is a list containing the following components:
-#' * \code{operators} returns the array F as given in the argument.
-#' * \code{freq} returns the vector freq as given in the argument.
+#' * \code{operators} \eqn{\quad} the array \code{F} as given in the argument.
+#' * \code{freq} \eqn{\quad} the vector \code{freq} as given in the argument.
 #' @seealso \code{\link{fourier.transform}}
 #' @examples
 #' i = complex(imaginary=1)

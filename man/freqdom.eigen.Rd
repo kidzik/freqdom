@@ -12,9 +12,9 @@ freqdom.eigen(F)
 \value{
 Returns a list. The list is containing the following components:
 \itemize{
-\item \code{vectors} an array containing \eqn{d} matrices. The \eqn{i}-th matrix contains in its \eqn{k}-th row the conjugate transpose eigenvector belonging to the \eqn{k}-th largest eigenvalue of \code{F\$operator[,,i]}.
-\item \code{values} matrix containing in \eqn{k}-th column the eigenvalues of \code{F\$operator[,,k]}.
-\item \code{freq} vector of frequencies defining the object F.
+\item \code{vectors} \eqn{\quad} an array containing \eqn{d} matrices. The \eqn{i}-th matrix contains in its \eqn{k}-th row the conjugate transpose eigenvector belonging to the \eqn{k}-th largest eigenvalue of \code{F\$operator[,,i]}.
+\item \code{values} \eqn{\quad} matrix containing in \eqn{k}-th column the eigenvalues of \code{F\$operator[,,k]}.
+\item \code{freq} \eqn{\quad} vector of frequencies defining the object \code{F}.
 }
 }
 \description{

@@ -2,20 +2,20 @@
 % Please edit documentation in R/fourier.inverse.R
 \name{fourier.inverse}
 \alias{fourier.inverse}
-\title{Coefficiets of a discrete Fourier transform.}
+\title{Coefficients of a discrete Fourier transform}
 \usage{
 fourier.inverse(F, lags = 0)
 }
 \arguments{
-\item{F}{an object of class \code{\link{freqdom}} which is corresponding to a function with values in \eqn{\mathbf{C}^{d_1\times d_2}}. To guarantee accuracy of inversion it is important that \eqn{F\$}freq is a dense grid of frequencies in \eqn{[-\pi,\pi]}.}
+\item{F}{an object of class \code{\link{freqdom}} which is corresponding to a function with values in \eqn{\mathbf{C}^{d_1\times d_2}}. To guarantee accuracy of inversion it is important that \code{F}\eqn{\$}\code{freq} is a dense grid of frequencies in \eqn{[-\pi,\pi]}.}
 
 \item{lags}{lags of the Fourier coefficients to be computed.}
 }
 \value{
 An object of class \code{\link{timedom}}. The list has the following components:
 \itemize{
-\item \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the \eqn{k}-th Fourier coefficient.
-\item \code{lags} the lags of the corresponding Fourier coefficient.
+\item \code{operators} \eqn{\quad} an array. The \eqn{k}-th matrix in this array corresponds to the \eqn{k}-th Fourier coefficient.
+\item \code{lags} \eqn{\quad} the lags of the corresponding Fourier coefficients.
 }
 }
 \description{

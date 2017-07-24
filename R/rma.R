@@ -1,15 +1,15 @@
 #' Generates a zero mean vector moving average process.
 #' 
-#' We simulate a vector moving average process
+#' This simulates a vector moving average process
 #' \deqn{
 #'   X_t=\varepsilon_t+\sum_{k \in lags} \Psi_k \varepsilon_{t-k},\quad 1\leq t\leq n.
 #' }
 #' The innovation process \eqn{\varepsilon_t} is either multivariate normal or multivarite \eqn{t} with
 #' a predefined covariance/scale matrix sigma and zero mean. The noise is generated with the
 #' package \code{mvtnorm}. For Gaussian noise we use \code{\link[mvtnorm]{rmvnorm}}. For Student-t noise we use
-#' \code{\link[mvtnorm]{rmvt}}. The parameters sigma and df are imported as arguments, otherwise we use default settings.
+#' \code{\link[mvtnorm]{rmvt}}. The parameters \code{sigma} and \code{df} are imported as arguments, otherwise we use default settings.
 #'
-#' @title Moving avarege process
+#' @title Moving average process
 #' @param n number of observations to generate.
 #' @param d dimension of the time series.
 #' @param Psi a \code{\link{timedom}} object with operators \code{Psi$operators}, where \code{Psi$operators[,,k]}
@@ -19,7 +19,7 @@
 #' @param noise \code{mnormal} for multivariate normal noise or \code{mt} for multivariate \eqn{t} noise. If not specified \code{mnormal} is chosen.
 #' @param sigma covariance  or scale matrix of the innovations. If NULL then the identity matrix is used.
 #' @param df degrees of freedom if \code{noise = "mt"}.
-#' @return A matrix with d columns and n rows. Each row corresponds to one time point.
+#' @return A matrix with \code{d} columns and \code{n} rows. Each row corresponds to one time point.
 #' @export
 #' @seealso \code{\link{rar}}
 rma = function(n, d = 2, Psi = NULL, noise = c("mnormal","mt"), sigma = NULL, df = 4)

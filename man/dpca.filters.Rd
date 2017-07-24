@@ -12,15 +12,15 @@ dpca.filters(F, Ndpc = dim(F$operators)[1], q = 30)
 \item{Ndpc}{an integer \eqn{\in\{1,\ldots, d\}}. It is the number of dynamic principal
 components to be computed. By default it is set equal to \eqn{d}.}
 
-\item{q}{a non-negative integer. DPCA filter coefficients at lags \eqn{|h|\leq} q will be computed.}
+\item{q}{a non-negative integer. DPCA filter coefficients at lags \eqn{|h|\leq} \code{q} will be computed.}
 }
 \value{
 An object of class \code{timedom}.  The list has the following components:
 \itemize{
-\item \code{operators} an array. Each matrix in this array has dimension \eqn{Ndpc \times d} and is
+\item \code{operators} \eqn{\quad} an array. Each matrix in this array has dimension \code{Ndpc} \eqn{\times d} and is
 assigned to a certain lag. For a given lag \eqn{k}, the rows of the matrix correpsond to
 \eqn{\phi_{\ell k}}.
-\item \code{lags} a vector with the lags of the filter coefficients.
+\item \code{lags} \eqn{\quad} a vector with the lags of the filter coefficients.
 }
 }
 \description{
@@ -39,14 +39,13 @@ real, we have \deqn{
 }
 For a given
 spectral density (provided as on object of class \code{freqdom}) the function
-\code{dpca.filters()} computes \eqn{(\phi_{\ell k}\colon |k| \leq q)}. Filters will be computed
-for \eqn{1 \leq \ell \leq} Ndpc.
+\code{dpca.filters()} computes \eqn{(\phi_{\ell k})} for \eqn{|k| \leq} \code{q}  and \eqn{1 \leq \ell \leq} \code{Ndpc}.
 
 For more details we refer to Chapter 9 in Brillinger (2001), Chapter 7.8 in Shumway and
 Stoffer (2006) and to Hormann et al. (2015).
 }
 \references{
-Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
+Hormann, S., Kidzinski, L., and Hallin, M.
 \emph{Dynamic functional principal components.} Journal of the Royal
 Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
 

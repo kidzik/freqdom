@@ -1,4 +1,4 @@
-#' Computes the proportion and cumulative proportion of variance explained by a given number of dynamic principal components.
+#' Computes the proportion of variance explained by a given dynamic principal component.
 #' 
 #' Consider a spectral density matrix \eqn{\mathcal{F}_\omega} and let \eqn{\lambda_\ell(\omega)} by the
 #' \eqn{\ell}-th dynamic eigenvalue. The proportion of variance described by the \eqn{\ell}-th dynamic
@@ -9,12 +9,12 @@
 #' For more details we refer to Chapter 9 in Brillinger (2001), Chapter 7.8 in Shumway and Stoffer (2006)
 #' and to Hormann et al. (2015).
 #'
-#' @title Proportion of variance explained.
-#' @param F \eqn{(d\times d)} spectral density matrix, provided as an object of class \code{freqdom}. To guarantee accuracy of numerical integration it is important that \eqn{F\$}freq is a dense grid of frequencies in \eqn{[-\pi,\pi]}.
+#' @title Proportion of variance explained
+#' @param F \eqn{(d\times d)} spectral density matrix, provided as an object of class \code{freqdom}. To guarantee accuracy of numerical integration it is important that \code{F}\eqn{\$}\code{freq} is a dense grid of frequencies in \eqn{[-\pi,\pi]}.
 # @return A vector containing the \eqn{v_\ell}.
 #' @return A \eqn{d}-dimensional vector containing the \eqn{v_\ell}.
-#' @seealso \code{\link{dpca.filters}}, \code{\link{dpca.KLexpansion}}, \code{\link{dpca.scores}},
-#' @references Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
+#' @seealso \code{\link{dpca.filters}}, \code{\link{dpca.KLexpansion}}, \code{\link{dpca.scores}}
+#' @references Hormann, S., Kidzinski, L., and Hallin, M.
 #' \emph{Dynamic functional principal components.} Journal of the Royal
 #' Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
 #' @references Brillinger, D.

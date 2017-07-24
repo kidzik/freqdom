@@ -20,12 +20,12 @@ inv.fourier.one = function(R,lag){
 #' }
 #' for \eqn{k\in} lags.
 #' 
-#' @title Coefficiets of a discrete Fourier transform.
-#' @param F an object of class \code{\link{freqdom}} which is corresponding to a function with values in \eqn{\mathbf{C}^{d_1\times d_2}}. To guarantee accuracy of inversion it is important that \eqn{F\$}freq is a dense grid of frequencies in \eqn{[-\pi,\pi]}.
+#' @title Coefficients of a discrete Fourier transform
+#' @param F an object of class \code{\link{freqdom}} which is corresponding to a function with values in \eqn{\mathbf{C}^{d_1\times d_2}}. To guarantee accuracy of inversion it is important that \code{F}\eqn{\$}\code{freq} is a dense grid of frequencies in \eqn{[-\pi,\pi]}.
 #' @param lags lags of the Fourier coefficients to be computed.
 #' @return An object of class \code{\link{timedom}}. The list has the following components:
-#' * \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the \eqn{k}-th Fourier coefficient.
-#' * \code{lags} the lags of the corresponding Fourier coefficient.
+#' * \code{operators} \eqn{\quad} an array. The \eqn{k}-th matrix in this array corresponds to the \eqn{k}-th Fourier coefficient.
+#' * \code{lags} \eqn{\quad} the lags of the corresponding Fourier coefficients.
 #' @export
 #' @seealso \code{\link{fourier.transform}}, \code{\link{freqdom}}
 #' @examples

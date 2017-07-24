@@ -2,18 +2,18 @@
 % Please edit documentation in R/dpca.var.R
 \name{dpca.var}
 \alias{dpca.var}
-\title{Proportion of variance explained.}
+\title{Proportion of variance explained}
 \usage{
 dpca.var(F)
 }
 \arguments{
-\item{F}{\eqn{(d\times d)} spectral density matrix, provided as an object of class \code{freqdom}. To guarantee accuracy of numerical integration it is important that \eqn{F\$}freq is a dense grid of frequencies in \eqn{[-\pi,\pi]}.}
+\item{F}{\eqn{(d\times d)} spectral density matrix, provided as an object of class \code{freqdom}. To guarantee accuracy of numerical integration it is important that \code{F}\eqn{\$}\code{freq} is a dense grid of frequencies in \eqn{[-\pi,\pi]}.}
 }
 \value{
 A \eqn{d}-dimensional vector containing the \eqn{v_\ell}.
 }
 \description{
-Computes the proportion and cumulative proportion of variance explained by a given number of dynamic principal components.
+Computes the proportion of variance explained by a given dynamic principal component.
 }
 \details{
 Consider a spectral density matrix \eqn{\mathcal{F}_\omega} and let \eqn{\lambda_\ell(\omega)} by the
@@ -26,7 +26,7 @@ For more details we refer to Chapter 9 in Brillinger (2001), Chapter 7.8 in Shum
 and to Hormann et al. (2015).
 }
 \references{
-Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
+Hormann, S., Kidzinski, L., and Hallin, M.
 \emph{Dynamic functional principal components.} Journal of the Royal
 Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
 
@@ -37,5 +37,5 @@ Shumway, R.H., and Stoffer, D.S.
 \emph{Time Series Analysis and Its Applications} (2006), Springer, New York.
 }
 \seealso{
-\code{\link{dpca.filters}}, \code{\link{dpca.KLexpansion}}, \code{\link{dpca.scores}},
+\code{\link{dpca.filters}}, \code{\link{dpca.KLexpansion}}, \code{\link{dpca.scores}}
 }

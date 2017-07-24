@@ -10,8 +10,8 @@
 #' @param type matrix norm to be used as in \link{base::norm}
 #' @export
 #' @return A list which contains the following components:
-#' * \code{lags} a vector containing the lags of \eqn{A}.
-#' * \code{norms} a vector containing the norms of the matrices defining \eqn{A}.
+#' * \code{lags} \eqn{\quad} a vector containing the lags of \code{A}.
+#' * \code{norms} \eqn{\quad} a vector containing the norms of the matrices defining \code{A}.
 #' @examples
 #' d = 2
 #' 

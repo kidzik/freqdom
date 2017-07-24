@@ -2,7 +2,7 @@
 % Please edit documentation in R/freqdom.R
 \name{freqdom}
 \alias{freqdom}
-\title{Converts an array of filters into a frequency-domain object}
+\title{Create an object corresponding to a frequency domain functional}
 \usage{
 freqdom(F, freq)
 }
@@ -14,8 +14,8 @@ freqdom(F, freq)
 \value{
 Returns an object of class \code{\link{freqdom}}. An object of class  \code{\link{freqdom}} is a list containing the following components:
 \itemize{
-\item \code{operators} returns the array F as given in the argument.
-\item \code{freq} returns the vector freq as given in the argument.
+\item \code{operators} \eqn{\quad} the array \code{F} as given in the argument.
+\item \code{freq} \eqn{\quad} the vector \code{freq} as given in the argument.
 }
 }
 \description{

@@ -1,10 +1,10 @@
-#' Computes the frequency response function of a linear filter.
+#' Computes the frequency response function of a linear filter and returns it as a \code{\link{freqdom}} object.
 #' 
 #' Consider a filter (a sequence of vectors or matrices) \eqn{(A_k)_{k\in A\$lags}}. Then this function computes
 #' \deqn{\sum_{k\in A\$lags} A_k e^{-ik\omega}}
 #' for all frequencies \eqn{\omega} listed in the vector \code{freq}.
 #'
-#' @title Computes the Fourier transform of a filter given as \code{timedom} object.
+#' @title Computes the Fourier transformation of a filter given as \code{timedom} object
 #' @param A an object of class \code{timedom}.
 #' @param freq a vector of frequencies \eqn{\in [-\pi, \pi]}. 
 #' @return An object of class \code{freqdom}.
@@ -13,7 +13,9 @@
 #' # We compute the discrete Fourier transform (DFT) of a time series X_1,..., X_T.
 #' 
 #' X = rar(100)
-#' DFT = fourier.transform(tdX) / sqrt(dim(X)[1])
+#' T=dim(X)[1]
+#' tdX = timedom(X/sqrt(T),lags=1:T)
+#' DFT = fourier.transform(tdX, freq= pi*-1000:1000/1000)
 #' @export
 fourier.transform = function(A,freq=pi*-100:100/100){
   if (!is.timedom(A))

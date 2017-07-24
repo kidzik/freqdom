@@ -12,15 +12,15 @@
 #' 
 #' See, e.g., Chapter 10 and 11 in Brockwell and Davis (1991) for details. 
 #'
-#' @title Compute the cross spectral density of two vector processes. 
+#' @title Compute empirical spectral density 
 #' @param X a vector or a vector time series given in matrix form. Each row corresponds to a timepoint.
 #' @param Y a vector or vector time series given in matrix form. Each row corresponds to a timepoint.
 #' @param freq a vector containing frequencies in \eqn{[-\pi, \pi]} on which the spectral density should be evaluated.
 #' @param q window size for the kernel estimator, i.e. a positive integer.
 #' @param weights kernel used in the spectral smoothing. By default the Bartlett kernel is chosen.
 #' @return Returns an object of class \code{\link{freqdom}}. The list is containing the following components:
-#' * \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the spectral density matrix evaluated at the \eqn{k}-th frequency listed in freq.
-#' * \code{freq} returns argument vector freq.
+#' * \code{operators} \eqn{\quad} an array. The \eqn{k}-th matrix in this array corresponds to the spectral density matrix evaluated at the \eqn{k}-th frequency listed in \code{freq}.
+#' * \code{freq} \eqn{\quad} returns argument vector \code{freq}.
 #' @references Peter J. Brockwell and Richard A. Davis
 #' \emph{Time Series: Theory and Methods}
 #' Springer Series in Statistics, 2009

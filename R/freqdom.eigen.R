@@ -5,9 +5,9 @@
 #' @title Eigendecompose a frequency domain operator at each frequency
 #' @param F an object of class freqdom. The matrices \code{F\$operator[,,k]} are required to be square matrices, say \eqn{d \times d}.
 #' @return Returns a list. The list is containing the following components:
-#' * \code{vectors} an array containing \eqn{d} matrices. The \eqn{i}-th matrix contains in its \eqn{k}-th row the conjugate transpose eigenvector belonging to the \eqn{k}-th largest eigenvalue of \code{F\$operator[,,i]}.
-#' * \code{values} matrix containing in \eqn{k}-th column the eigenvalues of \code{F\$operator[,,k]}.
-#' * \code{freq} vector of frequencies defining the object F.
+#' * \code{vectors} \eqn{\quad} an array containing \eqn{d} matrices. The \eqn{i}-th matrix contains in its \eqn{k}-th row the conjugate transpose eigenvector belonging to the \eqn{k}-th largest eigenvalue of \code{F\$operator[,,i]}.
+#' * \code{values} \eqn{\quad} matrix containing in \eqn{k}-th column the eigenvalues of \code{F\$operator[,,k]}.
+#' * \code{freq} \eqn{\quad} vector of frequencies defining the object \code{F}.
 #' @importFrom graphics par plot title
 #' @importFrom stats optim rnorm
 # @references Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.

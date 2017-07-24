@@ -13,10 +13,10 @@ dpca.scores(X, dpcs = dpca.filters(spectral.density(X)))
 dpca.filter(spectral.density(X))} is used.}
 }
 \value{
-A \eqn{T\times Ndpc}-matix with \code{Ndpc = dim(dpcs\eqn{\$}operators)[1]}. The \eqn{\ell}-th column contains the \eqn{\ell}-th dynamic principal component score sequence.
+A \eqn{T\times} \code{Ndpc}-matix with \code{Ndpc = dim(dpcs\eqn{\$}operators)[1]}. The \eqn{\ell}-th column contains the \eqn{\ell}-th dynamic principal component score sequence.
 }
 \description{
-Computes the dynamic principal component score vectors of a vector time series.
+Computes dynamic principal component score vectors of a vector time series.
 }
 \details{
 The \eqn{\ell}-th dynamic principal components score sequence is defined by
@@ -28,7 +28,7 @@ where \eqn{\phi_{\ell k}} are the dynamic PC filters as explained in  \code{\lin
 We for more details we refer to Chapter 9 in Brillinger (2001), Chapter 7.8 in Shumway and Stoffer (2006) and to Hormann et al. (2015).
 }
 \references{
-Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
+Hormann, S., Kidzinski, L., and Hallin, M.
 \emph{Dynamic functional principal components.} Journal of the Royal
 Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
 

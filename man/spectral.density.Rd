@@ -2,7 +2,7 @@
 % Please edit documentation in R/spectral.density.R
 \name{spectral.density}
 \alias{spectral.density}
-\title{Compute the cross spectral density of two vector processes.}
+\title{Compute empirical spectral density}
 \usage{
 spectral.density(X, Y = X, freq = (-1000:1000/1000) * pi, q = max(1,
   floor(dim(X)[1]^(1/3))), weights = c("Bartlett", "trunc", "Tukey", "Parzen",
@@ -22,8 +22,8 @@ spectral.density(X, Y = X, freq = (-1000:1000/1000) * pi, q = max(1,
 \value{
 Returns an object of class \code{\link{freqdom}}. The list is containing the following components:
 \itemize{
-\item \code{operators} an array. The \eqn{k}-th matrix in this array corresponds to the spectral density matrix evaluated at the \eqn{k}-th frequency listed in freq.
-\item \code{freq} returns argument vector freq.
+\item \code{operators} \eqn{\quad} an array. The \eqn{k}-th matrix in this array corresponds to the spectral density matrix evaluated at the \eqn{k}-th frequency listed in \code{freq}.
+\item \code{freq} \eqn{\quad} returns argument vector \code{freq}.
 }
 }
 \description{

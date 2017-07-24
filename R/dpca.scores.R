@@ -1,4 +1,4 @@
-#' Computes the dynamic principal component score vectors of a vector time series.
+#' Computes dynamic principal component score vectors of a vector time series.
 #' 
 #' The \eqn{\ell}-th dynamic principal components score sequence is defined by
 #' \deqn{
@@ -12,9 +12,9 @@
 #' @param X a vector time series given as a \eqn{(T\times d)}-matix. Each row corresponds to a timepoint.
 #' @param dpcs an object of class \code{timedom}, representing the dpca filters obtained from the sample X. If \code{dpsc = NULL}, then \code{dpcs =
 #' dpca.filter(spectral.density(X))} is used.
-#' @return A \eqn{T\times Ndpc}-matix with \code{Ndpc = dim(dpcs\eqn{\$}operators)[1]}. The \eqn{\ell}-th column contains the \eqn{\ell}-th dynamic principal component score sequence.
+#' @return A \eqn{T\times} \code{Ndpc}-matix with \code{Ndpc = dim(dpcs\eqn{\$}operators)[1]}. The \eqn{\ell}-th column contains the \eqn{\ell}-th dynamic principal component score sequence.
 #' @seealso \code{\link{dpca.filters}}, \code{\link{dpca.KLexpansion}}, \code{\link{dpca.var}}
-#' @references Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
+#' @references Hormann, S., Kidzinski, L., and Hallin, M.
 #' \emph{Dynamic functional principal components.} Journal of the Royal
 #' Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
 #' @references Brillinger, D.

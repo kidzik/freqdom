@@ -2,7 +2,7 @@
 % Please edit documentation in R/dpca.KLexpansion.R
 \name{dpca.KLexpansion}
 \alias{dpca.KLexpansion}
-\title{Retrieve a process from given scores}
+\title{Dynamic KL expansion}
 \usage{
 dpca.KLexpansion(X, dpcs)
 }
@@ -29,7 +29,7 @@ For more details we refer to Chapter 9 in Brillinger (2001), Chapter 7.8 in Shum
 and to Hormann et al. (2015).
 }
 \references{
-Hormann Siegfried, Kidzinski Lukasz and Hallin Marc.
+Hormann, S., Kidzinski, L., and Hallin, M.
 \emph{Dynamic functional principal components.} Journal of the Royal
 Statistical Society: Series B (Statistical Methodology) 77.2 (2015): 319-348.
 
@@ -40,5 +40,5 @@ Shumway, R.H., and Stoffer, D.S.
 \emph{Time Series Analysis and Its Applications} (2006), Springer, New York.
 }
 \seealso{
-\code{\link{dpca.filters}}, \code{\link{filter.process}}, \code{\link{dpca.scores}}, \code{\link{rev}}
+\code{\link{dpca.filters}}, \code{\link{filter.process}}, \code{\link{dpca.scores}}
 }

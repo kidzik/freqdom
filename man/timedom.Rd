@@ -2,24 +2,24 @@
 % Please edit documentation in R/timedom.R
 \name{timedom}
 \alias{timedom}
-\title{Converts a series of matrices into an object which relates a certain lag to each matrix.}
+\title{Defines a linear filter}
 \usage{
 timedom(A, lags)
 }
 \arguments{
-\item{A}{Vector, matrix or array. If array, the elements \eqn{A[,,k], 1\leq k\leq K}, are real valued \eqn{(d_1\times d_2)} matrices (all of same dimension). If A is a matrix, the \eqn{k}-th row is treated as \eqn{A[,,k]}. Same for the \eqn{k}-th element of a vector. These matrices, vectors or scalars define a linear filter.}
-
 \item{lags}{a vector of increasing integers. It corresponds to the time lags of the filter.}
+
+\item{a}{vector, matrix or array. If array, the elements \eqn{A[,,k], 1\leq k\leq K}, are real valued \eqn{(d_1\times d_2)} matrices (all of same dimension). If A is a matrix, the \eqn{k}-th row is treated as \eqn{A[,,k]}. Same for the \eqn{k}-th element of a vector. These matrices, vectors or scalars define a linear filter.}
 }
 \value{
 Returns an object of class \code{timedom}. An object of class  \code{timedom} is a list containing the following components:
 \itemize{
-\item \code{operators} - returns the array A as given in the argument.
-\item \code{lags} - returns the vector of lags as given in the argument.
+\item \code{operators} \eqn{\quad} returns the array \code{A} as given in the argument.
+\item \code{lags} \eqn{\quad} returns the vector \code{lags} as given in the argument.
 }
 }
 \description{
-Creates an object of class \code{timedom}. This object corresponds to a linear filter.
+Creates an object of class \code{timedom}. This object corresponds to a multivariate linear filter.
 }
 \details{
 This class is used to describe a linear filter, i.e. a sequence of matrices, each of which correspond to a certain lag. Filters can, for example, be used to transform a sequence \eqn{(X_t)} into a new sequence \eqn{(Y_t)} by defining

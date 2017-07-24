@@ -23,7 +23,7 @@ rar(n, d = 2, Psi = NULL, burnin = 10, noise = c("mnormal", "mt"),
 \item{df}{degrees of freedom if \code{noise = "mt"}.}
 }
 \value{
-A matrix with d columns and n rows. Each row corresponds to one time point.
+A matrix with \code{d} columns and \code{n} rows. Each row corresponds to one time point.
 }
 \description{
 Generates a zero mean vector autoregressive process of a given order.
@@ -33,19 +33,13 @@ We simulate a vector autoregressive process
 \deqn{
   X_t=\sum_{k=1}^p \Psi_k X_{t-k}+\varepsilon_t,\quad 1\leq t\leq n.
 }
-The innovation process \eqn{\varepsilon_t} is either multivariate normal or multivarite
+The innovation process \eqn{\varepsilon_t} is either multivariate normal or multivariate
 \eqn{t} with a predefined covariance/scale matrix sigma and zero mean. The noise is generated
 with the package \code{mvtnorm}. For Gaussian noise we use \code{\link[mvtnorm]{rmvnorm}}. For Student-t noise
 we use \code{\link[mvtnorm]{rmvt}}. The parameters sigma and df are imported as arguments, otherwise we use default
 settings. To initialise the process we set
 \eqn{[X_{1-p},\ldots,X_{0}]=[\varepsilon_{1-p},\ldots,\varepsilon_{0}]}. When \code{burnin} is set
-equal to \eqn{K} then, \eqn{n+K} observations are generated and the first \eqn{K} will be trashed.
-}
-\examples{
-nbase = 10
-Psi = t((1:nbase) \%*\% t(sin(1:nbase * 2*pi/nbase)) / (nbase*nbase))
-process = rar(30, Psi=Psi, sigma=diag(nbase:1)/nbase)
-plot(process[,1], type="l")
+equal to \eqn{K} then, n\eqn{+K} observations are generated and the first \eqn{K} will be trashed.
 }
 \seealso{
 \code{\link{rma}}

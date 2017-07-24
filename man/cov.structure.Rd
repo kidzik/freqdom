@@ -21,7 +21,8 @@ An object of class \code{\link{timedom}}. The list contains
 }
 }
 \description{
-This function is used to estimate a collection of cross-covariances of two stationary time series.
+This function computes the empirical cross-covariance of two stationary multivariate time series.
+If only one time series is provided it determines the empirical autocovariance function.
 }
 \details{
 Let \eqn{[X_1,\ldots, X_T]^\prime} be a \eqn{T\times d_1} matrix and

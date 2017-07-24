@@ -1,4 +1,5 @@
-#' This function is used to estimate a collection of cross-covariances of two stationary time series.
+#' This function computes the empirical cross-covariance of two stationary multivariate time series.
+#' If only one time series is provided it determines the empirical autocovariance function.
 #' 
 #' Let \eqn{[X_1,\ldots, X_T]^\prime} be a \eqn{T\times d_1} matrix and
 #' \eqn{[Y_1,\ldots, Y_T]^\prime} be a \eqn{T\times d_2} matrix. We stack the vectors and

@@ -14,8 +14,8 @@ timedom.norms(A, type = c("2", "O", "I", "F", "M"))
 \value{
 A list which contains the following components:
 \itemize{
-\item \code{lags} a vector containing the lags of \eqn{A}.
-\item \code{norms} a vector containing the norms of the matrices defining \eqn{A}.
+\item \code{lags} \eqn{\quad} a vector containing the lags of \code{A}.
+\item \code{norms} \eqn{\quad} a vector containing the norms of the matrices defining \code{A}.
 }
 }
 \description{

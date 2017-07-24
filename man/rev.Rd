@@ -4,38 +4,29 @@
 \alias{rev}
 \alias{rev.freqdom}
 \alias{rev.timedom}
-\title{Invert the lags or the grid parameters of a \code{\link{freqdom}} or a \code{\link{timedom}} object}
+\title{Invert order of lags or grid parameters of a \code{\link{timedom}} or \code{\link{freqdom}} object, respectively}
 \usage{
 \method{rev}{freqdom}(x)
 
 \method{rev}{timedom}(x)
 }
 \arguments{
-\item{x}{a frequency-domain filter of type \code{\link{freqdom}} or a time-domain filter of type \code{\link{timedom}}, i.e. a set of linear operators \eqn{S_k \in \mathbf{R}^{p_1 \times p_2}}
-defined on \eqn{k \in G \subset \mathbf{Z}.}}
+\item{x}{an object of class \code{freqdom} or \code{timedom}.}
 }
 \value{
-Function returns a frequency-domain object (\code{\link{freqdom}}) or a time-domain object (\code{\link{time}}) of the same dimensions,
-with the same operators but with the inverted order of operators.
+Returns object of same class as \code{x}.
 }
 \description{
 \itemize{
-\item For a given frequency-domain operator \code{x} (\code{\link{freqdom}}), the function \code{rev} inverts the evaluation grid.
+\item For a given \code{freqdom} object \code{x}, the function \code{rev} reverts the order of the evaluation grid.
 }
 
 \itemize{
-\item For a given time-domain operator \code{x} (\code{\link{timedom}}), the function \code{rev} inverts time.
+\item For a given \code{timedom} object \code{x}, the function \code{rev} reverts the order of lags.
 }
-}
-\details{
-Let \eqn{S = \{ S_k : k \in G \}} be an ordered set of operators, where \eqn{G} is a finite grid
-of frequencies in \eqn{G \subset [-\pi,\pi]} or set of lags \eqn{G \subset \mathbf{Z}}.
-Let \eqn{k_1, k_2, ..., k_L} be a sorted sequence of elements of \eqn{G}
-Function \code{rev} inverts the order of this sequence, i.e. it returns an ordered set of operators
-\deqn{F = \{ F_{\theta_i} : \theta_{L - i + 1} \in G \}.}
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{timedom}: Reverts time in a \code{\link{timedom}} object
+\item \code{timedom}: Reverts order of lags in an object of class \code{\link{timedom}}
 }}
 
