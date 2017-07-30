@@ -24,7 +24,7 @@
 #' SYX = spectral.density(X,Y)
 #' SXX = spectral.density(X)
 #' R = freqdom.ratio(SYX,SXX,n)
-freqdom.ratio = function(F,G,n=NULL,K=NULL){
-  Ginv = freqdom.inverse(G,n=n,K=K)
-  F %*% Ginv
-}
+# freqdom.ratio = function(F,G,n=NULL,K=NULL){
+#   Ginv = freqdom.inverse(G,n=n,K=K)
+#   F %*% Ginv
+# }

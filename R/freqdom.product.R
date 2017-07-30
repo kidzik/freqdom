@@ -14,10 +14,10 @@
 #' on a discreet grid defined \eqn{S \subset [-\pi,\pi]}. 
 #' @return Function returns a frequency domain object (\code{\link{freqdom}}) of dimensions \eqn{L \times p \times r}, where \eqn{L} is the 
 #' size of the evaluation grid. The elements correspond to \eqn{F_\theta * G_\theta} defined above.
-#' @seealso \code{\link{freqdom.inverse}}, \code{\link{freqdom.ratio}}
+# @seealso \code{\link{freqdom.inverse}}, \code{\link{freqdom.ratio}}
 #' @describeIn freqdom.product Frequency-wise matrix product of two frequency-domain operators
-#' @noRd
 #' @export
+#' @keywords internal
 #' @examples
 #' n = 100
 #' X = rar(n)
@@ -43,10 +43,24 @@ freqdom.product = function(F,G){
   R
 }
 
-#' @describeIn freqdom.product Convenience operator for \code{freqdom.product} function
-#' @title Compute a matrix product of two frequency-domain operators
-#' @noRd
+oldprod <- `%*%`
+
+#' Frequency-wise product of freqdom objects
+#' 
+#' @title Frequency-wise product of freqdom objects
 #' @export
-#' @exportMethod %*%
-setGeneric("%*%")
-setMethod("%*%", signature("freqdom", "freqdom"), function(x, y) freqdom.product(x,y))
+#' @keywords internal
+`%*%` <- function(A, B){
+  if (is.freqdom(A) && is.freqdom(B))
+    freqdom.product(A, B)
+  else
+    oldprod(A,B)
+}
+
+# @describeIn freqdom.product Convenience operator for \code{freqdom.product} function
+# @title Compute a matrix product of two frequency-domain operators
+# @noRd
+# @export
+# @exportMethod %*%
+#setGeneric("%*%")
+#setMethod("%*%", signature("freqdom"), function(x, y) freqdom.product(x,y))

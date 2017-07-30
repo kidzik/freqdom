@@ -39,3 +39,4 @@ Shumway, R.H., and Stoffer, D.S.
 \seealso{
 \code{\link{dpca.filters}}, \code{\link{dpca.KLexpansion}}, \code{\link{dpca.scores}}
 }
+\keyword{DPCA}

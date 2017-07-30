@@ -1,4 +1,6 @@
-n = 1000 
+library("freqdom")
+
+n = 10000
 X = matrix(rnorm(2*n),n,2)
 Y = X[2:n,]
 X = X[1:(n-1),]

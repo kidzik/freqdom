@@ -58,3 +58,4 @@ Shumway, R.H., and Stoffer, D.S.
 \seealso{
 \code{\link{dpca.var}}, \code{\link{dpca.scores}}, \code{\link{dpca.KLexpansion}}
 }
+\keyword{DPCA}

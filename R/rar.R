@@ -11,7 +11,7 @@
 #' settings. To initialise the process we set
 #' \eqn{[X_{1-p},\ldots,X_{0}]=[\varepsilon_{1-p},\ldots,\varepsilon_{0}]}. When \code{burnin} is set
 #' equal to \eqn{K} then, n\eqn{+K} observations are generated and the first \eqn{K} will be trashed.
-#' 
+#'
 #' @title Simulate a multivariate autoregressive time series
 #' @param n number of observations to generate.
 #' @param d dimension of the time series.
@@ -23,6 +23,7 @@
 #' @importFrom graphics plot title
 #' @return A matrix with \code{d} columns and \code{n} rows. Each row corresponds to one time point.
 #' @seealso \code{\link{rma}}
+#' @keywords simulations
 #' @export
 rar = function(n, d = 2, Psi = NULL, burnin = 10, noise = c('mnormal', 'mt'), sigma = NULL, df = 4)
 {
@@ -37,10 +38,10 @@ rar = function(n, d = 2, Psi = NULL, burnin = 10, noise = c('mnormal', 'mt'), si
 	  noise = 'mnormal'
 	if (is.null(sigma))
 	  sigma = diag(d)
-	
+
 	if (det(sigma)<0 || !isSymmetric(sigma))
 		stop("sigma is not a covariance matrix.")
-	
+
 	# if no operator then make some default
 	if (is.null(Psi)){
 		Psi = exp(-(1:d))%*%t(exp(-(1:d)))

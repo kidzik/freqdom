@@ -8,18 +8,19 @@
 #'  Y_t=\sum_k A_kX_{t-k}.
 #' }
 #' See \code{filter.process()}.
-#'  Formally we consider a collection \eqn{[A_1,\ldots,A_K]} of complex-valued matrices \eqn{A_k}, all of which have the same dimension \eqn{d_1\times d_2}. Moreover, we consider lags \eqn{\ell_1<\ell_2<\cdots<\ell_K}. The object this function creates corresponds to the mapping \eqn{f: \mathrm{lags}\to \mathbf{R}^{d_1\times d_2}}, where \eqn{\ell_k\mapsto A_k}. 
+#'  Formally we consider a collection \eqn{[A_1,\ldots,A_K]} of complex-valued matrices \eqn{A_k}, all of which have the same dimension \eqn{d_1\times d_2}. Moreover, we consider lags \eqn{\ell_1<\ell_2<\cdots<\ell_K}. The object this function creates corresponds to the mapping \eqn{f: \mathrm{lags}\to \mathbf{R}^{d_1\times d_2}}, where \eqn{\ell_k\mapsto A_k}.
 #'
 #' @title Defines a linear filter
-#' 
-#' @param a vector, matrix or array. If array, the elements \eqn{A[,,k], 1\leq k\leq K}, are real valued \eqn{(d_1\times d_2)} matrices (all of same dimension). If A is a matrix, the \eqn{k}-th row is treated as \eqn{A[,,k]}. Same for the \eqn{k}-th element of a vector. These matrices, vectors or scalars define a linear filter.
+#'
+#' @param A a vector, matrix or array. If array, the elements \eqn{A[,,k], 1\leq k\leq K}, are real valued \eqn{(d_1\times d_2)} matrices (all of same dimension). If A is a matrix, the \eqn{k}-th row is treated as \eqn{A[,,k]}. Same for the \eqn{k}-th element of a vector. These matrices, vectors or scalars define a linear filter.
 #' @param lags a vector of increasing integers. It corresponds to the time lags of the filter.
 #' @return Returns an object of class \code{timedom}. An object of class  \code{timedom} is a list containing the following components:
 #' * \code{operators} \eqn{\quad} returns the array \code{A} as given in the argument.
 #' * \code{lags} \eqn{\quad} returns the vector \code{lags} as given in the argument.
 #' @seealso \code{\link{freqdom}}, \code{\link{is.timedom}}
 #' @export
-#' 
+#' @keywords classes
+#'
 #' @examples
 #' # In this example we apply the difference operator: Delta X_t= X_t-X_{t-1} to a time series
 #' X = rar(20)

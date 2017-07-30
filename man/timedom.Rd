@@ -7,9 +7,9 @@
 timedom(A, lags)
 }
 \arguments{
-\item{lags}{a vector of increasing integers. It corresponds to the time lags of the filter.}
+\item{A}{a vector, matrix or array. If array, the elements \eqn{A[,,k], 1\leq k\leq K}, are real valued \eqn{(d_1\times d_2)} matrices (all of same dimension). If A is a matrix, the \eqn{k}-th row is treated as \eqn{A[,,k]}. Same for the \eqn{k}-th element of a vector. These matrices, vectors or scalars define a linear filter.}
 
-\item{a}{vector, matrix or array. If array, the elements \eqn{A[,,k], 1\leq k\leq K}, are real valued \eqn{(d_1\times d_2)} matrices (all of same dimension). If A is a matrix, the \eqn{k}-th row is treated as \eqn{A[,,k]}. Same for the \eqn{k}-th element of a vector. These matrices, vectors or scalars define a linear filter.}
+\item{lags}{a vector of increasing integers. It corresponds to the time lags of the filter.}
 }
 \value{
 Returns an object of class \code{timedom}. An object of class  \code{timedom} is a list containing the following components:
@@ -41,3 +41,4 @@ filter.process(X, A)
 \seealso{
 \code{\link{freqdom}}, \code{\link{is.timedom}}
 }
+\keyword{classes}

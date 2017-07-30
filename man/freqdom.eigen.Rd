@@ -26,3 +26,4 @@ This function makes an eigendecomposition for each of the matrices \code{F\$oper
 \seealso{
 \code{\link{freqdom}}
 }
+\keyword{frequency.domain}

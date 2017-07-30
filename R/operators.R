@@ -1,3 +1,8 @@
+#' Frequency-wise sum of freqdom objects
+#' 
+#' @title Frequency-wise sum of freqdom objects
+#' @export
+#' @keywords internal
 plus.freqdom = function(e1,e2){
   R = e1
   lags = freqdom.lags(e1)
@@ -14,10 +19,18 @@ plus.timedom = function(e1,e2){
   R
 }
 
-#' @export '+' freqdom
+#' Frequency-wise sum of freqdom objects
+#' 
+#' @title Frequency-wise sum of freqdom objects
+#' @export
+#' @keywords internal
 "+.freqdom" = function (e1,e2) plus.freqdom(e1,e2)
 
-#' @export '+' timedom
+#' Time-wise sum of freqdom objects
+#' 
+#' @title Time-wise sum of freqdom objects
+#' @export
+#' @keywords internal
 "+.timedom" = function (e1,e2) plus.freqdom(e1,e2)
 
 minus.freqdom = function(e1,e2){
@@ -39,8 +52,16 @@ minus.freqdom = function(e1,e2){
   R
 }
 
-#' @export '-' freqdom
+#' Frequency-wise difference of freqdom objects
+#' 
+#' @title Frequency-wise difference of freqdom objects
+#' @export
+#' @keywords internal
 "-.freqdom" = function (e1,e2) minus.freqdom(e1,e2)
 
-#' @export '-' timedom
+#' Time-wise sum of freqdom objects
+#' 
+#' @title Time-wise difference of freqdom objects
+#' @export
+#' @keywords internal
 "-.timedom" = function (e1,e2) minus.freqdom(e1,e2)

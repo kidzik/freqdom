@@ -8,7 +8,8 @@ inClass = function(X,cls){
 #' @param X some object
 #' @return \code{TRUE} if \code{X} is of type \code{\link{freqdom}}, \code{FALSE} otherwise
 #' @seealso \code{\link{freqdom}}, \code{\link{timedom}}, \code{\link{is.timedom}}
-#' @export 
+#' @export
+#' @keywords classes
 is.freqdom = function (X){
   inClass(X,'freqdom')
 }

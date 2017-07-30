@@ -45,3 +45,4 @@ A = freqdom(OP, freq)
 \seealso{
 \code{\link{fourier.transform}}
 }
+\keyword{classes}

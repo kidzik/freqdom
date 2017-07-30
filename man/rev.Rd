@@ -3,12 +3,9 @@
 \name{rev}
 \alias{rev}
 \alias{rev.freqdom}
-\alias{rev.timedom}
 \title{Invert order of lags or grid parameters of a \code{\link{timedom}} or \code{\link{freqdom}} object, respectively}
 \usage{
 \method{rev}{freqdom}(x)
-
-\method{rev}{timedom}(x)
 }
 \arguments{
 \item{x}{an object of class \code{freqdom} or \code{timedom}.}
@@ -20,13 +17,5 @@ Returns object of same class as \code{x}.
 \itemize{
 \item For a given \code{freqdom} object \code{x}, the function \code{rev} reverts the order of the evaluation grid.
 }
-
-\itemize{
-\item For a given \code{timedom} object \code{x}, the function \code{rev} reverts the order of lags.
 }
-}
-\section{Methods (by class)}{
-\itemize{
-\item \code{timedom}: Reverts order of lags in an object of class \code{\link{timedom}}
-}}
-
+\keyword{internal}

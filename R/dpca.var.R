@@ -1,5 +1,5 @@
 #' Computes the proportion of variance explained by a given dynamic principal component.
-#' 
+#'
 #' Consider a spectral density matrix \eqn{\mathcal{F}_\omega} and let \eqn{\lambda_\ell(\omega)} by the
 #' \eqn{\ell}-th dynamic eigenvalue. The proportion of variance described by the \eqn{\ell}-th dynamic
 #' principal component is given as
@@ -21,6 +21,7 @@
 #' \emph{Time Series} (2001), SIAM, San Francisco.
 #' @references Shumway, R.H., and Stoffer, D.S.
 #' \emph{Time Series Analysis and Its Applications} (2006), Springer, New York.
+#' @keywords DPCA
 #' @export
 dpca.var = function(F){
   # stop("Not implemented")

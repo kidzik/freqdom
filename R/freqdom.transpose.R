@@ -13,8 +13,8 @@
 #' on some discreet grid defined of \eqn{[-\pi,\pi]}. 
 #' @return Function returns a frequency domain object (\code{\link{freqdom}}) of dimensions \eqn{L \times p_2 \times p_1}, where \eqn{L} is the size of the grid.
 #' The elements of the object correspond to \eqn{S_\theta'} as defined above.
-#' @seealso \code{\link{freqdom.product}}, \code{\link{freqdom.ratio}}
-#' @noRd
+# @seealso \code{\link{freqdom.product}}, \code{\link{freqdom.ratio}}
+#' @keywords internal
 #' @export
 freqdom.transpose = function(x){
   newdim = dim(x$operators)
@@ -28,10 +28,10 @@ freqdom.transpose = function(x){
 # @exportMethod t freqdom
 #freqdom.transpose
 
-# @exportMethod t freqdom
-#t.timedom = freqdom.transpose
+#' @export
+t.timedom = freqdom.transpose
 
-#' @exportMethod t
-setGeneric("t")
-setMethod("t", signature = "timedom", freqdom.transpose)
-setMethod("t", signature = "freqdom", freqdom.transpose)
+# @exportMethod t
+# setGeneric("t")
+# setMethod("t", signature = "timedom", freqdom.transpose)
+# setMethod("t", signature = "freqdom", freqdom.transpose)

@@ -31,7 +31,7 @@ Estimates the spectral density and cross spectral density of vector time series.
 }
 \details{
 Let \eqn{[X_1,\ldots, X_T]^\prime} be a \eqn{T\times d_1} matrix and \eqn{[Y_1,\ldots, Y_T]^\prime} be a \eqn{T\times d_2} matrix. We stack the vectors and assume that \eqn{(X_t^\prime,Y_t^\prime)^\prime} is a stationary multivariate time series of dimension \eqn{d_1+d_2}. The cross-spectral density between the two time series \eqn{(X_t)} and \eqn{(Y_t)} is defined as
-\deqn{  
+\deqn{
   \sum_{h\in\mathbf{Z}} \mathrm{Cov}(X_h,Y_0) e^{-ih\omega}.
 }
 The function \code{spectral.density} determines the empirical cross-spectral density between the two time series \eqn{(X_t)} and \eqn{(Y_t)}. The estimator is of form
@@ -47,4 +47,4 @@ Peter J. Brockwell and Richard A. Davis
 \emph{Time Series: Theory and Methods}
 Springer Series in Statistics, 2009
 }
-\keyword{spec}
+\keyword{dpca}

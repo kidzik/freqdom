@@ -9,7 +9,7 @@ timedom.norms(A, type = c("2", "O", "I", "F", "M"))
 \arguments{
 \item{A}{an object of class \code{timedom}}
 
-\item{type}{matrix norm to be used as in \link{base::norm}}
+\item{type}{matrix norm to be used as in \code{norm}}
 }
 \value{
 A list which contains the following components:
@@ -36,3 +36,4 @@ A[2,,] = 1.5 * diag(d:1)/d
 OP = timedom(A,c(-2,1))
 timedom.norms(OP)
 }
+\keyword{time.domain}

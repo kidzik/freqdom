@@ -14,7 +14,8 @@ Depends:
     stats,
     graphics,
     base,
-    matrixcalc
+    matrixcalc,
+    utils
 Suggests:
     fda,
     MASS,

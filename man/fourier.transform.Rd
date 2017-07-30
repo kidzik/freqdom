@@ -33,3 +33,5 @@ DFT = fourier.transform(tdX, freq= pi*-1000:1000/1000)
 \seealso{
 \code{\link{fourier.inverse}}
 }
+\keyword{frequency.domain}
+\keyword{time.domain}

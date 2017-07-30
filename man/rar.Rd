@@ -44,3 +44,4 @@ equal to \eqn{K} then, n\eqn{+K} observations are generated and the first \eqn{K
 \seealso{
 \code{\link{rma}}
 }
+\keyword{simulations}

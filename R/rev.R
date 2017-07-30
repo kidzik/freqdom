@@ -4,7 +4,8 @@
 #' @title Invert order of lags or grid parameters of a \code{\link{timedom}} or \code{\link{freqdom}} object, respectively
 #' @param x an object of class \code{freqdom} or \code{timedom}.
 #' @return Returns object of same class as \code{x}.
-#' @describeIn rev Reverts order of frequency grid in an object of class \code{\link{freqdom}}
+# @describeIn rev Reverts order of frequency grid in an object of class \code{\link{freqdom}}
+#' @keywords internal
 #' @export
 rev.freqdom = function(x){
   order=length(x$freq):1
@@ -15,7 +16,8 @@ rev.freqdom = function(x){
 
 #' * For a given \code{timedom} object \code{x}, the function \code{rev} reverts the order of lags.
 #'
-#' @describeIn rev Reverts order of lags in an object of class \code{\link{timedom}}
+#' @title rev Reverts order of lags in an object of class \code{\link{timedom}}
+#' @keywords internal
 #' @export
 rev.timedom = function(x){
   order=length(x$lags):1

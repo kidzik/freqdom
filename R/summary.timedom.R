@@ -1,4 +1,9 @@
-#' @export print timedom
+#' Print timedom object
+#' 
+#' @title Print timedom object
+# @export print timedom
+#' @export
+#' @keywords internal
 print.timedom = function (x, ...) {
   dots <- list(...)
   operators = TRUE
@@ -16,7 +21,12 @@ print.timedom = function (x, ...) {
   cat(paste("\n$lags (available lags)\n",paste(x$lags,collapse=" "),"\n"))
 }
 
-#' @export print freqdom
+#' Print freqdom object
+#' 
+#' @title Print freqdom object
+# @export print freqdom
+#' @export
+#' @keywords internal
 print.freqdom = function (x, ...) {
   dots <- list(...)
   operators = TRUE
@@ -37,12 +47,22 @@ print.freqdom = function (x, ...) {
   print(signif(x$freq,4))
 }
 
-#' @export summary timedom
+#' Print object summary
+#' 
+#' @title Print object summary
+# @export summary timedom
+#' @export
+#' @keywords internal
 summary.timedom = function (object, ...) {
   print.timedom(object, FALSE)
 }
 
-#' @export summary freqdom
+#' Print object summary
+#' 
+#' @title Print object summary
+# @export summary freqdom
+#' @export
+#' @keywords internal
 summary.freqdom = function (object, ...) {
   print.freqdom(object, FALSE)
 }

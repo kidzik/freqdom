@@ -36,3 +36,4 @@ When index \eqn{t-k} falls outside the domain \eqn{\{1,\ldots, T\}} we set \eqn{
 \seealso{
 \code{\link{timedom}}
 }
+\keyword{time.domain}

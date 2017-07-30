@@ -4,7 +4,8 @@
 #' @param X some object
 #' @return \code{TRUE} if \code{X} is of type \code{\link{timedom}}, \code{FALSE} otherwise
 #' @seealso \code{\link{freqdom}}, \code{\link{timedom}}, \code{\link{is.freqdom}}
-#' @export 
+#' @export
+#' @keywords classes
 is.timedom = function (X){
   inClass(X,'timedom')
 }

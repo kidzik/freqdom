@@ -44,3 +44,5 @@ cov.structure(Y)
 \seealso{
 \code{\link{fourier.transform}}, \code{\link{freqdom}}
 }
+\keyword{frequency.domain}
+\keyword{time.domain}

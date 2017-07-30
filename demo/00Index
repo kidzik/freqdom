@@ -1,5 +1,3 @@
-dpca.nino         DPCA application to nino metheorogical dataset
-dpca.pm10         DPCA application to pollution data
 dpca.simulation   Elementary DPCA example
 dpca.population	  DPCA for larger datasets
 

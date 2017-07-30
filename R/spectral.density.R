@@ -1,7 +1,7 @@
-#' Estimates the spectral density and cross spectral density of vector time series. 
+#' Estimates the spectral density and cross spectral density of vector time series.
 #'
-#' Let \eqn{[X_1,\ldots, X_T]^\prime} be a \eqn{T\times d_1} matrix and \eqn{[Y_1,\ldots, Y_T]^\prime} be a \eqn{T\times d_2} matrix. We stack the vectors and assume that \eqn{(X_t^\prime,Y_t^\prime)^\prime} is a stationary multivariate time series of dimension \eqn{d_1+d_2}. The cross-spectral density between the two time series \eqn{(X_t)} and \eqn{(Y_t)} is defined as 
-#' \deqn{  
+#' Let \eqn{[X_1,\ldots, X_T]^\prime} be a \eqn{T\times d_1} matrix and \eqn{[Y_1,\ldots, Y_T]^\prime} be a \eqn{T\times d_2} matrix. We stack the vectors and assume that \eqn{(X_t^\prime,Y_t^\prime)^\prime} is a stationary multivariate time series of dimension \eqn{d_1+d_2}. The cross-spectral density between the two time series \eqn{(X_t)} and \eqn{(Y_t)} is defined as
+#' \deqn{
 #'   \sum_{h\in\mathbf{Z}} \mathrm{Cov}(X_h,Y_0) e^{-ih\omega}.
 #' }
 #' The function \code{spectral.density} determines the empirical cross-spectral density between the two time series \eqn{(X_t)} and \eqn{(Y_t)}. The estimator is of form
@@ -9,10 +9,10 @@
 #'   \widehat{\mathcal{F}}^{XY}(\omega)=\sum_{|h|\leq q} w(|k|/q)\widehat{C}^{XY}(h)e^{-ih\omega},
 #' }
 #' with \eqn{\widehat{C}^{XY}(h)} defined in \code{cov.structure} Here \eqn{w} is a kernel of the specified type and \eqn{q} is the window size.  By default the Bartlett kernel \eqn{w(x)=1-|x|} is used.
-#' 
-#' See, e.g., Chapter 10 and 11 in Brockwell and Davis (1991) for details. 
 #'
-#' @title Compute empirical spectral density 
+#' See, e.g., Chapter 10 and 11 in Brockwell and Davis (1991) for details.
+#'
+#' @title Compute empirical spectral density
 #' @param X a vector or a vector time series given in matrix form. Each row corresponds to a timepoint.
 #' @param Y a vector or vector time series given in matrix form. Each row corresponds to a timepoint.
 #' @param freq a vector containing frequencies in \eqn{[-\pi, \pi]} on which the spectral density should be evaluated.
@@ -26,7 +26,7 @@
 #' Springer Series in Statistics, 2009
 # @noRd
 #' @export
-#' @keywords spec
+#' @keywords dpca
 spectral.density = function(X, Y = X,
                             freq = (-1000:1000/1000)*pi,
                             q = max(1,floor(dim(X)[1]^(1/3))),
@@ -41,14 +41,14 @@ spectral.density = function(X, Y = X,
     stop("Number of observations must be equal")
   if (!(q > 0))
     stop("q must be a positive integer")
-  
+
   thetas = freq
-  
+
   nbasisX = dim(X)[2]
   nbasisY = dim(Y)[2]
   n = dim(X)[1]
   Ch = cov.structure(X,Y,-q:q)
-    
+
   if (weights=="Bartlett"){
     wfunc = weights.Bartlett
   }else if (weights=="trunc"){
@@ -65,11 +65,11 @@ spectral.density = function(X, Y = X,
     wfunc = weights.ParzenCogburnDavis
   }else
     stop(paste(weights, "is not a valid weight function"))
-  
+
   w = wfunc(-q:q/q)
-  
+
   for (i in 1:dim(Ch$operators)[3])
     Ch$operators[,,i] = w[i] * Ch$operators[,,i]
-  
+
   fourier.transform(Ch, freq=thetas)
 }

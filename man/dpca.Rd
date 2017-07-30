@@ -33,3 +33,4 @@ multivariate  time series.
 \details{
 This function uses default settings for \code{spectral.density()} applied to data X.
 }
+\keyword{DPCA}

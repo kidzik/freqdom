@@ -1,4 +1,4 @@
-library(freqdom)
+library("freqdom")
 
 set.seed(4)
 
@@ -12,7 +12,7 @@ OP[,,3] = diag(2)
 A = timedom(OP,c(-1,0,2))
 
 X = matrix(rnorm(200),100,2)
-Xt = timedom(X)
+Xt = timedom(X,1:nrow(X))
 
 if(sum((fourier.inverse(fourier.transform(Xt),1:100)$operators - Xt$operators)^2) > 1)
   stop("Fourier inverse problem")
