@@ -58,5 +58,7 @@ DPC = dpca.filters(spectral.density(X))
 if (any((dim(DPC$operators) - c(2,2,61)) != 0 ))
   stop("Wrong sizes")
 
+dpca.filters(spectral.density(X),Ndpc = 1)
+dpca(X)
 ##
 

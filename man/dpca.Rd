@@ -4,7 +4,7 @@
 \alias{dpca}
 \title{Apply DPCA to some vector time series.}
 \usage{
-dpca(X, q = 30, Ndpc = dim(X)[2], center = TRUE)
+dpca(X, q = 30, Ndpc = dim(X)[2])
 }
 \arguments{
 \item{X}{data matrix}
@@ -12,8 +12,6 @@ dpca(X, q = 30, Ndpc = dim(X)[2], center = TRUE)
 \item{q}{as in \code{\link{dpca.filters}}}
 
 \item{Ndpc}{as in \code{\link{dpca.filters}}}
-
-\item{center}{if TRUE then X will be centered before applying DPCA}
 }
 \value{
 A list containing

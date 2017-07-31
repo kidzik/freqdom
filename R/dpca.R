@@ -8,7 +8,6 @@
 #' @param X data matrix
 #' @param q as in \code{\link{dpca.filters}}
 #' @param Ndpc as in \code{\link{dpca.filters}}
-#' @param center if TRUE then X will be centered before applying DPCA
 #'
 #' @return A list containing
 #' * \code{scores} \eqn{\quad} DPCA scores (\code{\link{dpca.scores}})
@@ -19,21 +18,28 @@
 #'
 #' @keywords DPCA
 #' @export
+#' @example
+#' Psi = 3:1 %*% t(3:1) / 20
+#' X = rar(100,3,Psi)
+#' matplot(X,t='l')
+#'
+#' DPC = dpca(X, Ndpc=1)
 dpca = function(X,
                 q = 30,
-                Ndpc = dim(X)[2],
-                center = TRUE){
+                Ndpc = dim(X)[2]){
   if (!is.matrix(X))
     stop("X must be a matrix")
 
-    res = list()
-  res$mu = rep(0,dim(X)[2])
-  if (center)
-    res$mu = colMeans(X)
+  res = list()
+
+  # res$mu = rep(0,dim(X)[2])
+  # if (center)
+  #   res$mu = colMeans(X)
+
   res$spec.density = spectral.density(X)
   res$filters = dpca.filters(res$spec.density, q = q, Ndpc = Ndpc)
-  res$scores = dpca.scores(t(t(X) - res$mu), res$filters)
+  res$scores = dpca.scores(X, res$filters)
   res$var = dpca.var(res$spec.density)
-  res$Xhat = dpca.KLexpansion(res$scores, res$filters)
+  res$Xhat = dpca.KLexpansion(X, res$filters)
   res
 }
