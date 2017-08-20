@@ -2,8 +2,8 @@
 % Please edit documentation in R/freqdom-package.R
 \docType{package}
 \name{freqdom-package}
-\alias{freqdom}
 \alias{freqdom-package}
+\alias{_PACKAGE}
 \title{Frequency domain methods for stationary multivariate time series}
 \description{
 Methods for analyizing stationary multivariate time series, including dynamic principal components
@@ -19,27 +19,16 @@ methods:
 a multivariate time series into to uncorrelated components. Compared to
 classical PCA, these components are uncorrelated for any lag. For details refer to
 functions
-\code{\link{dprcomp}} for estimating the components, \code{\link{dpca.scores}} for estimating
-scores and \code{\link{dpca.inverse}} for retrieving the signal from components,
-\item Multivariate linear regression model where both independent variables (regressors, features)
-and dependent variables (response, target, outcome) are multivariate time series.
-In this case we developed two approaches:
-\enumerate{
-\item If regression coefficients \eqn{A_0} depend only on one observation, i.e.
-\deqn{Y_t = A_0 X_t + \varepsilon_t,}
-then refer to function \code{\link{reg.est}}.
-\item If regression depends also on future and past, i.e. there are \eqn{A_k \neq 0} for \eqn{k \neq 0} and
-\deqn{Y_t = \sum_{k=-q}^p A_k X_{t-k} + \varepsilon_t}
-then refer to function \code{\link{lagreg.est}}.
-}
+\code{\link{dpca}} for estimating the components, \code{\link{dpca.scores}} for estimating
+scores and \code{\link{dpca.KLexpansion}} for retrieving the signal from components,
 }
 
 Apart from implementing frequency domain techniques for stationary multivariate time series,
 \pkg{freqdom} provides a toolset of operators such as the multivariate Fourier Transform
 (\code{\link{fourier.transform}}) or a multivariate spectral density operator
 (\code{\link{spectral.density}}) as well as simulation of popular multivariate time series
-models \code{\link{rar}}, \code{\link{rma}}, \code{\link{rbm}} generating multivariate
-autoregressive, moving average and Brounian motion respectively.
+models \code{\link{rar}}, \code{\link{rma}} generating multivariate
+autoregressive and moving average respectively.
 These functions enable developing new techniques based on the Frequency domain analysis.
 }
 \references{
@@ -54,7 +43,4 @@ Journal of Time Series Analysis 36.4 (2015): 541-561.
 Hormann Siegfried and Kidzinski Lukasz.
 \emph{A note on estimation in Hilbertian linear models.}
 Scandinavian journal of statistics 42.1 (2015): 43-62.
-}
-\author{
-Siegfried Hormann and Lukasz Kidzinski
 }

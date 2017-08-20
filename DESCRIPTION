@@ -15,7 +15,8 @@ Depends:
     graphics,
     base,
     matrixcalc,
-    utils
+    utils,
+    astsa
 Suggests:
     fda,
     MASS,
