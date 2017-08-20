@@ -1,24 +1,33 @@
-#' Frequency domain methods for stationary multivariate time series
+#' Frequency domain basde analysis: dynamic PCA
 #'
-#' Methods for analyizing stationary multivariate time series, including dynamic principal components
-#' and dynamic linear models. Package also provides a toolset for developers simplifying
+#' Implementation of dynamic principle component analysis (DPCA),
+#' simulation of VAR and VMA processes and frequency domain tools.
+#' The package also provides a toolset for developers simplifying
 #' construction of new frequency domain based methods for multivariate signals.
 #'
-#' \pkg{freqdom} package allows you to seamlessly manipulate time series objects
-#' in both time and frequency domains. We implement several multivariate linear
-#' methods:
-#' * Dynamic principal component analysis, enabling spectral decomposition of
-#' a multivariate time series into to uncorrelated components. Compared to
-#' classical PCA, these components are uncorrelated for any lag. For details refer to
-#' functions
-#' \code{\link{dpca}} for estimating the components, \code{\link{dpca.scores}} for estimating
-#' scores and \code{\link{dpca.KLexpansion}} for retrieving the signal from components,
+#' \pkg{freqdom} package allows you to manipulate time series objects
+#' in both time and frequency domains. We implement dynamic principal component analysis methods,
+#' enabling spectral decomposition of a stationary vector time series into uncorrelated components.
 #'
-#' Apart from implementing frequency domain techniques for stationary multivariate time series,
-#' \pkg{freqdom} provides a toolset of operators such as the multivariate Fourier Transform
-#' (\code{\link{fourier.transform}}) or a multivariate spectral density operator
-#' (\code{\link{spectral.density}}) as well as simulation of popular multivariate time series
-#' models \code{\link{rar}}, \code{\link{rma}} generating multivariate
+#' Dynamic principal component analysis enables estimation of temporal filters which
+#' transform a vector time series into another vector time series with uncorrelated components,
+#' maximizing the long run variance explained.
+#' There are two key differnces between classical PCA and dynamic PCA:
+#' * Components returned by the dynamic procedure are uncorrelated in time, i.e. for any \eqn{i \neq j}
+#' and \eqn{l \in Z}, \eqn{Y_i(t)} and \eqn{Y_j(t_l)} are uncorrelated,
+#' * The mapping maximizes the long run variance, which, in case of stationary vector time series, means
+#' that the process reconstructed from and \eqn{d > 0} first dynamic principal components
+#' better approximates your vector time series process than the first \eqn{d} classic principal components.
+#'
+#' For details, please refer to literature below and to help pages of functions \code{\link{dpca}}
+#' for estimating the components, \code{\link{dpca.scores}} for estimating scores and
+#' \code{\link{dpca.KLexpansion}} for retrieving the signal from components.
+#'
+#' Apart from frequency domain techniques for stationary vector time series,
+#' \pkg{freqdom} provides a toolset of operators such as the vector Fourier Transform
+#' (\code{\link{fourier.transform}}) or a vector spectral density operator
+#' (\code{\link{spectral.density}}) as well as simulation of vector time series
+#' models \code{\link{rar}}, \code{\link{rma}} generating vector
 #' autoregressive and moving average respectively.
 #' These functions enable developing new techniques based on the Frequency domain analysis.
 #'
