@@ -1,5 +1,5 @@
 inClass = function(X,cls){
-  !is.null(oldClass(X)) && oldClass(X) == cls
+  !is.null(oldClass(X)) && (cls %in% oldClass(X))
 }
 
 #' Checks if an object belongs to the class \code{\link{freqdom}}.
