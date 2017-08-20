@@ -21,58 +21,41 @@ filter.process = function(X, A){
   if (!is.matrix(X))
     stop("X must be a matrix")
 
-  lag.min=min(A$lags)
-  lag.max=max(A$lags)
-  f.rows=dim(A$operators)[1]
-  f.cols=dim(A$operators)[2]
-  f.lags=length(A$lags)
-  f.span=lag.max-lag.min+1
-  n=dim(X)[1]
-  p=dim(X)[2]
-  Y=matrix(rep(0,n*f.rows),ncol=f.rows)
+  ncols = dim(A$operators)[1]
+  n = dim(X)[1]
+  Y = matrix(0,n,ncols)
 
-  # we adapt the filter so that all lags between lag.min and lag.max are covered.
-  # filter coefficients of missing lags are set equal to zero
-  if(f.span != f.lags){
-  Anew = array(0,c(f.rows, f.cols, f.span))
-  j=1
-  for(i in A$lags-lag.min+1){
-  Anew[,,i]=A$operators[,,j]
-  j=j+1
-  }
-  A=timedom(Anew,lags=lag.min:lag.max)
-  }
+  # Filters the process
+  for (component in 1:ncols)
+  {
+    # Compute inner products of X with all lags
+    IP = t(X %*% A$operators[component,,])
 
-  # we put all filter coefficients in one big matrix
-  Filter=c()
-  if(dim(A$operators)[1]==1){
-  for(j in 1:f.span){Filter=cbind(Filter,matrix(A$operators[,,f.span-j+1],nrow=1))}
-  } else
-  for(j in 1:f.span){
-  	Filter=cbind(Filter,A$operators[,,f.span-j+1])
-  }
-  # we define the observations before index 1 and after index n as empirical mean of X
-  V=X
-  if(lag.max>0){
-  	V=rbind(t(matrix(rep(colMeans(X),lag.max),nrow=p)),X)
-  }
-  else{
-  V=X[(-lag.max+1):(dim(X)[1]),]
-  }
-  if(lag.min<0){
-  	V=rbind(V,t(matrix(rep(colMeans(X),-lag.min),nrow=p)))
-  }
-  else{
-  	V=V[1:(dim(V)[1]-lag.min),]
-  }
+    # Shift the inner products by lags
+    # so that we can just sum them up
+    for (i in 1:length(A$lags))
+      IP[i,] = colshift(IP[i,], A$lags[i])
 
-
-  for(i in 1:n){
-  	Y[i,]=t(Filter%*%vec(t(V[i:(i+f.span-1),])))
+    # sum them up!
+    Y[,component] = colSums(IP)
   }
   Y
-  }
+}
 
+# shifts a column by a given lag and imputes mean value of the column for
+# values from outside
+colshift = function(col,lag){
+  n = length(col)
+  mcol = mean(col)
+  if (abs(lag) >= n)
+    rep(mcol,n)
+  else if (lag<0)
+    c(col[-(1:(-lag))],rep(mcol,(-lag)))
+  else if (lag>0)
+    c(rep(mcol,lag),col[(lag+1):n - lag])
+  else
+    col
+}
 
 # Given a multivariate time series \eqn{X_t} and a time-domain filter \eqn{\{A_k : k \in S\}} for some lags \eqn{S}, \code{filter.process} convolutes
 # the time series with the filter. This is a convenience operator equivalent to \code{\link{filter.process}}. See \code{\link{filter.process}} for details.
