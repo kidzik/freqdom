@@ -34,9 +34,7 @@
 #' @export
 #' @import astsa
 #' @examples
-#' # Load example data from LA Pollution-Mortality Study
-#' library("astsa")
-#' X = scale(lap)
+#' X = rar(100,3)
 #'
 #' # Compute DPCA with only one component
 #' res.dpca = dpca(X, q = 5, Ndpc = 1)

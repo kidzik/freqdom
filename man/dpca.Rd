@@ -38,9 +38,7 @@ Karhunen-Leove expansion (\code{\link{dpca.KLexpansion}}).
 See the example for understanding usage, and help pages for details on individual functions.
 }
 \examples{
-# Load example data from LA Pollution-Mortality Study
-library("astsa")
-X = scale(lap)
+X = rar(100,3)
 
 # Compute DPCA with only one component
 res.dpca = dpca(X, q = 5, Ndpc = 1)

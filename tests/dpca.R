@@ -1,6 +1,7 @@
 library("freqdom")
-library("astsa")
-Y = scale(lap)
+#library("astsa")
+#Y = scale(lap)
+Y = rar(100,3)
 
 # Compute DPCA with only one component
 res.dpca = dpca(Y, q = 5, Ndpc = 1)
