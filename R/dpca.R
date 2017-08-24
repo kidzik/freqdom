@@ -32,7 +32,6 @@
 #'
 #' @keywords DPCA
 #' @export
-#' @import astsa
 #' @examples
 #' X = rar(100,3)
 #'
