@@ -10,7 +10,7 @@ Description: Implementation of dynamic principal component
     These frequency domain methods for dimensionality reduction of multivariate time series
     were introduced by David Brillinger in his book "Time Series" (1974). We follow implementation
     guidelines as described in Hormann, Kidzinski and Hallin (2016),
-    "Dynamic Functional Principal Component".
+    "Dynamic Functional Principal Component" <doi:10.1111/rssb.12076>.
 License: GPL-3
 Depends:
     R (>= 2.15.0),

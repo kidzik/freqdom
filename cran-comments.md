@@ -9,11 +9,11 @@ My e-mail address (the maintainer) changed, after changing the institution. Unfo
 
 0 errors | 0 warnings | 1 note
 
-* This is the major refubrish of the package.
+* This is a major refubrish of the package.
 
 ## Reverse dependencies
 
-This is the major refubrish of the package, there is only one dependance:
+This is a major refubrish of the package, there is only one dependance:
 https://cran.r-project.org/web/packages/pcdpca/index.html
 which is managed by me and it is going to be updated promptly.
 The updated version of pcdpca is already on CRAN
