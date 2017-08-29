@@ -1,12 +1,16 @@
 Package: freqdom
 Type: Package
-Title: Frequency domain based analysis: dynamic PCA
-Version: 1.0.5
-Date: 2017-05-20
+Title: Frequency Domain Based Analysis: Dynamic PCA
+Version: 2.0.1
+Date: 2017-08-29
 Author: Hormann S., Kidzinski L.
 Maintainer: Kidzinski L. <lukasz.kidzinski@stanford.edu>
-Description: Implementation of dynamic principle component
+Description: Implementation of dynamic principal component
     analysis (DPCA), simulation of VAR and VMA processes and frequency domain tools. 
+    These frequency domain methods for dimensionality reduction of multivariate time series
+    were introduced by David Brillinger in his book "Time Series" (1974). We follow implementation
+    guidelines as described in Hormann, Kidzinski and Hallin (2016),
+    "Dynamic Functional Principal Component".
 License: GPL-3
 Depends:
     R (>= 2.15.0),
