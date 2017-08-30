@@ -1,4 +1,11 @@
-My e-mail address (the maintainer) changed, after changing the institution. Unfortunately, I don't have access to the EPFL account any more. 
+My e-mail address (the maintainer) changed, after changing the institution.
+Unfortunately, I don't have access to the EPFL account any more. 
+Both emails start with "lukasz.kidzinski" which is quite unique in Functional
+Data Analysis, yet I am happy to provide other proofs if necessary.
+
+Regarding changes in the first resubmission of 2.0.1:
+- I updated the title to capital letters
+- I added more accurate description of the method and implementation
 
 ## Test environments
 * local OS X install, R 3.4.1
