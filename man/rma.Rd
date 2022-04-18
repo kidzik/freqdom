@@ -4,8 +4,7 @@
 \alias{rma}
 \title{Moving average process}
 \usage{
-rma(n, d = 2, Psi = NULL, noise = c("mnormal", "mt"), sigma = NULL,
-  df = 4)
+rma(n, d = 2, Psi = NULL, noise = c("mnormal", "mt"), sigma = NULL, df = 4)
 }
 \arguments{
 \item{n}{number of observations to generate.}

@@ -4,9 +4,14 @@
 \alias{spectral.density}
 \title{Compute empirical spectral density}
 \usage{
-spectral.density(X, Y = X, freq = (-1000:1000/1000) * pi, q = max(1,
-  floor(dim(X)[1]^(1/3))), weights = c("Bartlett", "trunc", "Tukey", "Parzen",
-  "Bohman", "Daniell", "ParzenCogburnDavis"))
+spectral.density(
+  X,
+  Y = X,
+  freq = (-1000:1000/1000) * pi,
+  q = max(1, floor(dim(X)[1]^(1/3))),
+  weights = c("Bartlett", "trunc", "Tukey", "Parzen", "Bohman", "Daniell",
+    "ParzenCogburnDavis")
+)
 }
 \arguments{
 \item{X}{a vector or a vector time series given in matrix form. Each row corresponds to a timepoint.}

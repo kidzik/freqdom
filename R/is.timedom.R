@@ -7,5 +7,5 @@
 #' @export
 #' @keywords classes
 is.timedom = function (X){
-  inClass(X,'timedom')
+  inherits(X,'timedom')
 }

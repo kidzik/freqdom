@@ -4,7 +4,7 @@
 \alias{timedom.norms}
 \title{Compute operator norms of elements of a filter}
 \usage{
-timedom.norms(A, type = c("2", "O", "I", "F", "M"))
+timedom.norms(A, type = "2")
 }
 \arguments{
 \item{A}{an object of class \code{timedom}}

@@ -21,7 +21,7 @@
 #' A[2,,] = 1.5 * diag(d:1)/d
 #' OP = timedom(A,c(-2,1))
 #' timedom.norms(OP)
-timedom.norms = function(A, type = c("2", "O", "I", "F", "M")){
+timedom.norms = function(A, type = "2"){
   if (!is.timedom(A))
     stop ("A must be an object of class timedom")
   if (is.vector(type) || type=="2")

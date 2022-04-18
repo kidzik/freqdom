@@ -4,8 +4,15 @@
 \alias{rar}
 \title{Simulate a multivariate autoregressive time series}
 \usage{
-rar(n, d = 2, Psi = NULL, burnin = 10, noise = c("mnormal", "mt"),
-  sigma = NULL, df = 4)
+rar(
+  n,
+  d = 2,
+  Psi = NULL,
+  burnin = 10,
+  noise = c("mnormal", "mt"),
+  sigma = NULL,
+  df = 4
+)
 }
 \arguments{
 \item{n}{number of observations to generate.}
